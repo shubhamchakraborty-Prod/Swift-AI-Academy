@@ -1,0 +1,277 @@
+// Vector — core data model.
+// See /root/.claude/plans/give-it-a-cool-fancy-truffle.md for the approved
+// architecture this schema implements.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------
+// People & preferences
+// ---------------------------------------------------------------------
+
+model Person {
+  id              String          @id @default(cuid())
+  name            String
+  email           String          @unique
+  role            String?
+  themePreference ThemePreference @default(SYSTEM)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  workstreams      Workstream[] @relation("WorkstreamLead")
+  ownedProjects    Project[]    @relation("ProjectOwner")
+  ownedTasks       Task[]       @relation("TaskOwner")
+  collaboratesOn   Task[]       @relation("TaskCollaborators")
+  comments         Comment[]    @relation("CommentAuthor")
+  mentionedIn      Comment[]    @relation("CommentMentions")
+  resourcesCreated Resource[]   @relation("ResourceCreatedBy")
+  dashboards       Dashboard[]  @relation("DashboardOwner")
+  widgetsCreated   Widget[]     @relation("WidgetCreatedBy")
+}
+
+enum ThemePreference {
+  SYSTEM
+  LIGHT
+  DARK
+  MIDNIGHT
+  TEAL
+  PLUM
+  PINK
+  GOLD
+}
+
+// ---------------------------------------------------------------------
+// Workstreams — managed tag set (replaces the free-text "Workstreams"
+// column and the editable Legends tab).
+// ---------------------------------------------------------------------
+
+model Workstream {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  leadId    String?
+  lead      Person?  @relation("WorkstreamLead", fields: [leadId], references: [id])
+  createdAt DateTime @default(now())
+
+  tasks Task[]
+}
+
+// ---------------------------------------------------------------------
+// Projects — carries a BD pipeline stage before conversion, then acts
+// as the delivery project afterwards. One record end to end; no
+// re-typing when a proposal is won.
+// ---------------------------------------------------------------------
+
+model Project {
+  id             String         @id @default(cuid())
+  name           String
+  description    String?
+  instituteTypes String[]
+  pipelineStage  PipelineStage?
+  convertedAt    DateTime?
+  coverImageUrl  String?
+  ownerId        String?
+  owner          Person?        @relation("ProjectOwner", fields: [ownerId], references: [id])
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  tasks     Task[]
+  resources Resource[]
+}
+
+enum PipelineStage {
+  EOI_RECEIVED
+  PROPOSAL_DRAFTED
+  SHARED_WITH_STAKEHOLDER
+  ACCEPTED
+  CONVERTED
+}
+
+// ---------------------------------------------------------------------
+// Tasks — real parent/child subtasks, real owner/dependency
+// relations instead of typed text.
+// ---------------------------------------------------------------------
+
+model Task {
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id])
+
+  workstreamId String?
+  workstream   Workstream? @relation(fields: [workstreamId], references: [id])
+
+  parentTaskId String?
+  parentTask   Task?   @relation("Subtasks", fields: [parentTaskId], references: [id], onDelete: Cascade)
+  subtasks     Task[]  @relation("Subtasks")
+
+  ownerId       String?
+  owner         Person?  @relation("TaskOwner", fields: [ownerId], references: [id])
+  collaborators Person[] @relation("TaskCollaborators")
+
+  priority Priority   @default(NOT_PRIORITISED)
+  status   TaskStatus @default(NOT_STARTED)
+
+  startDate   DateTime?
+  dueDate     DateTime?
+  completedAt DateTime?
+
+  dependsOn Task[] @relation("TaskDependencies")
+  blocks    Task[] @relation("TaskDependencies")
+
+  comments  Comment[]
+  resources Resource[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Priority {
+  NOT_PRIORITISED
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+  CRITICAL
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  WAITING_FOR_APPROVAL
+  BLOCKED
+  ON_HOLD
+  COMPLETED
+  SCRAPPED
+}
+
+// ---------------------------------------------------------------------
+// Comments & activity — threaded, timestamped, replaces the single
+// free-text "Comments" cell. System-generated ACTIVITY rows record
+// field changes (status/owner/date) for the audit trail.
+// ---------------------------------------------------------------------
+
+model Comment {
+  id        String      @id @default(cuid())
+  taskId    String
+  task      Task        @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    Person      @relation("CommentAuthor", fields: [authorId], references: [id])
+  kind      CommentKind @default(COMMENT)
+  body      String
+  mentions  Person[]    @relation("CommentMentions")
+  createdAt DateTime    @default(now())
+}
+
+enum CommentKind {
+  COMMENT
+  ACTIVITY
+}
+
+// ---------------------------------------------------------------------
+// Resources — tagged, searchable library replacing the flat
+// "Frequently used files and links" sheet.
+// ---------------------------------------------------------------------
+
+model Resource {
+  id            String       @id @default(cuid())
+  title         String
+  type          ResourceType
+  url           String
+  coverImageUrl String?
+
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id])
+  taskId    String?
+  task      Task?    @relation(fields: [taskId], references: [id])
+
+  createdById String?
+  createdBy   Person?  @relation("ResourceCreatedBy", fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+enum ResourceType {
+  CONCEPT_NOTE
+  CLAUDE_SKILL
+  PROPOSAL_DOC
+  RFP_DRAFT
+  PRESENTATION_DECK
+  WEBSITE_PLATFORM
+  DEMO_PROTOTYPE
+  CUSTOM_GPT
+  OTHER
+}
+
+// ---------------------------------------------------------------------
+// Dashboards & widgets — no-code analytics builder (see plan §4).
+// ---------------------------------------------------------------------
+
+model Dashboard {
+  id        String         @id @default(cuid())
+  name      String
+  scope     DashboardScope
+  isDefault Boolean        @default(false)
+  layout    Json           @default("[]")
+  ownerId   String
+  owner     Person         @relation("DashboardOwner", fields: [ownerId], references: [id])
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  widgets Widget[]
+}
+
+enum DashboardScope {
+  PERSONAL
+  TEAM
+}
+
+model Widget {
+  id               String          @id @default(cuid())
+  dashboardId      String
+  dashboard        Dashboard       @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+  title            String
+  chartType        ChartType
+  entity           WidgetEntity
+  metric           AggregationType @default(COUNT)
+  metricField      String?
+  groupByField     String?
+  groupBySecondary String?
+  filters          Json            @default("[]")
+  sortBy           Json?
+  limit            Int?
+  createdById      String?
+  createdBy        Person?         @relation("WidgetCreatedBy", fields: [createdById], references: [id])
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+}
+
+enum ChartType {
+  STAT
+  BAR
+  LINE
+  PIE
+  FUNNEL
+  TABLE
+}
+
+enum WidgetEntity {
+  TASK
+  PROJECT
+  PERSON
+  RESOURCE
+}
+
+enum AggregationType {
+  COUNT
+  SUM
+  AVG
+  MIN
+  MAX
+}

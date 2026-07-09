@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------
+   Vector design tokens — derived from Swift AI Academy Brand & Design
+   Guidelines v1.0. Every theme below defines the same token set; no
+   component should ever reference a raw hex value.
+
+   `Cabinet Grotesk` / `JetBrains Mono` are the brand's specified
+   typefaces but are not yet licensed for this build — --font-display
+   and --font-mono currently resolve to self-hosted Geist as a
+   placeholder. Swap the `next/font` imports in app/layout.tsx once the
+   real font files are available; no other change is required.
+   --------------------------------------------------------------------- */
+
+:root {
+  /* Light (default) */
+  --bg: #f6f8ff;
+  --surface: #ffffff;
+  --surface-2: #eaeeff;
+  --border: #e2e6f2;
+
+  --ink: #0e1b5c;
+  --ink-soft: #1a2b85;
+  --muted: #5a638c;
+  --muted-2: #8a93b8;
+
+  --primary: #3d5afe;
+  --primary-deep: #2a3fcc;
+  --primary-tint: #eaeeff;
+
+  --accent: #fbb034;
+  --accent-deep: #e08f0e;
+  --accent-tint: #fff4dc;
+
+  --success: #16a34a;
+  --success-tint: #e9f7ef;
+  --warning: #d97706;
+  --warning-tint: #fdf1e1;
+  --danger: #dc2626;
+  --danger-tint: #fdecec;
+
+  --shadow-1: 0 1px 2px rgba(14, 27, 92, 0.04);
+  --shadow-2: 0 8px 24px rgba(14, 27, 92, 0.08);
+
+  --font-display: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a1240;
+    --surface: #0e1b5c;
+    --surface-2: #1a2b85;
+    --border: #24347a;
+
+    --ink: #f5f7ff;
+    --ink-soft: #dce3ff;
+    --muted: #aeb8e6;
+    --muted-2: #8a93b8;
+
+    --primary: #6f87ff;
+    --primary-deep: #93a6ff;
+    --primary-tint: #16215e;
+
+    --accent: #ffc966;
+    --accent-deep: #ffd98a;
+    --accent-tint: #2a2308;
+
+    --success: #4ade80;
+    --success-tint: #10331e;
+    --warning: #fbbf24;
+    --warning-tint: #3a2a08;
+    --danger: #f87171;
+    --danger-tint: #3a1414;
+
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* Explicit overrides always win over the media query, in both
+   directions — this is what the in-app theme switcher toggles. */
+
+:root[data-theme="light"] {
+  --bg: #f6f8ff; --surface: #ffffff; --surface-2: #eaeeff; --border: #e2e6f2;
+  --ink: #0e1b5c; --ink-soft: #1a2b85; --muted: #5a638c; --muted-2: #8a93b8;
+  --primary: #3d5afe; --primary-deep: #2a3fcc; --primary-tint: #eaeeff;
+  --accent: #fbb034; --accent-deep: #e08f0e; --accent-tint: #fff4dc;
+  --success: #16a34a; --success-tint: #e9f7ef;
+  --warning: #d97706; --warning-tint: #fdf1e1;
+  --danger: #dc2626; --danger-tint: #fdecec;
+  --shadow-1: 0 1px 2px rgba(14, 27, 92, 0.04); --shadow-2: 0 8px 24px rgba(14, 27, 92, 0.08);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a1240; --surface: #0e1b5c; --surface-2: #1a2b85; --border: #24347a;
+  --ink: #f5f7ff; --ink-soft: #dce3ff; --muted: #aeb8e6; --muted-2: #8a93b8;
+  --primary: #6f87ff; --primary-deep: #93a6ff; --primary-tint: #16215e;
+  --accent: #ffc966; --accent-deep: #ffd98a; --accent-tint: #2a2308;
+  --success: #4ade80; --success-tint: #10331e;
+  --warning: #fbbf24; --warning-tint: #3a2a08;
+  --danger: #f87171; --danger-tint: #3a1414;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3); --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Midnight — navy surface, gold-forward: the premium "gold on navy"
+   combination called out in the guideline's own dark-surface spec,
+   as a distinct dark theme rather than a Dark re-skin. Accent flips
+   to Royal Blue so primary/accent never share a hue. */
+:root[data-theme="midnight"] {
+  --bg: #0a1240; --surface: #0e1b5c; --surface-2: #1a2b85; --border: #2a3a8c;
+  --ink: #ffffff; --ink-soft: #ffe9c2; --muted: #c9b68a; --muted-2: #8a93b8;
+  --primary: #ffc966; --primary-deep: #ffd98a; --primary-tint: #2a2308;
+  --accent: #93a6ff; --accent-deep: #b7c3ff; --accent-tint: #16215e;
+  --success: #4ade80; --success-tint: #10331e;
+  --warning: #fbbf24; --warning-tint: #3a2a08;
+  --danger: #f87171; --danger-tint: #3a1414;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35); --shadow-2: 0 14px 36px rgba(0, 0, 0, 0.5);
+}
+
+/* Teal — primary role swaps to the Teal domain accent. Gold-forward
+   themes below swap --accent to Royal Blue so primary/accent never
+   collide on the same hue. */
+:root[data-theme="teal"] {
+  --bg: #f6f8ff; --surface: #ffffff; --surface-2: #dcf0f4; --border: #e2e6f2;
+  --ink: #0e1b5c; --ink-soft: #1a2b85; --muted: #5a638c; --muted-2: #8a93b8;
+  --primary: #0891b2; --primary-deep: #077792; --primary-tint: #dcf0f4;
+  --accent: #fbb034; --accent-deep: #e08f0e; --accent-tint: #fff4dc;
+  --success: #16a34a; --success-tint: #e9f7ef;
+  --warning: #d97706; --warning-tint: #fdf1e1;
+  --danger: #dc2626; --danger-tint: #fdecec;
+  --shadow-1: 0 1px 2px rgba(14, 27, 92, 0.04); --shadow-2: 0 8px 24px rgba(14, 27, 92, 0.08);
+}
+
+/* Plum */
+:root[data-theme="plum"] {
+  --bg: #f6f8ff; --surface: #ffffff; --surface-2: #ebe1fa; --border: #e2e6f2;
+  --ink: #0e1b5c; --ink-soft: #1a2b85; --muted: #5a638c; --muted-2: #8a93b8;
+  --primary: #6d28d9; --primary-deep: #5921b2; --primary-tint: #ebe1fa;
+  --accent: #fbb034; --accent-deep: #e08f0e; --accent-tint: #fff4dc;
+  --success: #16a34a; --success-tint: #e9f7ef;
+  --warning: #d97706; --warning-tint: #fdf1e1;
+  --danger: #dc2626; --danger-tint: #fdecec;
+  --shadow-1: 0 1px 2px rgba(14, 27, 92, 0.04); --shadow-2: 0 8px 24px rgba(14, 27, 92, 0.08);
+}
+
+/* Pink */
+:root[data-theme="pink"] {
+  --bg: #f6f8ff; --surface: #ffffff; --surface-2: #fcdfe9; --border: #e2e6f2;
+  --ink: #0e1b5c; --ink-soft: #1a2b85; --muted: #5a638c; --muted-2: #8a93b8;
+  --primary: #e91e63; --primary-deep: #bf1951; --primary-tint: #fcdfe9;
+  --accent: #fbb034; --accent-deep: #e08f0e; --accent-tint: #fff4dc;
+  --success: #16a34a; --success-tint: #e9f7ef;
+  --warning: #d97706; --warning-tint: #fdf1e1;
+  --danger: #dc2626; --danger-tint: #fdecec;
+  --shadow-1: 0 1px 2px rgba(14, 27, 92, 0.04); --shadow-2: 0 8px 24px rgba(14, 27, 92, 0.08);
+}
+
+/* Gold-forward — primary takes the accent's usual role; accent flips
+   to Royal Blue so the two tokens never share a hue. */
+:root[data-theme="gold"] {
+  --bg: #f6f8ff; --surface: #ffffff; --surface-2: #fff4dc; --border: #e2e6f2;
+  --ink: #0e1b5c; --ink-soft: #1a2b85; --muted: #5a638c; --muted-2: #8a93b8;
+  --primary: #e08f0e; --primary-deep: #cd8000; --primary-tint: #fff4dc;
+  --accent: #3d5afe; --accent-deep: #2a3fcc; --accent-tint: #eaeeff;
+  --success: #16a34a; --success-tint: #e9f7ef;
+  --warning: #d97706; --warning-tint: #fdf1e1;
+  --danger: #dc2626; --danger-tint: #fdecec;
+  --shadow-1: 0 1px 2px rgba(14, 27, 92, 0.04); --shadow-2: 0 8px 24px rgba(14, 27, 92, 0.08);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+
+  --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-tint: var(--primary-tint);
+
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-tint: var(--accent-tint);
+
+  --color-success: var(--success);
+  --color-success-tint: var(--success-tint);
+  --color-warning: var(--warning);
+  --color-warning-tint: var(--warning-tint);
+  --color-danger: var(--danger);
+  --color-danger-tint: var(--danger-tint);
+
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --radius-tag: 14px;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--primary-tint);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
