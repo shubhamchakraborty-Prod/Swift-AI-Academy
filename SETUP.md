@@ -1,11 +1,14 @@
 # Setup
 
-Phase 0 (this build) needs no live services to run — the app boots and the
-design system/shell are fully interactive with no database. The items below
-are what's needed to move into Phase 1 (real Projects/Tasks) and are not
-yet wired up because they need credentials only you can provide.
+Phase 0 (design system) and Phase 1 (Projects/Tasks core) are both built
+and working against a real Postgres database. The items below are what's
+still needed — mostly credentials only you can provide.
 
 ## 1. Database (Postgres)
+
+This was built and tested against a local Postgres instance (already
+migrated and seeded in this environment). To run it against your own
+database instead:
 
 Recommended: a free [Supabase](https://supabase.com) project — it also gives
 file storage (for Gallery-view cover images and Resource files in Phase 2)
@@ -16,18 +19,26 @@ and can provide auth later, so one account covers both needs.
    pooled "Transaction" connection string for serverless deploys, or the
    direct connection for local dev).
 3. Copy `.env.example` to `.env` and set `DATABASE_URL` to that string.
-4. Run `npx prisma migrate dev --name init` to create the tables from
-   `prisma/schema.prisma`.
+4. Run `npx prisma migrate dev` to create the tables from
+   `prisma/schema.prisma` (the initial migration is already committed
+   under `prisma/migrations/`).
+5. Run `npx prisma db seed` to load the real team roster and workstream
+   list (from the client's own "Legends" tab) as managed dropdown values.
 
-Without this, `npm run dev` still runs — you'll just see the Phase 0 shell
-with no live data screens yet (those land in Phase 1).
+## 2. Auth — not yet real
 
-## 2. Logo — real asset needed
+There's no login yet. `lib/current-user.ts` resolves every mutation
+(created-by, comment author, etc.) to the seeded Admin user (Shubham
+Chakraborty) as a stand-in until the login method below is decided.
+Everyone using a `npm run dev` instance right now acts as that one user.
+
+## 3. Logo — real asset needed
 
 `components/logo.tsx` currently renders placeholder SVGs
-(`public/brand/logo-*.svg`) standing in for the node-network mark you
-shared in chat (that image wasn't saved as a file, so it couldn't be
-used directly). To swap in the real mark:
+(`public/brand/logo-*.svg`) standing in for the node-network mark shared
+in chat (that image wasn't saved as a file, so it couldn't be used
+directly — a follow-up SVG attachment also didn't come through). To swap
+in the real mark:
 
 1. Export the final logo as SVG (preferred) in these variants: full
    lockup, full lockup reversed (for dark surfaces), symbol-only, symbol
@@ -40,7 +51,7 @@ used directly). To swap in the real mark:
    — everything else (the `Logo` component, sidebar, favicon) picks it up
    automatically.
 
-## 3. Fonts — Cabinet Grotesk / JetBrains Mono
+## 4. Fonts — Cabinet Grotesk / JetBrains Mono
 
 The brand guideline specifies Cabinet Grotesk and JetBrains Mono. Neither
 is bundled with this build (no license file available), so `--font-display`
@@ -52,19 +63,19 @@ Geist as a placeholder. Once you have license files:
 2. Point the two CSS variables at the new font variables — no other file
    needs to change.
 
-## 4. Still-open product decisions
-
-These don't block Phase 0 but are needed before Phase 1 ships:
+## 5. Still-open product decisions
 
 - **Login**: Google Workspace SSO (matches how the team already shares the
   Sheet) vs. plain email/password.
 - **Alerts**: email, Slack, or WhatsApp for overdue/assignment notifications
   (Phase 4).
 - **Admin**: who can add new Projects/Workstreams/People to the managed
-  dropdowns.
+  dropdowns — there's no admin UI for this yet, so new values currently
+  need a database edit or a seed script change.
 
-## 5. Deploying
+## 6. Deploying
 
 Target is Vercel. Once `DATABASE_URL` is set as a Vercel project env var,
 `npm run build` / the default Next.js build output works with no extra
-config.
+config. Run `npx prisma migrate deploy` (not `migrate dev`) against the
+production database before first deploy.

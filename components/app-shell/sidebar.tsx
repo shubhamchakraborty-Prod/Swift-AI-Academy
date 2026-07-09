@@ -2,14 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NAV_ITEMS } from "@/lib/nav";
 import { Logo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
+import { NewTaskDialog } from "@/components/tasks/new-task-dialog";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { initials } from "@/lib/labels";
+import type { PersonOption, ProjectOption, WorkstreamOption } from "@/lib/types";
 
-export function Sidebar() {
+export function Sidebar({
+  currentUser,
+  people,
+  projects,
+  workstreams,
+}: {
+  currentUser: PersonOption;
+  people: PersonOption[];
+  projects: ProjectOption[];
+  workstreams: WorkstreamOption[];
+}) {
   const pathname = usePathname();
 
   return (
@@ -18,10 +29,9 @@ export function Sidebar() {
         <Logo variant="full" height={28} />
       </div>
 
-      <Button variant="primary" size="sm" className="mb-4 w-full justify-center">
-        <Plus />
-        New task
-      </Button>
+      <div className="mb-4">
+        <NewTaskDialog people={people} projects={projects} workstreams={workstreams} />
+      </div>
 
       <nav className="flex flex-1 flex-col gap-0.5">
         {NAV_ITEMS.map((item) => {
@@ -45,10 +55,12 @@ export function Sidebar() {
 
       <div className="flex items-center gap-2.5 rounded-lg px-2.5 py-2">
         <Avatar>
-          <AvatarFallback>SC</AvatarFallback>
+          <AvatarFallback>{initials(currentUser.name)}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col leading-tight">
-          <span className="text-[13px] font-semibold text-ink">Shubham</span>
+          <span className="text-[13px] font-semibold text-ink">
+            {currentUser.name.split(" ")[0]}
+          </span>
           <span className="font-mono text-[10.5px] uppercase tracking-wide text-muted-2">
             Admin
           </span>
