@@ -26,10 +26,13 @@ Open http://localhost:3000.
 - `components/logo.tsx` + `lib/brand.ts` — swappable logo asset layer (placeholder assets in `public/brand/`, see SETUP.md).
 - `components/command-palette.tsx` — ⌘K / Ctrl+K quick navigation and theme switching.
 - `components/tasks/` — task table, board (drag-and-drop), detail slide-over, new-task dialog, and the inline status/priority/owner pickers.
+- `components/projects/` — BD Pipeline kanban (drag-and-drop across stages) and the new-project dialog, including the "Convert to project" action.
+- `components/gallery/` — the Gallery view (Projects/Resources tabs, card grid with deterministic placeholder covers).
+- `components/resources/` — new-resource dialog for the tagged link/file library.
 - `prisma/schema.prisma` — core data model (Person, Workstream, Project, Task, Comment, Resource, Dashboard, Widget).
 - `lib/data/` — read queries for server components. `lib/actions/` — Server Action mutations.
-- `app/(app)/` — the authenticated app shell (layout fetches the sidebar's shared data once); `page.tsx` is My Tasks, `board/page.tsx` is the kanban view.
+- `app/(app)/` — the authenticated app shell (layout fetches the sidebar's shared data once); `page.tsx` is My Tasks, `board/`, `pipeline/`, `gallery/` are the other views.
 
 ## Build plan
 
-The full phased plan lives at `/root/.claude/plans/give-it-a-cool-fancy-truffle.md` in the session this was built in. Current status: **Phase 0 (foundation) and Phase 1 (Projects/Tasks core) complete** — design system, logo layer, data schema, My Tasks table, Board, task detail with comments, and task creation are all working against a real Postgres database. Phase 2 (BD Pipeline, Resource library, Gallery view) is next.
+The full phased plan lives at `/root/.claude/plans/give-it-a-cool-fancy-truffle.md` in the session this was built in. Current status: **Phases 0-2 complete** — design system, logo layer, data schema, My Tasks table, Board, task detail with comments, task creation, the BD Pipeline kanban (with convert-to-project), the Resource library, and the Gallery view are all working against a real Postgres database. Phase 3 (no-code Dashboard builder) is next.

@@ -1,9 +1,10 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { Search } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
-export function Topbar({ title }: { title: string }) {
+export function Topbar({ title, action }: { title: string; action?: ReactNode }) {
   return (
     <header className="flex h-14 flex-none items-center justify-between border-b border-border bg-surface px-6">
       <h1 className="text-[15px] font-bold tracking-tight text-ink">{title}</h1>
@@ -18,6 +19,7 @@ export function Topbar({ title }: { title: string }) {
             ⌘K
           </kbd>
         </button>
+        {action}
         <ThemeSwitcher />
       </div>
     </header>
