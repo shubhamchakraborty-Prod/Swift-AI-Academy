@@ -1,0 +1,227 @@
+{
+  "version": "v1.0.0",
+  "consent": {
+    "min_age": 15,
+    "guardian_required_below_age": 17,
+    "purposes": [
+      {
+        "id": "store_answers",
+        "required": true,
+        "label_en": "Store my answers so I can continue later and get my plan"
+      },
+      {
+        "id": "take_assessment",
+        "required": true,
+        "label_en": "Score my answers to build my course plan"
+      },
+      {
+        "id": "share_with_mentor",
+        "required": false,
+        "label_en": "Share my results with my mentor and institution"
+      }
+    ]
+  },
+  "assessment": {
+    "quality": {
+      "attention": {
+        "LP-Q1": [
+          4
+        ],
+        "LP-Q2": [
+          1,
+          2
+        ]
+      },
+      "straight_line_min": 36,
+      "min_seconds": 120
+    },
+    "expected_total_minutes": 30,
+    "diligence_ratio": {
+      "min": 0.5,
+      "max": 2
+    },
+    "sitting_gap_minutes": 30,
+    "max_item_seconds": 1800,
+    "part_b_retake_after_hours": 24,
+    "part_b_max_retakes": 1
+  },
+  "skill_check": {
+    "ai": {
+      "levels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pass_rule": "all_correct"
+    },
+    "comm": {
+      "start_band": {
+        "class_10_or_below": 1,
+        "class_12": 2,
+        "iti_1": 2,
+        "iti_2": 2,
+        "ug_1": 3,
+        "ug_2": 3,
+        "ug_3": 3,
+        "ug_4": 3,
+        "graduate": 4,
+        "postgraduate": 4,
+        "doctoral": 4
+      },
+      "band_level": {
+        "1": 2,
+        "2": 3,
+        "3": 4,
+        "4": 5,
+        "5": 6,
+        "6": 6.5,
+        "7": 7,
+        "8": 8
+      },
+      "bands": 8,
+      "pass_min_correct": 2,
+      "max_down_moves": 1,
+      "strand_order": [
+        "listening",
+        "reading",
+        "interaction",
+        "vocabulary_grammar"
+      ]
+    }
+  },
+  "skill_levels": {
+    "rules": [
+      {
+        "skill_ids": [
+          "SK-ETH-008"
+        ],
+        "source": "comm_placement"
+      },
+      {
+        "family": "COMM",
+        "source": "comm_placement"
+      },
+      {
+        "family": "DAI",
+        "source": "ai_placement"
+      },
+      {
+        "family": "ETH",
+        "source": "ai_placement"
+      },
+      {
+        "family": "PPL",
+        "source": "role_level",
+        "map": {
+          "none": 0,
+          "worker": 2,
+          "supervisor": 4,
+          "manager": 5
+        }
+      }
+    ],
+    "default": 0,
+    "self_report_cap": 1
+  },
+  "persona": {
+    "borderline": 0.15,
+    "tiebreak_weight": 0.25,
+    "max_tiebreaks": 2,
+    "confidence_bands": [
+      {
+        "below": 0.25,
+        "label": "Low"
+      },
+      {
+        "upto": 0.5,
+        "label": "Medium"
+      },
+      {
+        "label": "High"
+      }
+    ]
+  },
+  "goal": {
+    "weights": {
+      "focus": {
+        "choice": 0.5,
+        "fit": 0.2,
+        "field": 0.2,
+        "market": 0.1
+      },
+      "explore": {
+        "choice": 0.1,
+        "fit": 0.45,
+        "field": 0.3,
+        "market": 0.15
+      }
+    },
+    "pi": {
+      "focus": [
+        0.6,
+        0.25,
+        0.15
+      ],
+      "explore": [
+        0.34,
+        0.33,
+        0.33
+      ]
+    },
+    "asp": [
+      1.0,
+      0.8
+    ],
+    "fit_split": {
+      "primary": 0.7,
+      "secondary": 0.3
+    },
+    "top_n": 3,
+    "reason_interest_min": 0.5
+  },
+  "importance": {
+    "core": 1.0,
+    "supporting": 0.5
+  },
+  "level_step": 0.5,
+  "course": {
+    "weights": {
+      "focus": {
+        "A": 0.6,
+        "U": 0.2,
+        "B": 0.1,
+        "F": 0.1
+      },
+      "explore": {
+        "A": 0.35,
+        "U": 0.2,
+        "B": 0.35,
+        "F": 0.1
+      }
+    },
+    "unlock_factor": 0.5,
+    "soft_prereq_penalty": 0.8,
+    "min_score": 0.2,
+    "available_hours": {
+      "under_3": 2,
+      "3_to_5": 4,
+      "6_to_8": 7,
+      "over_8": 10
+    },
+    "format_fit": {
+      "partial_ratio": 1.5,
+      "partial_value": 0.5,
+      "offline_factor": 0.5
+    },
+    "top_reason_skills": 3
+  },
+  "term": {
+    "weeks": 26,
+    "months": 6
+  },
+  "results": {
+    "top_gaps": 5
+  },
+  "reference_learner_count": 20
+}

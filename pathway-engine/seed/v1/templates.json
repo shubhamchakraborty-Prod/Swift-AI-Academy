@@ -1,0 +1,57 @@
+{
+  "templates": {
+    "course_reason": "After {course}, you are likely to be able to {outcome}. These skills are used in {goal_area} roles such as {role1} and {role2}.",
+    "pathway_summary": "Over the next {months} months, this plan builds {skills} toward {goal_area}.",
+    "exploring": "These courses help in all three directions you are considering, so you can keep your options open while you decide.",
+    "goal_interest_differ": "You chose {chosen_goal}. Your interests lean towards {orientation} work, which also fits {other_goal}. Both are in your plan.",
+    "persona_meaning": "{length_phrase}, {support_phrase}.",
+    "length_phrase_6": "A 6-month plan with one course",
+    "length_phrase_12": "A 12-month plan with two courses, one after the other",
+    "length_phrase_6_then_extend": "A 6-month plan to start, with the option to add a second course later",
+    "support_phrase_light": "which you can follow on your own with a check-in every 2 weeks",
+    "support_phrase_guided": "with a weekly check-in and priority for mentor sessions",
+    "goal_reason_choice": "your choice",
+    "goal_reason_interests": "your interests",
+    "goal_reason_studies": "your studies",
+    "goal_reason_market": "many roles use these skills",
+    "build_elsewhere": "Our current courses do not reach the level these need. You can build them through your degree, trade or other certificates.",
+    "no_course": "No course in our current catalogue adds to the skills these kinds of work need at your level. The skills below can be built through your degree, trade or other certificates.",
+    "shorter_pathway": "Only one course in our current catalogue adds to your skills right now, so this plan has one term.",
+    "warning_soft_prereq": "It helps to finish {course} first. You can still take this course.",
+    "warning_heavy_load": "This course needs about {weekly} hours a week, which is more than the time you said you have."
+  },
+  "banned": [
+    {
+      "pattern": "\\bguarantee(d|s)?\\b",
+      "reason": "No promises of outcomes"
+    },
+    {
+      "pattern": "\\bplacements?\\b",
+      "reason": "No placement promise"
+    },
+    {
+      "pattern": "\\bjob[- ]ready\\b",
+      "reason": "No job-ready claims"
+    },
+    {
+      "pattern": "\\bcertified\\b",
+      "reason": "No certification claims without a named certificate"
+    },
+    {
+      "pattern": "\\bNCVET approved\\b",
+      "reason": "Level claims must say 'designed against'"
+    },
+    {
+      "pattern": "\\bwill get you a job\\b",
+      "reason": "No job promise"
+    },
+    {
+      "pattern": "\\bsalar(y|ies)\\b",
+      "reason": "No salary information in v1"
+    },
+    {
+      "pattern": "₹|\\bLPA\\b|\\blakh\\b",
+      "reason": "No salary figures in v1"
+    }
+  ]
+}

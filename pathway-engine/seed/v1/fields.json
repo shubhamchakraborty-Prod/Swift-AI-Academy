@@ -1,0 +1,13 @@
+{
+  "fields": [
+    { "field_id": "bcom", "name": "B.Com", "institution_type": "college", "feeds": [{ "goal_id": "CG-02", "weight": 1.0 }, { "goal_id": "CG-01", "weight": 0.5 }, { "goal_id": "CG-11", "weight": 0.5 }] },
+    { "field_id": "bca_bsc_cs", "name": "BCA / B.Sc Computer Science", "institution_type": "college", "feeds": [{ "goal_id": "CG-10", "weight": 1.0 }, { "goal_id": "CG-09", "weight": 0.5 }, { "goal_id": "CG-11", "weight": 0.5 }] },
+    { "field_id": "ba", "name": "BA (any subject)", "institution_type": "college", "feeds": [{ "goal_id": "CG-05", "weight": 0.5 }, { "goal_id": "CG-12", "weight": 0.5 }, { "goal_id": "CG-01", "weight": 0.5 }] },
+    { "field_id": "bed", "name": "B.Ed", "institution_type": "college", "feeds": [{ "goal_id": "CG-05", "weight": 1.0 }] },
+    { "field_id": "nursing_paramedical", "name": "B.Sc Nursing, GNM or paramedical", "institution_type": "college", "feeds": [{ "goal_id": "CG-06", "weight": 1.0 }] },
+    { "field_id": "hotel_management", "name": "Hotel management", "institution_type": "college", "feeds": [{ "goal_id": "CG-04", "weight": 1.0 }, { "goal_id": "CG-03", "weight": 0.5 }] },
+    { "field_id": "iti_electrical_mechanical", "name": "ITI Electrician, Fitter or Mechanic", "institution_type": "iti", "feeds": [{ "goal_id": "CG-07", "weight": 1.0 }, { "goal_id": "CG-08", "weight": 0.5 }, { "goal_id": "CG-09", "weight": 0.5 }] },
+    { "field_id": "iti_copa", "name": "ITI COPA (Computer Operator and Programming Assistant)", "institution_type": "iti", "feeds": [{ "goal_id": "CG-09", "weight": 1.0 }, { "goal_id": "CG-01", "weight": 0.5 }] },
+    { "field_id": "other", "name": "Another field or trade not listed here", "institution_type": "any", "feeds": [], "note": "Placeholder until the full FEEDS table (open item 4) is complete. Field term scores 0." }
+  ]
+}

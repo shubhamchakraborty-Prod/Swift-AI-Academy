@@ -1,0 +1,107 @@
+{
+  "orientations": [
+    { "id": "people", "name": "People", "description": "helping, explaining and working with others" },
+    { "id": "data", "name": "Data", "description": "records, numbers, procedures and organising" },
+    { "id": "ideas", "name": "Ideas", "description": "creating, designing and researching" },
+    { "id": "things", "name": "Things", "description": "tools, machines, devices and hands-on work" }
+  ],
+  "goal_areas": [
+    { "goal_id": "CG-01", "name": "Office & Administration", "definition": "Keep an office running: records, documents, messages and front-desk work.", "primary_orientation": "data", "secondary_orientation": "people", "market_outlook": 3, "example_roles": ["Office assistant", "Data entry operator", "Front office executive", "Admin executive"], "status": "active" },
+    { "goal_id": "CG-02", "name": "Finance, Accounts & Banking", "definition": "Work with money, accounts, bills and bank customers.", "primary_orientation": "data", "secondary_orientation": "people", "market_outlook": 4, "example_roles": ["Accounts assistant", "Billing executive", "Bank customer service officer", "Banking correspondent"], "status": "active" },
+    { "goal_id": "CG-03", "name": "Sales, Marketing & Customer Service", "definition": "Help customers, sell products and services, and promote them.", "primary_orientation": "people", "secondary_orientation": "ideas", "market_outlook": 4, "example_roles": ["Sales associate", "Customer care executive", "Telecaller", "Digital marketing assistant"], "status": "active" },
+    { "goal_id": "CG-04", "name": "Hospitality, Retail & Tourism", "definition": "Welcome and serve guests and shoppers in hotels, stores and travel.", "primary_orientation": "people", "secondary_orientation": "things", "market_outlook": 3, "example_roles": ["Front desk associate", "Retail store associate", "Travel desk executive"], "status": "active" },
+    { "goal_id": "CG-05", "name": "Teaching & Training", "definition": "Help others learn in classrooms, training centres and communities.", "primary_orientation": "people", "secondary_orientation": "ideas", "market_outlook": 3, "example_roles": ["Teaching assistant", "Trainer assistant", "Community trainer"], "status": "active" },
+    { "goal_id": "CG-06", "name": "Healthcare Support", "definition": "Support patients and hospital teams with care, records and coordination.", "primary_orientation": "people", "secondary_orientation": "data", "market_outlook": 4, "example_roles": ["Hospital front office executive", "Patient care coordinator", "Medical records assistant"], "status": "active" },
+    { "goal_id": "CG-07", "name": "Skilled Trades & Maintenance", "definition": "Install, repair and maintain machines, wiring and equipment.", "primary_orientation": "things", "secondary_orientation": "data", "market_outlook": 4, "example_roles": ["Electrician", "Fitter", "Maintenance technician", "Service technician"], "status": "active" },
+    { "goal_id": "CG-08", "name": "Manufacturing & Supervision", "definition": "Run and check production on the shop floor and lead small teams.", "primary_orientation": "things", "secondary_orientation": "people", "market_outlook": 3, "example_roles": ["Line supervisor", "Quality inspector", "Shift in-charge"], "status": "active" },
+    { "goal_id": "CG-09", "name": "IT Support & Digital Operations", "definition": "Keep computers, networks and digital services working for people.", "primary_orientation": "things", "secondary_orientation": "data", "market_outlook": 4, "example_roles": ["IT helpdesk executive", "Computer operator", "Digital service centre operator"], "status": "active" },
+    { "goal_id": "CG-10", "name": "Software, Bots & Apps", "definition": "Design, build and test software, chatbots and apps.", "primary_orientation": "ideas", "secondary_orientation": "data", "market_outlook": 5, "example_roles": ["Junior developer", "Chatbot builder", "No-code app builder", "QA tester"], "status": "active" },
+    { "goal_id": "CG-11", "name": "Data & Analytics", "definition": "Collect, check and report data so others can make decisions.", "primary_orientation": "data", "secondary_orientation": "ideas", "market_outlook": 5, "example_roles": ["Data analyst trainee", "MIS executive", "Reporting assistant"], "status": "active" },
+    { "goal_id": "CG-12", "name": "Media, Content & Communication", "definition": "Write, design and edit content for social media, video and print.", "primary_orientation": "ideas", "secondary_orientation": "people", "market_outlook": 3, "example_roles": ["Content writer", "Social media assistant", "Video editing assistant"], "status": "active" }
+  ],
+  "goal_skills": [
+    { "goal_id": "CG-01", "skill_id": "SK-COMM-024", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-01", "skill_id": "SK-COMM-007", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-01", "skill_id": "SK-COMM-004", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-01", "skill_id": "SK-DAI-002", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-01", "skill_id": "SK-ETH-004", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-01", "skill_id": "SK-COMM-009", "importance": "supporting", "required_level": 4 },
+    { "goal_id": "CG-01", "skill_id": "SK-THK-001", "importance": "supporting", "required_level": 3 },
+
+    { "goal_id": "CG-02", "skill_id": "SK-COMM-007", "importance": "core", "required_level": 5 },
+    { "goal_id": "CG-02", "skill_id": "SK-COMM-004", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-02", "skill_id": "SK-ETH-001", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-02", "skill_id": "SK-THK-001", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-02", "skill_id": "SK-COMM-009", "importance": "supporting", "required_level": 4 },
+    { "goal_id": "CG-02", "skill_id": "SK-DAI-002", "importance": "supporting", "required_level": 3 },
+
+    { "goal_id": "CG-03", "skill_id": "SK-COMM-009", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-03", "skill_id": "SK-COMM-016", "importance": "core", "required_level": 5 },
+    { "goal_id": "CG-03", "skill_id": "SK-COMM-024", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-03", "skill_id": "SK-DAI-002", "importance": "supporting", "required_level": 3 },
+    { "goal_id": "CG-03", "skill_id": "SK-COMM-019", "importance": "supporting", "required_level": 5 },
+
+    { "goal_id": "CG-04", "skill_id": "SK-COMM-009", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-04", "skill_id": "SK-COMM-012", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-04", "skill_id": "SK-COMM-021", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-04", "skill_id": "SK-COMM-015", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-04", "skill_id": "SK-COMM-022", "importance": "supporting", "required_level": 4 },
+    { "goal_id": "CG-04", "skill_id": "SK-DAI-002", "importance": "supporting", "required_level": 2 },
+
+    { "goal_id": "CG-05", "skill_id": "SK-COMM-013", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-05", "skill_id": "SK-COMM-011", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-05", "skill_id": "SK-PPL-003", "importance": "core", "required_level": 5 },
+    { "goal_id": "CG-05", "skill_id": "SK-COMM-008", "importance": "core", "required_level": 5 },
+    { "goal_id": "CG-05", "skill_id": "SK-DAI-002", "importance": "supporting", "required_level": 3 },
+    { "goal_id": "CG-05", "skill_id": "SK-ETH-001", "importance": "supporting", "required_level": 3 },
+
+    { "goal_id": "CG-06", "skill_id": "SK-COMM-009", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-06", "skill_id": "SK-COMM-004", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-06", "skill_id": "SK-ETH-004", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-06", "skill_id": "SK-COMM-006", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-06", "skill_id": "SK-COMM-018", "importance": "supporting", "required_level": 4 },
+    { "goal_id": "CG-06", "skill_id": "SK-ETH-007", "importance": "supporting", "required_level": 3 },
+
+    { "goal_id": "CG-07", "skill_id": "SK-COMM-001", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-07", "skill_id": "SK-COMM-004", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-07", "skill_id": "SK-ETH-008", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-07", "skill_id": "SK-COMM-006", "importance": "supporting", "required_level": 3 },
+    { "goal_id": "CG-07", "skill_id": "SK-DAI-002", "importance": "supporting", "required_level": 2 },
+    { "goal_id": "CG-07", "skill_id": "SK-ETH-001", "importance": "supporting", "required_level": 2 },
+
+    { "goal_id": "CG-08", "skill_id": "SK-COMM-010", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-08", "skill_id": "SK-PPL-001", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-08", "skill_id": "SK-ETH-008", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-08", "skill_id": "SK-COMM-007", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-08", "skill_id": "SK-COMM-018", "importance": "supporting", "required_level": 4 },
+    { "goal_id": "CG-08", "skill_id": "SK-DAI-002", "importance": "supporting", "required_level": 2 },
+
+    { "goal_id": "CG-09", "skill_id": "SK-THK-003", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-09", "skill_id": "SK-COMM-009", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-09", "skill_id": "SK-DAI-005", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-09", "skill_id": "SK-ETH-004", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-09", "skill_id": "SK-COMM-024", "importance": "supporting", "required_level": 4 },
+    { "goal_id": "CG-09", "skill_id": "SK-DAI-010", "importance": "supporting", "required_level": 3 },
+
+    { "goal_id": "CG-10", "skill_id": "SK-BLD-001", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-10", "skill_id": "SK-BLD-002", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-10", "skill_id": "SK-BLD-005", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-10", "skill_id": "SK-DAI-010", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-10", "skill_id": "SK-THK-003", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-10", "skill_id": "SK-ETH-004", "importance": "supporting", "required_level": 4 },
+    { "goal_id": "CG-10", "skill_id": "SK-COMM-007", "importance": "supporting", "required_level": 4 },
+
+    { "goal_id": "CG-11", "skill_id": "SK-THK-001", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-11", "skill_id": "SK-ETH-001", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-11", "skill_id": "SK-DAI-002", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-11", "skill_id": "SK-DAI-006", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-11", "skill_id": "SK-COMM-007", "importance": "supporting", "required_level": 4 },
+
+    { "goal_id": "CG-12", "skill_id": "SK-COMM-019", "importance": "core", "required_level": 5 },
+    { "goal_id": "CG-12", "skill_id": "SK-COMM-007", "importance": "core", "required_level": 4 },
+    { "goal_id": "CG-12", "skill_id": "SK-DAI-003", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-12", "skill_id": "SK-ETH-005", "importance": "core", "required_level": 3 },
+    { "goal_id": "CG-12", "skill_id": "SK-ETH-002", "importance": "supporting", "required_level": 3 },
+    { "goal_id": "CG-12", "skill_id": "SK-COMM-021", "importance": "supporting", "required_level": 4 }
+  ]
+}

@@ -1,0 +1,967 @@
+{
+  "families": [
+    {
+      "family_id": "COMM",
+      "name": "Communication",
+      "status": "active"
+    },
+    {
+      "family_id": "DAI",
+      "name": "Digital & AI",
+      "status": "active"
+    },
+    {
+      "family_id": "ETH",
+      "name": "Safety, Ethics & Trust",
+      "status": "active"
+    },
+    {
+      "family_id": "THK",
+      "name": "Thinking & Problem Solving",
+      "status": "active"
+    },
+    {
+      "family_id": "PPL",
+      "name": "People & Leadership",
+      "status": "active"
+    },
+    {
+      "family_id": "SLF",
+      "name": "Self-Management",
+      "status": "active"
+    },
+    {
+      "family_id": "BLD",
+      "name": "Building & Technical",
+      "status": "active"
+    },
+    {
+      "family_id": "DOM",
+      "name": "Domain & Trade Knowledge",
+      "status": "active"
+    }
+  ],
+  "clusters": [
+    {
+      "cluster_id": "COMM.REC",
+      "family_id": "COMM",
+      "name": "Reception"
+    },
+    {
+      "cluster_id": "COMM.PRO",
+      "family_id": "COMM",
+      "name": "Production"
+    },
+    {
+      "cluster_id": "COMM.INT",
+      "family_id": "COMM",
+      "name": "Interaction"
+    },
+    {
+      "cluster_id": "COMM.MED",
+      "family_id": "COMM",
+      "name": "Mediation"
+    },
+    {
+      "cluster_id": "COMM.STR",
+      "family_id": "COMM",
+      "name": "Strategic"
+    },
+    {
+      "cluster_id": "COMM.PRG",
+      "family_id": "COMM",
+      "name": "Pragmatic"
+    },
+    {
+      "cluster_id": "COMM.DIG",
+      "family_id": "COMM",
+      "name": "Digital"
+    },
+    {
+      "cluster_id": "COMM.LNG",
+      "family_id": "COMM",
+      "name": "Language accuracy"
+    },
+    {
+      "cluster_id": "DAI.USE",
+      "family_id": "DAI",
+      "name": "AI use and prompting"
+    },
+    {
+      "cluster_id": "DAI.APP",
+      "family_id": "DAI",
+      "name": "AI application and transfer"
+    },
+    {
+      "cluster_id": "DAI.MTH",
+      "family_id": "DAI",
+      "name": "AI methods and workflows"
+    },
+    {
+      "cluster_id": "ETH.VER",
+      "family_id": "ETH",
+      "name": "Verification"
+    },
+    {
+      "cluster_id": "ETH.SAF",
+      "family_id": "ETH",
+      "name": "Safety, privacy and disclosure"
+    },
+    {
+      "cluster_id": "THK.ANA",
+      "family_id": "THK",
+      "name": "Analysis and judgement"
+    },
+    {
+      "cluster_id": "THK.PLN",
+      "family_id": "THK",
+      "name": "Planning"
+    },
+    {
+      "cluster_id": "PPL.TEAM",
+      "family_id": "PPL",
+      "name": "Team leadership"
+    },
+    {
+      "cluster_id": "PPL.DEV",
+      "family_id": "PPL",
+      "name": "Developing others"
+    },
+    {
+      "cluster_id": "PPL.GOV",
+      "family_id": "PPL",
+      "name": "Governance"
+    },
+    {
+      "cluster_id": "SLF.LRN",
+      "family_id": "SLF",
+      "name": "Learning and follow-through"
+    },
+    {
+      "cluster_id": "SLF.RES",
+      "family_id": "SLF",
+      "name": "Composure"
+    },
+    {
+      "cluster_id": "BLD.BOT",
+      "family_id": "BLD",
+      "name": "Bot and mini-app building"
+    },
+    {
+      "cluster_id": "BLD.INT",
+      "family_id": "BLD",
+      "name": "Integration and deployment"
+    },
+    {
+      "cluster_id": "BLD.OPS",
+      "family_id": "BLD",
+      "name": "Analytics and publishing"
+    }
+  ],
+  "skills": [
+    {
+      "skill_id": "SK-COMM-001",
+      "name": "Listening for gist and detail",
+      "cluster_id": "COMM.REC",
+      "family_id": "COMM",
+      "definition": "Understand the main point and key details of spoken information at work.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-002",
+      "name": "Critical and comparative listening",
+      "cluster_id": "COMM.REC",
+      "family_id": "COMM",
+      "definition": "Listen closely, compare what different people say and notice what is missing.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-003",
+      "name": "Reading for information (scan, skim, detail)",
+      "cluster_id": "COMM.REC",
+      "family_id": "COMM",
+      "definition": "Find and understand information in notices, messages and short texts.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-004",
+      "name": "Reading work documents (job cards, SOPs, reports)",
+      "cluster_id": "COMM.REC",
+      "family_id": "COMM",
+      "definition": "Read and act on job cards, procedures and reports correctly.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-005",
+      "name": "Spoken updates and self-presentation",
+      "cluster_id": "COMM.PRO",
+      "family_id": "COMM",
+      "definition": "Give a short, clear spoken update and introduce yourself well.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-006",
+      "name": "Workplace writing: forms, notes, logs",
+      "cluster_id": "COMM.PRO",
+      "family_id": "COMM",
+      "definition": "Fill in forms and write short notes and logs others can follow.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-007",
+      "name": "Report and business writing",
+      "cluster_id": "COMM.PRO",
+      "family_id": "COMM",
+      "definition": "Write clear reports, summaries and business documents.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-008",
+      "name": "Presenting to groups and handling questions",
+      "cluster_id": "COMM.PRO",
+      "family_id": "COMM",
+      "definition": "Present to a group and answer questions with confidence.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-009",
+      "name": "Everyday workplace conversation and requests",
+      "cluster_id": "COMM.INT",
+      "family_id": "COMM",
+      "definition": "Talk with colleagues and make or answer simple requests politely.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-010",
+      "name": "Giving instructions and delegating",
+      "cluster_id": "COMM.INT",
+      "family_id": "COMM",
+      "definition": "Give clear instructions and hand over work to others.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-011",
+      "name": "Giving and receiving feedback",
+      "cluster_id": "COMM.INT",
+      "family_id": "COMM",
+      "definition": "Give useful feedback and respond well to feedback you receive.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-012",
+      "name": "Customer and team interaction",
+      "cluster_id": "COMM.INT",
+      "family_id": "COMM",
+      "definition": "Help customers and work smoothly with your team.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-013",
+      "name": "Relaying and summarising information",
+      "cluster_id": "COMM.MED",
+      "family_id": "COMM",
+      "definition": "Pass on information accurately and sum it up briefly.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-014",
+      "name": "Explaining complex ideas to non-experts",
+      "cluster_id": "COMM.MED",
+      "family_id": "COMM",
+      "definition": "Explain difficult ideas in simple words for any audience.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-015",
+      "name": "Clarification and repair",
+      "cluster_id": "COMM.STR",
+      "family_id": "COMM",
+      "definition": "Ask questions to check meaning and fix misunderstandings.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-016",
+      "name": "Persuasion and influence",
+      "cluster_id": "COMM.STR",
+      "family_id": "COMM",
+      "definition": "Make a case that helps others agree or act.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-017",
+      "name": "Negotiation",
+      "cluster_id": "COMM.STR",
+      "family_id": "COMM",
+      "definition": "Reach agreements that work for both sides.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-018",
+      "name": "Difficult conversations and conflict resolution",
+      "cluster_id": "COMM.STR",
+      "family_id": "COMM",
+      "definition": "Handle disagreements and hard conversations calmly.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-019",
+      "name": "Storytelling",
+      "cluster_id": "COMM.STR",
+      "family_id": "COMM",
+      "definition": "Use a clear story to explain, engage or persuade.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-020",
+      "name": "Crisis and stakeholder communication",
+      "cluster_id": "COMM.STR",
+      "family_id": "COMM",
+      "definition": "Communicate clearly with many groups when something goes wrong.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-021",
+      "name": "Register and tone",
+      "cluster_id": "COMM.PRG",
+      "family_id": "COMM",
+      "definition": "Choose the right level of formality and tone for each situation.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-022",
+      "name": "Cross-cultural communication",
+      "cluster_id": "COMM.PRG",
+      "family_id": "COMM",
+      "definition": "Communicate respectfully with people from other cultures.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-023",
+      "name": "Executive presence and delivery",
+      "cluster_id": "COMM.PRG",
+      "family_id": "COMM",
+      "definition": "Speak and carry yourself with authority in senior settings.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-024",
+      "name": "Email and chat messages",
+      "cluster_id": "COMM.DIG",
+      "family_id": "COMM",
+      "definition": "Write clear, polite emails and chat messages for work.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-025",
+      "name": "Workplace vocabulary",
+      "cluster_id": "COMM.LNG",
+      "family_id": "COMM",
+      "definition": "Know and use the words your work needs.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-026",
+      "name": "Grammar accuracy",
+      "cluster_id": "COMM.LNG",
+      "family_id": "COMM",
+      "definition": "Use correct grammar so your meaning is clear.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-COMM-027",
+      "name": "Academic and research discourse",
+      "cluster_id": "COMM.MED",
+      "family_id": "COMM",
+      "definition": "Read, write and discuss research in an academic way.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-001",
+      "name": "AI tool setup and first use",
+      "cluster_id": "DAI.USE",
+      "family_id": "DAI",
+      "definition": "Set up an AI assistant and make a first real request.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-002",
+      "name": "Prompt framing (context, role, task, format)",
+      "cluster_id": "DAI.USE",
+      "family_id": "DAI",
+      "definition": "Ask an AI tool for what you need, with context, task and format.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-003",
+      "name": "Output refinement (narrow, expand, change register, challenge, merge)",
+      "cluster_id": "DAI.USE",
+      "family_id": "DAI",
+      "definition": "Improve an AI answer by asking it to narrow, expand or rewrite.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-004",
+      "name": "Understanding what AI is and is not",
+      "cluster_id": "DAI.USE",
+      "family_id": "DAI",
+      "definition": "Know what AI tools can and cannot do.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-005",
+      "name": "Task triage: when to use AI and when not",
+      "cluster_id": "DAI.APP",
+      "family_id": "DAI",
+      "definition": "Decide which tasks suit AI and which do not.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-006",
+      "name": "Task decomposition",
+      "cluster_id": "DAI.APP",
+      "family_id": "DAI",
+      "definition": "Break a big task into smaller steps.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-007",
+      "name": "Applying AI in a work, study or life arena",
+      "cluster_id": "DAI.APP",
+      "family_id": "DAI",
+      "definition": "Use AI on real tasks in your work, study or daily life.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-008",
+      "name": "Transferring an AI method to new tasks",
+      "cluster_id": "DAI.APP",
+      "family_id": "DAI",
+      "definition": "Reuse a way of working with AI on new kinds of tasks.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-009",
+      "name": "Building a repeatable AI method",
+      "cluster_id": "DAI.MTH",
+      "family_id": "DAI",
+      "definition": "Create a step-by-step AI method you can use every week.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-DAI-010",
+      "name": "Testing and fault diagnosis of AI workflows",
+      "cluster_id": "DAI.MTH",
+      "family_id": "DAI",
+      "definition": "Test an AI workflow and find out why it fails.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-001",
+      "name": "Output verification matched to stakes",
+      "cluster_id": "ETH.VER",
+      "family_id": "ETH",
+      "definition": "Check AI answers before using them, more carefully when more is at stake.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-002",
+      "name": "Fabrication detection",
+      "cluster_id": "ETH.VER",
+      "family_id": "ETH",
+      "definition": "Spot made-up facts, names or sources in AI answers.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-003",
+      "name": "Fraud and synthetic media detection",
+      "cluster_id": "ETH.SAF",
+      "family_id": "ETH",
+      "definition": "Recognise fake voices, images, videos and scams.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-004",
+      "name": "Data privacy and masking",
+      "cluster_id": "ETH.SAF",
+      "family_id": "ETH",
+      "definition": "Keep personal data safe and remove it before sharing.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-005",
+      "name": "Disclosure of AI use",
+      "cluster_id": "ETH.SAF",
+      "family_id": "ETH",
+      "definition": "Say honestly when and how you used AI.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-006",
+      "name": "Bias and missing-perspective awareness",
+      "cluster_id": "ETH.VER",
+      "family_id": "ETH",
+      "definition": "Notice when an answer is unfair or leaves people out.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-007",
+      "name": "Knowing when a qualified person must decide",
+      "cluster_id": "ETH.SAF",
+      "family_id": "ETH",
+      "definition": "Know which decisions must be made by a qualified person.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-ETH-008",
+      "name": "Hazard and safety reporting",
+      "cluster_id": "ETH.SAF",
+      "family_id": "ETH",
+      "definition": "Report hazards and safety problems clearly and quickly.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-THK-001",
+      "name": "Numerical accuracy checking",
+      "cluster_id": "THK.ANA",
+      "family_id": "THK",
+      "definition": "Check numbers and calculations for mistakes.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-THK-002",
+      "name": "Source evaluation against authoritative references",
+      "cluster_id": "THK.ANA",
+      "family_id": "THK",
+      "definition": "Check information against trusted, official sources.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-THK-003",
+      "name": "Problem diagnosis",
+      "cluster_id": "THK.ANA",
+      "family_id": "THK",
+      "definition": "Find the cause of a problem step by step.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-THK-004",
+      "name": "Strategic thinking and vision",
+      "cluster_id": "THK.PLN",
+      "family_id": "THK",
+      "definition": "Plan for the long term and set direction.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-PPL-001",
+      "name": "Team coordination",
+      "cluster_id": "PPL.TEAM",
+      "family_id": "PPL",
+      "definition": "Organise a team so work gets done on time.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-PPL-002",
+      "name": "Motivating and guiding a team",
+      "cluster_id": "PPL.TEAM",
+      "family_id": "PPL",
+      "definition": "Keep a team motivated and on track.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-PPL-003",
+      "name": "Training others",
+      "cluster_id": "PPL.DEV",
+      "family_id": "PPL",
+      "definition": "Teach others how to do a task.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-PPL-004",
+      "name": "Mentoring and coaching",
+      "cluster_id": "PPL.DEV",
+      "family_id": "PPL",
+      "definition": "Help others grow through regular guidance.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-PPL-005",
+      "name": "Managing upward and cross-functional work",
+      "cluster_id": "PPL.TEAM",
+      "family_id": "PPL",
+      "definition": "Work well with managers and other teams.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-PPL-006",
+      "name": "Handling grievances",
+      "cluster_id": "PPL.TEAM",
+      "family_id": "PPL",
+      "definition": "Listen to complaints and resolve them fairly.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-PPL-007",
+      "name": "Governance and board-level judgement",
+      "cluster_id": "PPL.GOV",
+      "family_id": "PPL",
+      "definition": "Make sound decisions at board or institution level.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-SLF-001",
+      "name": "Planning and follow-through",
+      "cluster_id": "SLF.LRN",
+      "family_id": "SLF",
+      "definition": "Plan your work and finish what you start.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-SLF-002",
+      "name": "Self-directed learning and transfer",
+      "cluster_id": "SLF.LRN",
+      "family_id": "SLF",
+      "definition": "Learn new things on your own and use them elsewhere.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-SLF-003",
+      "name": "Composure under pressure",
+      "cluster_id": "SLF.RES",
+      "family_id": "SLF",
+      "definition": "Stay calm and clear when stakes are high.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": true,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-001",
+      "name": "Conversational flow design",
+      "cluster_id": "BLD.BOT",
+      "family_id": "BLD",
+      "definition": "Plan how a conversation with a bot should go.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-002",
+      "name": "AI-assisted prototyping of bots and mini-apps",
+      "cluster_id": "BLD.BOT",
+      "family_id": "BLD",
+      "definition": "Build a working bot or mini-app with AI help.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-003",
+      "name": "Deploying and embedding a bot",
+      "cluster_id": "BLD.INT",
+      "family_id": "BLD",
+      "definition": "Put a bot live in an app or a website.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-004",
+      "name": "Login, single sign-on and access control basics",
+      "cluster_id": "BLD.INT",
+      "family_id": "BLD",
+      "definition": "Add login and control who can use a bot.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-005",
+      "name": "Connecting a bot to data through APIs",
+      "cluster_id": "BLD.INT",
+      "family_id": "BLD",
+      "definition": "Connect a bot to data from other systems.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-006",
+      "name": "Usage analytics and iteration",
+      "cluster_id": "BLD.OPS",
+      "family_id": "BLD",
+      "definition": "Read how people use a bot and improve it.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-007",
+      "name": "Publishing and listing a bot",
+      "cluster_id": "BLD.OPS",
+      "family_id": "BLD",
+      "definition": "Publish a bot so others can find and use it.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    },
+    {
+      "skill_id": "SK-BLD-008",
+      "name": "Testing and debugging a bot",
+      "cluster_id": "BLD.OPS",
+      "family_id": "BLD",
+      "definition": "Test a bot and fix what goes wrong.",
+      "definition_status": "draft_pending_content_review",
+      "evidence_type": "objective_test",
+      "transferable": false,
+      "status": "active",
+      "version": 1
+    }
+  ]
+}

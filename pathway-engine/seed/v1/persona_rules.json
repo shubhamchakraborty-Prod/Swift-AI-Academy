@@ -1,0 +1,378 @@
+{
+  "axes": [
+    {
+      "axis": "direction",
+      "name": "Direction",
+      "positive": {
+        "letter": "C",
+        "name": "Clear",
+        "learner_phrase": "you know the kind of work you want"
+      },
+      "negative": {
+        "letter": "E",
+        "name": "Exploring",
+        "learner_phrase": "you are still exploring your options"
+      },
+      "parameters": [
+        {
+          "id": "goal_clarity",
+          "label": "Goal clarity (Part B)",
+          "weight": 0.35,
+          "part_b": true,
+          "conversion": {
+            "type": "scale_centered",
+            "scales": [
+              "goal_clarity"
+            ]
+          }
+        },
+        {
+          "id": "named_goal_areas",
+          "label": "Goal areas picked (D1)",
+          "weight": 0.3,
+          "conversion": {
+            "type": "lookup",
+            "feature": "goal_count",
+            "map": {
+              "1": 1,
+              "2": 0.5,
+              "0": -1
+            }
+          }
+        },
+        {
+          "id": "interest_focus",
+          "label": "Interest focus (Part B)",
+          "weight": 0.2,
+          "part_b": true,
+          "conversion": {
+            "type": "bands",
+            "feature": "interest_focus",
+            "bands": [
+              {
+                "min": 1.0,
+                "value": 1
+              },
+              {
+                "min": 0.5,
+                "value": 0.5
+              },
+              {
+                "min": 0.25,
+                "value": -0.5
+              }
+            ],
+            "else": -1
+          }
+        },
+        {
+          "id": "goal_interest_agreement",
+          "label": "Chosen goal matches top interest",
+          "weight": 0.15,
+          "part_b": true,
+          "conversion": {
+            "type": "lookup",
+            "feature": "goal_interest_agreement",
+            "map": {
+              "top": 1,
+              "second": 0,
+              "other": -1,
+              "none": 0
+            }
+          }
+        }
+      ],
+      "tiebreak": {
+        "type": "goal_pick",
+        "question_en": "If you had to pick one of these three kinds of work today, which would it be?",
+        "none_label_en": "None of these fit me",
+        "score_pick": 1,
+        "score_none": -1
+      }
+    },
+    {
+      "axis": "starting_point",
+      "name": "Starting Point",
+      "positive": {
+        "letter": "R",
+        "name": "Ready",
+        "learner_phrase": "you are ready for higher levels"
+      },
+      "negative": {
+        "letter": "F",
+        "name": "Foundation",
+        "learner_phrase": "you are starting from the basics"
+      },
+      "parameters": [
+        {
+          "id": "ai_placement",
+          "label": "AI skill check",
+          "weight": 0.35,
+          "conversion": {
+            "type": "linear",
+            "feature": "ai_placement",
+            "offset": 2,
+            "divisor": 2,
+            "min": -1,
+            "max": 1
+          }
+        },
+        {
+          "id": "comm_placement",
+          "label": "Communication skill check",
+          "weight": 0.35,
+          "conversion": {
+            "type": "linear",
+            "feature": "comm_placement",
+            "offset": 3,
+            "divisor": 3,
+            "min": -1,
+            "max": 1
+          }
+        },
+        {
+          "id": "education_experience",
+          "label": "Education and experience",
+          "weight": 0.2,
+          "conversion": {
+            "type": "max_lookup",
+            "lookups": [
+              {
+                "feature": "education_stage",
+                "map": {
+                  "class_10_or_below": -1,
+                  "class_12": -0.5,
+                  "iti_1": -0.5,
+                  "iti_2": 0,
+                  "ug_1": 0,
+                  "ug_2": 0,
+                  "ug_3": 0.5,
+                  "ug_4": 0.5,
+                  "graduate": 0.5,
+                  "postgraduate": 1,
+                  "doctoral": 1
+                }
+              },
+              {
+                "feature": "work_experience",
+                "map": {
+                  "over_2": 1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "device",
+          "label": "Device access",
+          "weight": 0.1,
+          "conversion": {
+            "type": "lookup",
+            "feature": "device",
+            "map": {
+              "phone_and_laptop": 1,
+              "own_phone": 0,
+              "shared_phone": -1
+            }
+          }
+        }
+      ],
+      "tiebreak": {
+        "type": "skill_item",
+        "question_en": "One more short question to check your starting level.",
+        "series": "ai",
+        "score_correct": 1,
+        "score_wrong": -1
+      }
+    },
+    {
+      "axis": "goal_horizon",
+      "name": "Goal Horizon",
+      "positive": {
+        "letter": "L",
+        "name": "Long-term",
+        "learner_phrase": "you are building over time"
+      },
+      "negative": {
+        "letter": "N",
+        "name": "Near-term",
+        "learner_phrase": "you want results soon"
+      },
+      "parameters": [
+        {
+          "id": "main_goal",
+          "label": "Main goal (D2)",
+          "weight": 0.5,
+          "conversion": {
+            "type": "lookup",
+            "feature": "main_goal",
+            "map": {
+              "job_6m": -1,
+              "grow_current": -0.5,
+              "job_1_2y": 0,
+              "not_sure": 0,
+              "business": 0.5,
+              "higher_studies": 1
+            }
+          }
+        },
+        {
+          "id": "earning_need",
+          "label": "Earning need (D3)",
+          "weight": 0.3,
+          "conversion": {
+            "type": "lookup",
+            "feature": "earning_need",
+            "map": {
+              "within_6m": -1,
+              "6_12m": -0.3,
+              "1_2y": 0.3,
+              "not_priority": 1
+            }
+          }
+        },
+        {
+          "id": "time_left",
+          "label": "Time left in studies (A8)",
+          "weight": 0.2,
+          "conversion": {
+            "type": "lookup",
+            "feature": "time_left",
+            "map": {
+              "two_plus": 1,
+              "about_1": 0,
+              "final_year": -0.5,
+              "finished": -1
+            }
+          }
+        }
+      ],
+      "tiebreak": {
+        "type": "choice",
+        "question_en": "A year from now, what matters more to you?",
+        "options": [
+          {
+            "value": "earning",
+            "label_en": "Already earning",
+            "score": -1
+          },
+          {
+            "value": "qualified",
+            "label_en": "Being better qualified",
+            "score": 1
+          }
+        ]
+      }
+    },
+    {
+      "axis": "learning_drive",
+      "name": "Learning Drive",
+      "positive": {
+        "letter": "S",
+        "name": "Self-driven",
+        "learner_phrase": "you can learn on your own"
+      },
+      "negative": {
+        "letter": "M",
+        "name": "Mentored",
+        "learner_phrase": "you learn best with guidance"
+      },
+      "parameters": [
+        {
+          "id": "self_discipline",
+          "label": "Self-discipline (Part B)",
+          "weight": 0.3,
+          "part_b": true,
+          "conversion": {
+            "type": "scale_centered",
+            "scales": [
+              "self_discipline"
+            ]
+          }
+        },
+        {
+          "id": "weekly_hours",
+          "label": "Weekly hours (A14)",
+          "weight": 0.2,
+          "conversion": {
+            "type": "lookup",
+            "feature": "weekly_hours",
+            "map": {
+              "under_3": -1,
+              "3_to_5": -0.3,
+              "6_to_8": 0.3,
+              "over_8": 1
+            }
+          }
+        },
+        {
+          "id": "learning_motivation",
+          "label": "Learning motivation (Part B)",
+          "weight": 0.15,
+          "part_b": true,
+          "conversion": {
+            "type": "scale_centered",
+            "scales": [
+              "learning_motivation"
+            ]
+          }
+        },
+        {
+          "id": "learning_independence",
+          "label": "Learning independence (Part B)",
+          "weight": 0.15,
+          "part_b": true,
+          "conversion": {
+            "type": "scale_centered",
+            "scales": [
+              "learning_independence"
+            ]
+          }
+        },
+        {
+          "id": "diligence",
+          "label": "Diligence flag (Part C)",
+          "weight": 0.1,
+          "conversion": {
+            "type": "lookup",
+            "feature": "diligence",
+            "map": {
+              "yes": 1,
+              "no": -1
+            }
+          }
+        },
+        {
+          "id": "confidence",
+          "label": "Confidence (Part B, both scales)",
+          "weight": 0.1,
+          "part_b": true,
+          "conversion": {
+            "type": "scale_centered",
+            "scales": [
+              "conf_english",
+              "conf_tech"
+            ]
+          }
+        }
+      ],
+      "tiebreak": {
+        "type": "choice",
+        "question_en": "What helps you more when you learn?",
+        "options": [
+          {
+            "value": "plan",
+            "label_en": "A clear weekly plan with reminders",
+            "score": -1
+          },
+          {
+            "value": "freedom",
+            "label_en": "Freedom to study at my own pace",
+            "score": 1
+          }
+        ]
+      }
+    }
+  ],
+  "supportive_pole": "negative"
+}

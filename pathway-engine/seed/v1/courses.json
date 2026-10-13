@@ -1,0 +1,1553 @@
+{
+  "series": [
+    {
+      "series_id": "AAI",
+      "name": "Applied AI",
+      "ladder": "ai"
+    },
+    {
+      "series_id": "COM",
+      "name": "Communication",
+      "ladder": "comm"
+    },
+    {
+      "series_id": "BOT",
+      "name": "Bot Builder",
+      "ladder": "ai"
+    }
+  ],
+  "courses": [
+    {
+      "course_id": "AAI-1",
+      "title": "AI First Steps: Use It and Check It",
+      "series_id": "AAI",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 1,
+        "max": 1
+      },
+      "level_out": 1,
+      "hours": {
+        "training": 15,
+        "assessment": 1,
+        "total": 16,
+        "status": "proposed"
+      },
+      "entry_level": 0,
+      "entry_ladder": "ai",
+      "prerequisites": {
+        "hard": [],
+        "soft": []
+      },
+      "eligibility": [
+        [
+          {
+            "field": "age",
+            "op": ">=",
+            "value": 15
+          }
+        ]
+      ],
+      "delivery": {
+        "modes": [
+          "facilitated_lab"
+        ],
+        "offline_ok": true,
+        "device_min": "shared_phone",
+        "languages": [
+          "en",
+          "hi"
+        ]
+      },
+      "terminal_outcome": "use an approved AI tool on a routine task and check the result before using it",
+      "terminal_outcome_source": "spec",
+      "pitched_at": null,
+      "modules": [
+        {
+          "title": "First contact"
+        },
+        {
+          "title": "Framing and refining"
+        },
+        {
+          "title": "Check before you use"
+        }
+      ],
+      "assessment_gate": "Find planted fabrications in a timed task",
+      "skills": [
+        {
+          "skill_id": "SK-DAI-001",
+          "level_out": 1,
+          "primary": true,
+          "evidence": "Lab task: set up assistant, first real request"
+        },
+        {
+          "skill_id": "SK-DAI-002",
+          "level_out": 1,
+          "primary": true,
+          "evidence": "Lab task: framed request with context, role, task, format"
+        },
+        {
+          "skill_id": "SK-DAI-003",
+          "level_out": 1,
+          "primary": false,
+          "evidence": "Practice task: five refinement moves"
+        },
+        {
+          "skill_id": "SK-DAI-004",
+          "level_out": 1,
+          "primary": false,
+          "evidence": "Section mastery check"
+        },
+        {
+          "skill_id": "SK-ETH-001",
+          "level_out": 1,
+          "primary": true,
+          "evidence": "Gate: find planted fabrications in a timed task"
+        },
+        {
+          "skill_id": "SK-ETH-002",
+          "level_out": 1,
+          "primary": false,
+          "evidence": "Checkpoint on an unseen task"
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "AAI-2",
+      "title": "Apply AI Where It Matters",
+      "series_id": "AAI",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 2,
+        "max": 2
+      },
+      "level_out": 2,
+      "hours": {
+        "training": 15,
+        "assessment": 1,
+        "total": 16,
+        "status": "proposed"
+      },
+      "entry_level": 1,
+      "entry_ladder": "ai",
+      "prerequisites": {
+        "hard": [
+          "AAI-1"
+        ],
+        "soft": []
+      },
+      "eligibility": [],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "apply AI to a chosen arena (trade, study or life) and transfer the method to unfamiliar tasks",
+      "terminal_outcome_source": "spec",
+      "pitched_at": null,
+      "modules": [
+        {
+          "title": "Choose your arena"
+        },
+        {
+          "title": "Deep practice"
+        },
+        {
+          "title": "Transfer to two others"
+        }
+      ],
+      "assessment_gate": "Complete an untaught arena task with no help",
+      "skills": [
+        {
+          "skill_id": "SK-DAI-002",
+          "level_out": 2,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-003",
+          "level_out": 2,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-005",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-006",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-007",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-008",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-001",
+          "level_out": 2,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-001",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-002",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-SLF-002",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "AAI-3",
+      "title": "AI Trust, Safety and Harm",
+      "series_id": "AAI",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 3,
+        "max": 3
+      },
+      "level_out": 3,
+      "hours": {
+        "training": 15,
+        "assessment": 1,
+        "total": 16,
+        "status": "proposed"
+      },
+      "entry_level": 2,
+      "entry_ladder": "ai",
+      "prerequisites": {
+        "hard": [
+          "AAI-2"
+        ],
+        "soft": []
+      },
+      "eligibility": [],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "detect error, fraud and manipulation in AI content and use AI safely",
+      "terminal_outcome_source": "spec",
+      "pitched_at": null,
+      "modules": [
+        {
+          "title": "Fabrication and verification depth"
+        },
+        {
+          "title": "Fraud and synthetic media"
+        },
+        {
+          "title": "Privacy, disclosure and ethics"
+        }
+      ],
+      "assessment_gate": "Classify real and synthetic media; mask and disclose",
+      "skills": [
+        {
+          "skill_id": "SK-DAI-004",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-001",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-002",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-003",
+          "level_out": 3,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-004",
+          "level_out": 3,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-005",
+          "level_out": 3,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-006",
+          "level_out": 3,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-007",
+          "level_out": 3,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-002",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "AAI-4",
+      "title": "Make AI Stick: Build a Tested Method",
+      "series_id": "AAI",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 4,
+        "max": 4
+      },
+      "level_out": 4,
+      "hours": {
+        "training": 15,
+        "assessment": 1,
+        "total": 16,
+        "status": "proposed"
+      },
+      "entry_level": 3,
+      "entry_ladder": "ai",
+      "prerequisites": {
+        "hard": [
+          "AAI-3"
+        ],
+        "soft": []
+      },
+      "eligibility": [],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "build, test and demonstrate a repeatable AI method for a weekly task",
+      "terminal_outcome_source": "spec",
+      "pitched_at": null,
+      "modules": [
+        {
+          "title": "Build the method"
+        },
+        {
+          "title": "Test and harden it"
+        },
+        {
+          "title": "Demonstrate and commit"
+        }
+      ],
+      "assessment_gate": "Run the method on three inputs, including one awkward input",
+      "skills": [
+        {
+          "skill_id": "SK-DAI-006",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-008",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-009",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-DAI-010",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-001",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-003",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-SLF-001",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-1",
+      "title": "Everyday Workplace Communication",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 1,
+        "max": 2
+      },
+      "level_out": 2,
+      "hours": {
+        "training": 50,
+        "assessment": 8,
+        "total": 58,
+        "status": "confirmed"
+      },
+      "entry_level": 0,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [],
+        "soft": []
+      },
+      "eligibility": [],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "follow and give simple instructions, report a problem safely, and handle everyday conversations, reading and forms at work",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Helper or ground-level worker moving to worker or assistant",
+      "modules": [
+        {
+          "title": "Greetings, names and simple instructions"
+        },
+        {
+          "title": "Safety words, requests and reporting a problem"
+        },
+        {
+          "title": "Everyday conversations and multi-step instructions"
+        },
+        {
+          "title": "Reading, forms and fuller reporting"
+        },
+        {
+          "title": "A full day at work (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-001",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-002",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-003",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-005",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-006",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-009",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-013",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-015",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-021",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-024",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-008",
+          "level_out": 2,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-2",
+      "title": "Trade and Team Communication Skills",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 2.5,
+        "max": 3
+      },
+      "level_out": 3,
+      "hours": {
+        "training": 38,
+        "assessment": 6,
+        "total": 44,
+        "status": "confirmed"
+      },
+      "entry_level": 2,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [
+          "COM-1"
+        ],
+        "soft": []
+      },
+      "eligibility": [],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "follow shop-floor instructions and safety rules, talk with customers and team members, and work with job cards, SOPs and simple logs",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Entry-skilled employee or ITI trainee",
+      "modules": [
+        {
+          "title": "Shop floor instructions and safety"
+        },
+        {
+          "title": "Customer and team interaction basics"
+        },
+        {
+          "title": "Job cards, SOPs and simple logs (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-001",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-003",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-004",
+          "level_out": 3,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-005",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-006",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-009",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-012",
+          "level_out": 3,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-021",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-024",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-008",
+          "level_out": 3,
+          "primary": false,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-3",
+      "title": "Supervisory Communication Skills",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 3.5,
+        "max": 4
+      },
+      "level_out": 4,
+      "hours": {
+        "training": 50,
+        "assessment": 7,
+        "total": 57,
+        "status": "confirmed"
+      },
+      "entry_level": 3,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [
+          "COM-2"
+        ],
+        "soft": []
+      },
+      "eligibility": [],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "give clear instructions, coordinate a team, report upward, handle workplace conflict and feedback, and write supervisory reports and handover notes",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Senior skilled technician or junior supervisor",
+      "modules": [
+        {
+          "title": "Clear instructions and team coordination"
+        },
+        {
+          "title": "Listening to the shop floor and reporting upward"
+        },
+        {
+          "title": "Workplace conflict and feedback"
+        },
+        {
+          "title": "Supervisory reports and handover notes (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-001",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-002",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-004",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-005",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-007",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-010",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-011",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-013",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-018",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 4,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-001",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-4",
+      "title": "Junior Management Communication Skills",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 4.5,
+        "max": 5
+      },
+      "level_out": 5,
+      "hours": {
+        "training": 50,
+        "assessment": 7,
+        "total": 57,
+        "status": "confirmed"
+      },
+      "entry_level": 4,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [
+          "COM-3"
+        ],
+        "soft": []
+      },
+      "eligibility": [],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "delegate, give performance feedback, motivate and train a team, coordinate across functions, and handle grievances, negotiation and management reports",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Junior manager or technical supervisor",
+      "modules": [
+        {
+          "title": "Delegating and performance feedback"
+        },
+        {
+          "title": "Motivating, guiding and training a team"
+        },
+        {
+          "title": "Managing upward and cross-functional coordination"
+        },
+        {
+          "title": "Grievances, negotiation and management reports (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-004",
+          "level_out": 5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-007",
+          "level_out": 5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-010",
+          "level_out": 5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-011",
+          "level_out": 5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-017",
+          "level_out": 5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-002",
+          "level_out": 5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-003",
+          "level_out": 5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-005",
+          "level_out": 5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-006",
+          "level_out": 5,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-5",
+      "title": "Interpersonal Communication for Managers",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 5.5,
+        "max": 6
+      },
+      "level_out": 6,
+      "hours": {
+        "training": 56,
+        "assessment": 8,
+        "total": 64,
+        "status": "confirmed"
+      },
+      "entry_level": 5,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [
+          "COM-4"
+        ],
+        "soft": []
+      },
+      "eligibility": [
+        [
+          {
+            "field": "education_stage",
+            "op": "in",
+            "value": [
+              "graduate",
+              "postgraduate",
+              "doctoral"
+            ]
+          }
+        ],
+        [
+          {
+            "field": "work_experience",
+            "op": "in",
+            "value": [
+              "over_2"
+            ]
+          }
+        ]
+      ],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "listen to respond, motivate teams through language, handle difficult conversations, persuade and negotiate, and mentor and coach others",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Manager or senior manager",
+      "modules": [
+        {
+          "title": "Listening to respond"
+        },
+        {
+          "title": "Motivating teams through language"
+        },
+        {
+          "title": "Difficult conversations and conflict"
+        },
+        {
+          "title": "Persuasion, negotiation and influence"
+        },
+        {
+          "title": "Mentoring, coaching and cross-team work (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-002",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-011",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-016",
+          "level_out": 6,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-017",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-018",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-002",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-004",
+          "level_out": 6,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-005",
+          "level_out": 6,
+          "primary": false,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-6",
+      "title": "Cross-Cultural and Executive Presence Communication",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 6.5,
+        "max": 6.5
+      },
+      "level_out": 6.5,
+      "hours": {
+        "training": 40,
+        "assessment": 6,
+        "total": 46,
+        "status": "confirmed"
+      },
+      "entry_level": 6,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [
+          "COM-5"
+        ],
+        "soft": []
+      },
+      "eligibility": [
+        [
+          {
+            "field": "role_level",
+            "op": "in",
+            "value": [
+              "manager"
+            ]
+          }
+        ]
+      ],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "communicate across cultures, deliver with executive presence, and use strategic storytelling to persuade",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Senior manager or director",
+      "modules": [
+        {
+          "title": "Cross-cultural communication"
+        },
+        {
+          "title": "Executive presence and delivery"
+        },
+        {
+          "title": "Strategic storytelling and persuasion (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-008",
+          "level_out": 6.5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-016",
+          "level_out": 6.5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-019",
+          "level_out": 6.5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-022",
+          "level_out": 6.5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-023",
+          "level_out": 6.5,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 6.5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 6.5,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-SLF-003",
+          "level_out": 6.5,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-7",
+      "title": "Strategic Negotiation and Crisis Leadership Communication",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 7,
+        "max": 7
+      },
+      "level_out": 7,
+      "hours": {
+        "training": 32,
+        "assessment": 6,
+        "total": 38,
+        "status": "confirmed"
+      },
+      "entry_level": 6.5,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [
+          "COM-6"
+        ],
+        "soft": []
+      },
+      "eligibility": [
+        [
+          {
+            "field": "role_level",
+            "op": "in",
+            "value": [
+              "manager"
+            ]
+          },
+          {
+            "field": "work_experience",
+            "op": "in",
+            "value": [
+              "over_2"
+            ]
+          }
+        ]
+      ],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "negotiate internationally, communicate with stakeholders in a crisis, and write for boards and the public",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Director or senior executive",
+      "modules": [
+        {
+          "title": "International negotiation"
+        },
+        {
+          "title": "Crisis and stakeholder communication"
+        },
+        {
+          "title": "Executive writing for boards and the public (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-007",
+          "level_out": 7,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-017",
+          "level_out": 7,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-020",
+          "level_out": 7,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 7,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 7,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-004",
+          "level_out": 7,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-SLF-003",
+          "level_out": 7,
+          "primary": false,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "COM-8",
+      "title": "Research, Governance and Thought-Leadership Communication",
+      "series_id": "COM",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 8,
+        "max": 8
+      },
+      "level_out": 8,
+      "hours": {
+        "training": 53,
+        "assessment": 7,
+        "total": 60,
+        "status": "confirmed"
+      },
+      "entry_level": 7,
+      "entry_ladder": "comm",
+      "prerequisites": {
+        "hard": [
+          "COM-7"
+        ],
+        "soft": []
+      },
+      "eligibility": [
+        [
+          {
+            "field": "education_stage",
+            "op": "in",
+            "value": [
+              "doctoral"
+            ]
+          }
+        ],
+        [
+          {
+            "field": "role_level",
+            "op": "in",
+            "value": [
+              "manager"
+            ]
+          },
+          {
+            "field": "work_experience",
+            "op": "in",
+            "value": [
+              "over_2"
+            ]
+          }
+        ]
+      ],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "defend original work, lead thinking in a field, synthesise and review research, and communicate governance and strategic vision",
+      "terminal_outcome_source": "derived_from_module_list_pending_content_review",
+      "pitched_at": "Doctoral scholar, board member or chairperson",
+      "modules": [
+        {
+          "title": "Defending original work"
+        },
+        {
+          "title": "Thought leadership"
+        },
+        {
+          "title": "Literature synthesis and peer review"
+        },
+        {
+          "title": "Governance and strategic vision (capstone)"
+        }
+      ],
+      "assessment_gate": "Rubric-based capstone (40% of the course assessment)",
+      "skills": [
+        {
+          "skill_id": "SK-COMM-008",
+          "level_out": 8,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-014",
+          "level_out": 8,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-025",
+          "level_out": 8,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-026",
+          "level_out": 8,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-COMM-027",
+          "level_out": 8,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-002",
+          "level_out": 8,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-004",
+          "level_out": 8,
+          "primary": false,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-PPL-007",
+          "level_out": 8,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "active",
+      "version": 1
+    },
+    {
+      "course_id": "BOT-1",
+      "title": "SwiftChat Bot Builder",
+      "series_id": "BOT",
+      "provider": "In-house",
+      "nsqf_level": {
+        "min": 4,
+        "max": 4
+      },
+      "level_out": 4,
+      "hours": null,
+      "entry_level": 1,
+      "entry_ladder": "ai",
+      "prerequisites": {
+        "hard": [
+          "AAI-1"
+        ],
+        "soft": [
+          "COM-2"
+        ]
+      },
+      "eligibility": [
+        [
+          {
+            "field": "education_stage",
+            "op": "in",
+            "value": [
+              "class_12",
+              "ug_1",
+              "ug_2",
+              "ug_3",
+              "ug_4",
+              "graduate",
+              "postgraduate",
+              "doctoral"
+            ]
+          }
+        ]
+      ],
+      "delivery": {
+        "modes": null,
+        "offline_ok": null,
+        "device_min": null,
+        "languages": null
+      },
+      "terminal_outcome": "design, build and publish a bot using AI-assisted coding on the SwiftChat developer platform",
+      "terminal_outcome_source": "spec",
+      "pitched_at": null,
+      "modules": [
+        {
+          "title": "Design a useful bot"
+        },
+        {
+          "title": "Build it with AI help"
+        },
+        {
+          "title": "Connect data and login"
+        },
+        {
+          "title": "Deploy and embed"
+        },
+        {
+          "title": "Test, publish and improve (capstone)"
+        }
+      ],
+      "assessment_gate": null,
+      "skills": [
+        {
+          "skill_id": "SK-DAI-010",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-ETH-004",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-THK-003",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-001",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-002",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-003",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-004",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-005",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-006",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-007",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        },
+        {
+          "skill_id": "SK-BLD-008",
+          "level_out": 4,
+          "primary": true,
+          "evidence": null
+        }
+      ],
+      "status": "draft",
+      "version": 1,
+      "status_note": "Scope to write: level, hours and prerequisites to be confirmed by the content team (open item 10). Hours are required before activation."
+    }
+  ]
+}

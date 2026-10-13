@@ -1,0 +1,2410 @@
+{
+  "response_sets": {
+    "interest": [
+      {
+        "value": 1,
+        "label_en": "Not at all"
+      },
+      {
+        "value": 2,
+        "label_en": "A little"
+      },
+      {
+        "value": 3,
+        "label_en": "Somewhat"
+      },
+      {
+        "value": 4,
+        "label_en": "Quite a lot"
+      },
+      {
+        "value": 5,
+        "label_en": "Very much"
+      }
+    ],
+    "agreement": [
+      {
+        "value": 1,
+        "label_en": "Strongly disagree"
+      },
+      {
+        "value": 2,
+        "label_en": "Disagree"
+      },
+      {
+        "value": 3,
+        "label_en": "Not sure"
+      },
+      {
+        "value": 4,
+        "label_en": "Agree"
+      },
+      {
+        "value": 5,
+        "label_en": "Strongly agree"
+      }
+    ]
+  },
+  "part_a": [
+    {
+      "item_id": "A3",
+      "field": "gender",
+      "type": "single",
+      "required": false,
+      "text_en": "Gender (optional)",
+      "help_en": "Used only for reporting. It never affects your plan.",
+      "options": [
+        {
+          "value": "woman",
+          "label_en": "Woman",
+          "label_hi": null
+        },
+        {
+          "value": "man",
+          "label_en": "Man",
+          "label_hi": null
+        },
+        {
+          "value": "self_describe",
+          "label_en": "I prefer to describe it myself",
+          "label_hi": null
+        },
+        {
+          "value": "not_say",
+          "label_en": "Prefer not to say",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A4",
+      "field": "location",
+      "type": "state_district",
+      "required": true,
+      "text_en": "Where do you live?",
+      "help_en": "Choose your state, then type your district or city.",
+      "options": [],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A5",
+      "field": "learning_language",
+      "type": "single",
+      "required": true,
+      "text_en": "Which language do you want to learn in?",
+      "options": [
+        {
+          "value": "en",
+          "label_en": "English",
+          "label_hi": null
+        },
+        {
+          "value": "hi",
+          "label_en": "Hindi",
+          "label_hi": null
+        },
+        {
+          "value": "other",
+          "label_en": "Another language",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A6",
+      "field": "current_status",
+      "type": "single",
+      "required": true,
+      "text_en": "Where are you now?",
+      "options": [
+        {
+          "value": "iti",
+          "label_en": "At an ITI",
+          "label_hi": null
+        },
+        {
+          "value": "college",
+          "label_en": "At a college",
+          "label_hi": null
+        },
+        {
+          "value": "university",
+          "label_en": "At a university",
+          "label_hi": null
+        },
+        {
+          "value": "school",
+          "label_en": "At school",
+          "label_hi": null
+        },
+        {
+          "value": "not_studying",
+          "label_en": "Not studying right now",
+          "label_hi": null
+        },
+        {
+          "value": "working",
+          "label_en": "Working",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A7",
+      "field": "education_stage",
+      "type": "single",
+      "required": true,
+      "text_en": "What are you studying, or what did you last complete?",
+      "options": [
+        {
+          "value": "class_10_or_below",
+          "label_en": "Class 10 or below",
+          "label_hi": null
+        },
+        {
+          "value": "class_12",
+          "label_en": "Class 12",
+          "label_hi": null
+        },
+        {
+          "value": "iti_1",
+          "label_en": "ITI year 1",
+          "label_hi": null
+        },
+        {
+          "value": "iti_2",
+          "label_en": "ITI year 2",
+          "label_hi": null
+        },
+        {
+          "value": "ug_1",
+          "label_en": "Undergraduate year 1",
+          "label_hi": null
+        },
+        {
+          "value": "ug_2",
+          "label_en": "Undergraduate year 2",
+          "label_hi": null
+        },
+        {
+          "value": "ug_3",
+          "label_en": "Undergraduate year 3",
+          "label_hi": null
+        },
+        {
+          "value": "ug_4",
+          "label_en": "Undergraduate year 4",
+          "label_hi": null
+        },
+        {
+          "value": "graduate",
+          "label_en": "Graduate",
+          "label_hi": null
+        },
+        {
+          "value": "postgraduate",
+          "label_en": "Postgraduate",
+          "label_hi": null
+        },
+        {
+          "value": "doctoral",
+          "label_en": "Doctoral (PhD)",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A8",
+      "field": "time_left",
+      "type": "single",
+      "required": true,
+      "text_en": "How much time is left in your current studies?",
+      "options": [
+        {
+          "value": "two_plus",
+          "label_en": "2 years or more",
+          "label_hi": null
+        },
+        {
+          "value": "about_1",
+          "label_en": "About 1 year",
+          "label_hi": null
+        },
+        {
+          "value": "final_year",
+          "label_en": "I am in my final year",
+          "label_hi": null
+        },
+        {
+          "value": "finished",
+          "label_en": "Finished, or not studying",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A9",
+      "field": "field_of_study",
+      "type": "single",
+      "required": true,
+      "text_en": "What is your field of study or trade?",
+      "help_en": "Pick the closest match.",
+      "options": [],
+      "options_source": "fields",
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A10",
+      "field": "certificates",
+      "type": "multi",
+      "required": true,
+      "text_en": "Have you already finished any of these Swift AI Academy courses?",
+      "help_en": "Select all that apply, or choose None.",
+      "options": [],
+      "options_source": "courses",
+      "none_option": {
+        "value": "none",
+        "label_en": "None of these"
+      },
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A11",
+      "field": "work_experience",
+      "type": "experience",
+      "required": true,
+      "text_en": "How much work experience do you have?",
+      "options": [
+        {
+          "value": "none",
+          "label_en": "None",
+          "label_hi": null
+        },
+        {
+          "value": "under_1",
+          "label_en": "Less than 1 year",
+          "label_hi": null
+        },
+        {
+          "value": "1_to_2",
+          "label_en": "1 to 2 years",
+          "label_hi": null
+        },
+        {
+          "value": "over_2",
+          "label_en": "More than 2 years",
+          "label_hi": null
+        }
+      ],
+      "sub_question": {
+        "field": "role_level",
+        "text_en": "What was your highest role?",
+        "options": [
+          {
+            "value": "worker",
+            "label_en": "Worker or staff member",
+            "label_hi": null
+          },
+          {
+            "value": "supervisor",
+            "label_en": "Supervisor or team lead",
+            "label_hi": null
+          },
+          {
+            "value": "manager",
+            "label_en": "Manager",
+            "label_hi": null
+          }
+        ],
+        "skip_when": [
+          "none"
+        ],
+        "value_when_skipped": "none"
+      },
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A12",
+      "field": "device",
+      "type": "single",
+      "required": true,
+      "text_en": "Which devices can you use for learning?",
+      "options": [
+        {
+          "value": "phone_and_laptop",
+          "label_en": "My own smartphone, and a laptop or computer lab",
+          "label_hi": null
+        },
+        {
+          "value": "own_phone",
+          "label_en": "My own smartphone only",
+          "label_hi": null
+        },
+        {
+          "value": "shared_phone",
+          "label_en": "A phone I share with others",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A13",
+      "field": "internet",
+      "type": "single",
+      "required": true,
+      "text_en": "How is your internet?",
+      "options": [
+        {
+          "value": "reliable",
+          "label_en": "Reliable most of the time",
+          "label_hi": null
+        },
+        {
+          "value": "patchy",
+          "label_en": "Patchy, it often drops",
+          "label_hi": null
+        },
+        {
+          "value": "mostly_offline",
+          "label_en": "I am mostly offline",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "A14",
+      "field": "weekly_hours",
+      "type": "single",
+      "required": true,
+      "text_en": "How many hours a week can you give to a course?",
+      "options": [
+        {
+          "value": "under_3",
+          "label_en": "Less than 3 hours",
+          "label_hi": null
+        },
+        {
+          "value": "3_to_5",
+          "label_en": "3 to 5 hours",
+          "label_hi": null
+        },
+        {
+          "value": "6_to_8",
+          "label_en": "6 to 8 hours",
+          "label_hi": null
+        },
+        {
+          "value": "over_8",
+          "label_en": "More than 8 hours",
+          "label_hi": null
+        }
+      ],
+      "part": "A",
+      "text_hi": null,
+      "status": "active"
+    }
+  ],
+  "part_b": [
+    {
+      "item_id": "LP-P1",
+      "scale": "people",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Helping a customer solve a problem",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 1,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-SD1",
+      "scale": "self_discipline",
+      "text_en": "When I start something, I finish it.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 2,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-D1",
+      "scale": "data",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Keeping accurate records or accounts",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 3,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LI1",
+      "scale": "learning_independence",
+      "text_en": "I like to learn on my own, at my own pace.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 4,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-I1",
+      "scale": "ideas",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Thinking up a new way to solve a problem",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 5,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LM1",
+      "scale": "learning_motivation",
+      "text_en": "I enjoy learning new skills even when nobody asks me to.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 6,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-T1",
+      "scale": "things",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Repairing or setting up a machine or device",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 7,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-GC1",
+      "scale": "goal_clarity",
+      "text_en": "I know what kind of work I want to do.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 8,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-CE1",
+      "scale": "conf_english",
+      "text_en": "I can explain my ideas clearly in English.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 9,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-CT1",
+      "scale": "conf_tech",
+      "text_en": "I can learn a new app or tool quickly.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 10,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-P2",
+      "scale": "people",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Explaining something to a group of people",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 11,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-SD2",
+      "scale": "self_discipline",
+      "text_en": "I plan my week before it starts.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 12,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-D2",
+      "scale": "data",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Checking numbers in a report for mistakes",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 13,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-Q1",
+      "scale": "quality",
+      "text_en": "To show you are reading carefully, choose \"Agree\" for this statement.",
+      "response_set": "agreement",
+      "key": "Q",
+      "quality_rule": {
+        "allowed": [
+          4
+        ]
+      },
+      "order_no": 14,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LI2",
+      "scale": "learning_independence",
+      "text_en": "When I get stuck, I can usually find the answer myself.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 15,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-I2",
+      "scale": "ideas",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Writing a story, post or script",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 16,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LM2",
+      "scale": "learning_motivation",
+      "text_en": "I want to keep getting better at what I do.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 17,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-T2",
+      "scale": "things",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Building or assembling something with tools",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 18,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-GC2",
+      "scale": "goal_clarity",
+      "text_en": "I know which skills I need for the work I want.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 19,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-CE2",
+      "scale": "conf_english",
+      "text_en": "I can write a short email or message in English without help.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 20,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-CT2",
+      "scale": "conf_tech",
+      "text_en": "I am comfortable using AI tools such as chat assistants.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 21,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-P3",
+      "scale": "people",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Working in a team to plan an event",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 22,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-SD3",
+      "scale": "self_discipline",
+      "text_en": "I keep going even when a task becomes boring.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 23,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-D3",
+      "scale": "data",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Organising information in a spreadsheet",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 24,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LI3",
+      "scale": "learning_independence",
+      "text_en": "I need someone to check on me to keep learning.",
+      "response_set": "agreement",
+      "key": "R",
+      "order_no": 25,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-I3",
+      "scale": "ideas",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Designing a poster, app screen or product",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 26,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LM3",
+      "scale": "learning_motivation",
+      "text_en": "I only study when there is an exam.",
+      "response_set": "agreement",
+      "key": "R",
+      "order_no": 27,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-T3",
+      "scale": "things",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Setting up a phone, computer or network",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 28,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-GC3",
+      "scale": "goal_clarity",
+      "text_en": "I keep changing my mind about what I want to do.",
+      "response_set": "agreement",
+      "key": "R",
+      "order_no": 29,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-Q2",
+      "scale": "quality",
+      "text_en": "I have never used a mobile phone.",
+      "response_set": "agreement",
+      "key": "Q",
+      "quality_rule": {
+        "allowed": [
+          1,
+          2
+        ]
+      },
+      "order_no": 30,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-CE3",
+      "scale": "conf_english",
+      "text_en": "I feel comfortable speaking English at college or work.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 31,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-CT3",
+      "scale": "conf_tech",
+      "text_en": "I can fix basic problems with my phone or computer.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 32,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-P4",
+      "scale": "people",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Guiding a new classmate or colleague",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 33,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-SD4",
+      "scale": "self_discipline",
+      "text_en": "I often leave work until the last minute.",
+      "response_set": "agreement",
+      "key": "R",
+      "order_no": 34,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-D4",
+      "scale": "data",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Following a clear procedure step by step",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 35,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LI4",
+      "scale": "learning_independence",
+      "text_en": "I can learn from videos and online material without a teacher.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 36,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-I4",
+      "scale": "ideas",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Researching a topic and making sense of it",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 37,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-LM4",
+      "scale": "learning_motivation",
+      "text_en": "I look for chances to try new things.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 38,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-T4",
+      "scale": "things",
+      "stem_en": "How much would you enjoy...",
+      "text_en": "Working on a shop floor, site or outdoors",
+      "response_set": "interest",
+      "key": "+",
+      "order_no": 39,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    },
+    {
+      "item_id": "LP-SD5",
+      "scale": "self_discipline",
+      "text_en": "I keep my study or work material organised.",
+      "response_set": "agreement",
+      "key": "+",
+      "order_no": 40,
+      "text_hi": null,
+      "part": "B",
+      "status": "active"
+    }
+  ],
+  "part_c": [
+    {
+      "item_id": "SC-AI-1a",
+      "level_or_band": 1,
+      "strand": null,
+      "text_en": "An AI assistant confidently tells you the name of your state's Chief Minister. What should you do before using this answer?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Use it, AI is always right",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Check it with an official source",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Ask the same AI again",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Share it with friends",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-1b",
+      "level_or_band": 1,
+      "strand": null,
+      "text_en": "Which request will get the most useful answer?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "\"Leave letter\"",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"Write a short, polite leave letter to my principal for 2 days of sick leave, in simple English\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "\"Help me\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "\"Letter please\"",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-2a",
+      "level_or_band": 2,
+      "strand": null,
+      "text_en": "An AI adds 4,000 + 3,500 + 4,000 and says the total is 12,500. What is true?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "The total is right",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "The total should be 11,500",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "AI never makes number mistakes",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "You cannot check this",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-2b",
+      "level_or_band": 2,
+      "strand": null,
+      "text_en": "Which task should you NOT hand to an AI tool to decide?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "A first draft of a notice",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "The medicine dose for a patient",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Ideas for a poster",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Rewriting text in simpler words",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-3a",
+      "level_or_band": 3,
+      "strand": null,
+      "text_en": "You get a voice note that sounds like your manager, asking you to transfer money urgently to a new account. What do you do?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Transfer it quickly",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Reply to the voice note to confirm",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Call your manager on their known number before doing anything",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Forward it to a colleague",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-3b",
+      "level_or_band": 3,
+      "strand": null,
+      "text_en": "Before pasting a customer complaint into an AI tool to draft a reply, what must you remove?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Nothing",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "The complaint itself",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "The customer's name, phone number and account number",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "The date",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-4a",
+      "level_or_band": 4,
+      "strand": null,
+      "text_en": "You use the same AI prompt every week to summarise a report. One week the summary misses a key number. What is the best fix?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Stop using AI",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Add a step to your method: check key numbers against the source every time",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Use a longer prompt",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Ask a friend",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-4b",
+      "level_or_band": 4,
+      "strand": null,
+      "text_en": "You want to know if your weekly AI method is reliable. Which is the best test?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Run it once on this week's report",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Run it on three past reports, including one unusual one, and check each output",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Ask the AI if it is reliable",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Use it for a month and see",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-AI-TB1",
+      "level_or_band": 1,
+      "strand": null,
+      "text_en": "You asked an AI tool for a train's departure time. What is the safest next step?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Trust it and go",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Check the time on the official railway app or at the station",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Ask the AI the same question again",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Assume it is a little wrong and leave early",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "tiebreak"
+    },
+    {
+      "item_id": "SC-AI-TB2",
+      "level_or_band": 2,
+      "strand": null,
+      "text_en": "Which job is a good fit for an AI tool?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Deciding if a loan should be approved",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Giving a final medical diagnosis",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Making a first draft of the text for a simple poster",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Signing a legal document for you",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "tiebreak"
+    },
+    {
+      "item_id": "SC-AI-TB3",
+      "level_or_band": 3,
+      "strand": null,
+      "text_en": "You receive a photo of a well-known person at an event you have not heard about. What should you do before sharing it?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Share it quickly before others do",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Trust it because it looks real",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Ask friends if they like it",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Look for the same news on trusted news sites or official accounts",
+          "label_hi": null
+        }
+      ],
+      "answer": "D",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "tiebreak"
+    },
+    {
+      "item_id": "SC-AI-TB4",
+      "level_or_band": 4,
+      "strand": null,
+      "text_en": "Your weekly AI method works on short reports but fails on long ones. What is the best next step?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Test it on several long reports, find the step that fails, and fix that step",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Use it only on short reports and stop testing",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Switch to a different AI tool at random",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Ignore the long reports",
+          "label_hi": null
+        }
+      ],
+      "answer": "A",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "ai",
+      "status": "active",
+      "role": "tiebreak"
+    },
+    {
+      "item_id": "SC-COM-1L",
+      "level_or_band": 1,
+      "strand": "listening",
+      "text_en": "Listen to the announcement. What must you wear in the workshop today?",
+      "text_hi": null,
+      "transcript_en": "Good morning, everyone. Please wear your safety shoes in the workshop today. Thank you.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Safety shoes",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "A cap",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Gloves",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "A uniform",
+          "label_hi": null
+        }
+      ],
+      "answer": "A",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-1R",
+      "level_or_band": 1,
+      "strand": "reading",
+      "text_en": "Notice: \"Canteen closed today. Lunch in Room 4.\" Where is lunch today?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "In the canteen",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Room 1",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Room 4",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "There is no lunch today",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-1V",
+      "level_or_band": 1,
+      "strand": "vocabulary_grammar",
+      "text_en": "Choose the right word: \"Please ___ the door when you leave.\"",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "closing",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "close",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "closes",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "closed",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-2L",
+      "level_or_band": 2,
+      "strand": "listening",
+      "text_en": "Listen to the message. When can you collect the cable?",
+      "text_hi": null,
+      "transcript_en": "Hello, this is Meena from the stores. The cable you ordered has arrived. You can collect it from counter two after lunch, before four o'clock.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Before lunch",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "After four o'clock",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "After lunch, before four o'clock",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Tomorrow morning",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-2R",
+      "level_or_band": 2,
+      "strand": "reading",
+      "text_en": "Job card: \"Check oil level before starting the machine. Report leaks to the supervisor.\" What must you do first?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Start the machine",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Check the oil level",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Call the supervisor",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Clean the machine",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-2V",
+      "level_or_band": 2,
+      "strand": "vocabulary_grammar",
+      "text_en": "Which sentence is correct?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "The supervisor have checked the report.",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "The supervisor checking the report.",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "The supervisor has check the report.",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "The supervisor has checked the report.",
+          "label_hi": null
+        }
+      ],
+      "answer": "D",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-3L",
+      "level_or_band": 3,
+      "strand": "listening",
+      "text_en": "Listen to the update. What should Rakesh's team do?",
+      "text_hi": null,
+      "transcript_en": "Team, a quick update. Line two will stop at eleven for a safety check. Rakesh, please move your team to line one until twelve. Everyone else, carry on as normal.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Move to line one until twelve o'clock",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Stop work at eleven and go home",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Do the safety check on line two",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Carry on as normal on line two",
+          "label_hi": null
+        }
+      ],
+      "answer": "A",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-3R",
+      "level_or_band": 3,
+      "strand": "reading",
+      "text_en": "Which handover note is clearest?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "\"Machine problem. Fix later.\"",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"Machine 3 stopped at 4 pm: belt fault. New belt arrives 10 am tomorrow. Do not restart until it is fitted.\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "\"Machine 3 stopped. Someone should look at it.\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "\"Belt fault on a machine, part coming soon, be careful.\"",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-3V",
+      "level_or_band": 3,
+      "strand": "vocabulary_grammar",
+      "text_en": "Choose the best word: \"Please ___ the shift supervisor if the problem continues.\"",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "ignore",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "imagine",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "inform",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "interrupt",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-4L",
+      "level_or_band": 4,
+      "strand": "listening",
+      "text_en": "Listen to the manager. What does the manager want?",
+      "text_hi": null,
+      "transcript_en": "We have had three late deliveries this month. I am not looking for someone to blame. I want each team lead to send me one cause and one fix by Thursday.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "The name of the person responsible",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "One cause and one fix from each team lead by Thursday",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "A full report on all deliveries by Monday",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Team leads to call every customer",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-4R",
+      "level_or_band": 4,
+      "strand": "interaction",
+      "text_en": "A team member missed a deadline. Which is the best feedback?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Tell them in front of the team that they let everyone down",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"Try harder next time.\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "In private: \"The report was due Friday and came on Monday, which delayed the client update. What got in the way? Let us agree a plan for the next one.\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Say nothing and finish the work yourself",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-4V",
+      "level_or_band": 4,
+      "strand": "vocabulary_grammar",
+      "text_en": "Which wording suits a formal report? \"Sales ___ by 12 percent in March.\"",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "increased",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "went up a lot",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "shot up crazily",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "got bigger",
+          "label_hi": null
+        }
+      ],
+      "answer": "A",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-5L",
+      "level_or_band": 5,
+      "strand": "listening",
+      "text_en": "Listen to the speaker. What are they proposing?",
+      "text_hi": null,
+      "transcript_en": "I hear your concern about the cost. Let me put it another way: the current delays cost us more each quarter than the new system would. If we start with one branch, we can measure the savings before we commit.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Buy the system for every branch now",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "Cancel the project",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "Start with one branch and measure the savings",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Delay the decision for a year",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-5R",
+      "level_or_band": 5,
+      "strand": "interaction",
+      "text_en": "A colleague resists a new process. Which reply is most persuasive?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "\"This is the new rule. Follow it.\"",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"I understand you are worried this will slow the team down. In the pilot, errors fell by a third. Could we try it for two weeks and review it together?\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "\"Everyone else likes it.\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "\"Do what you want.\"",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-5V",
+      "level_or_band": 5,
+      "strand": "vocabulary_grammar",
+      "text_en": "Which phrase best softens disagreement in a meeting?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "\"You are wrong.\"",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"That makes no sense.\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "\"Whatever you say.\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "\"I see your point, but I would suggest another approach.\"",
+          "label_hi": null
+        }
+      ],
+      "answer": "D",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-6L",
+      "level_or_band": 6,
+      "strand": "listening",
+      "text_en": "Listen to the client. What are they most likely saying?",
+      "text_hi": null,
+      "transcript_en": "Thank you for your proposal. Our board appreciates the effort. However, we will need more time to consider the pricing, and we may come back with questions next month.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "They have accepted the proposal",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "They are not ready to agree to the price yet",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "They want to end all contact",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "They need the proposal in another language",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-6R",
+      "level_or_band": 6,
+      "strand": "reading",
+      "text_en": "Which email opening suits a formal international client?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "\"Hey there, hope you are rocking it.\"",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"Hi, as per my last mail, kindly do the needful.\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "\"Dear Ms Tanaka, I am writing to confirm the delivery schedule we discussed on 3 March.\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "\"Quick one about the delivery.\"",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-6V",
+      "level_or_band": 6,
+      "strand": "vocabulary_grammar",
+      "text_en": "Which word means \"able to change easily to suit new conditions\"?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "adaptable",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "adamant",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "adjacent",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "adequate",
+          "label_hi": null
+        }
+      ],
+      "answer": "A",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-7L",
+      "level_or_band": 7,
+      "strand": "listening",
+      "text_en": "Listen to the negotiator. What are they offering in exchange for a two-year contract?",
+      "text_hi": null,
+      "transcript_en": "Our position is firm on delivery dates, but we have flexibility on payment terms. If you can commit to a two-year contract, we can extend payment from thirty to sixty days.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "Earlier delivery",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "A lower price",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "A free trial",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "Longer payment terms",
+          "label_hi": null
+        }
+      ],
+      "answer": "D",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-7R",
+      "level_or_band": 7,
+      "strand": "reading",
+      "text_en": "Which is the best first public statement about a product-safety problem?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "\"We are aware that some units of Model X may overheat. We have stopped sales, are contacting all buyers, and will share an update at 6 pm today.\"",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"There is no problem with Model X.\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "\"Our supplier is responsible for this problem.\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "\"No comment.\"",
+          "label_hi": null
+        }
+      ],
+      "answer": "A",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-7V",
+      "level_or_band": 7,
+      "strand": "vocabulary_grammar",
+      "text_en": "Choose the most precise word: \"The board must ___ the risks before approving the merger.\"",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "look",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "evaluate",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "feel",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "guess",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-8L",
+      "level_or_band": 8,
+      "strand": "listening",
+      "text_en": "Listen to the researcher. How do they respond to the criticism?",
+      "text_hi": null,
+      "transcript_en": "Critics argue that our sample was too small. That is a fair point. However, the effect was consistent across all four sites, and we have pre-registered a larger replication for next year.",
+      "options": [
+        {
+          "value": "A",
+          "label_en": "They reject it completely",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "They say the sample was large",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "They accept it, point to consistent results, and mention a larger planned study",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "They withdraw the findings",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-8R",
+      "level_or_band": 8,
+      "strand": "reading",
+      "text_en": "A study reports: \"200 learners; X and Y rose together.\" Which sentence reports this correctly?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "\"X causes Y.\"",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "\"The study proves that X raises Y for all learners.\"",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "\"The study found a link between X and Y in 200 learners; it does not show that X causes Y.\"",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "\"Y causes X.\"",
+          "label_hi": null
+        }
+      ],
+      "answer": "C",
+      "origin": "spec",
+      "review_status": "approved_in_spec",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    },
+    {
+      "item_id": "SC-COM-8V",
+      "level_or_band": 8,
+      "strand": "vocabulary_grammar",
+      "text_en": "Which word describes a claim supported by evidence from observation?",
+      "text_hi": null,
+      "transcript_en": null,
+      "options": [
+        {
+          "value": "A",
+          "label_en": "hypothetical",
+          "label_hi": null
+        },
+        {
+          "value": "B",
+          "label_en": "empirical",
+          "label_hi": null
+        },
+        {
+          "value": "C",
+          "label_en": "anecdotal",
+          "label_hi": null
+        },
+        {
+          "value": "D",
+          "label_en": "rhetorical",
+          "label_hi": null
+        }
+      ],
+      "answer": "B",
+      "origin": "engineering_draft",
+      "review_status": "draft_pending_content_review",
+      "part": "C",
+      "series": "comm",
+      "status": "active",
+      "role": "placement"
+    }
+  ],
+  "part_d": [
+    {
+      "item_id": "D1",
+      "field": "goal_areas",
+      "type": "goal_cards",
+      "required": true,
+      "text_en": "Which kinds of work interest you?",
+      "help_en": "Pick up to 2, in order of interest. Or choose Not sure yet.",
+      "max_select": 2,
+      "not_sure_value": "not_sure",
+      "part": "D",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "D2",
+      "field": "main_goal",
+      "type": "single",
+      "required": true,
+      "text_en": "What is your main goal right now?",
+      "options": [
+        {
+          "value": "job_6m",
+          "label_en": "Get a job within 6 months",
+          "label_hi": null
+        },
+        {
+          "value": "job_1_2y",
+          "label_en": "Get a job in 1 to 2 years",
+          "label_hi": null
+        },
+        {
+          "value": "higher_studies",
+          "label_en": "Go for higher studies",
+          "label_hi": null
+        },
+        {
+          "value": "grow_current",
+          "label_en": "Grow in my current job",
+          "label_hi": null
+        },
+        {
+          "value": "business",
+          "label_en": "Start a business",
+          "label_hi": null
+        },
+        {
+          "value": "not_sure",
+          "label_en": "Not sure yet",
+          "label_hi": null
+        }
+      ],
+      "part": "D",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "D3",
+      "field": "earning_need",
+      "type": "single",
+      "required": true,
+      "text_en": "How soon do you need to start earning?",
+      "options": [
+        {
+          "value": "within_6m",
+          "label_en": "Within 6 months",
+          "label_hi": null
+        },
+        {
+          "value": "6_12m",
+          "label_en": "In 6 to 12 months",
+          "label_hi": null
+        },
+        {
+          "value": "1_2y",
+          "label_en": "In 1 to 2 years",
+          "label_hi": null
+        },
+        {
+          "value": "not_priority",
+          "label_en": "It is not a priority now",
+          "label_hi": null
+        }
+      ],
+      "part": "D",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "D4",
+      "field": "mobility",
+      "type": "single",
+      "required": true,
+      "text_en": "Where would you like to work?",
+      "options": [
+        {
+          "value": "district",
+          "label_en": "Within my district",
+          "label_hi": null
+        },
+        {
+          "value": "state",
+          "label_en": "Within my state",
+          "label_hi": null
+        },
+        {
+          "value": "india",
+          "label_en": "Anywhere in India",
+          "label_hi": null
+        },
+        {
+          "value": "abroad",
+          "label_en": "Abroad",
+          "label_hi": null
+        }
+      ],
+      "part": "D",
+      "text_hi": null,
+      "status": "active"
+    },
+    {
+      "item_id": "D5",
+      "field": "note",
+      "type": "text",
+      "required": false,
+      "text_en": "Anything else you would like your mentor to know?",
+      "help_en": "Optional. Only your mentor reads this. It does not change your plan.",
+      "max_length": 500,
+      "part": "D",
+      "text_hi": null,
+      "status": "active"
+    }
+  ],
+  "states": [
+    "Andaman and Nicobar Islands",
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chandigarh",
+    "Chhattisgarh",
+    "Dadra and Nagar Haveli and Daman and Diu",
+    "Delhi",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jammu and Kashmir",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Ladakh",
+    "Lakshadweep",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Puducherry",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal"
+  ]
+}
