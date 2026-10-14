@@ -1,3 +1,9 @@
+/**
+ * Step 4 (PRD) / Section 10 (spec): the adaptive skill check (Part C).
+ * These functions are pure state machines: given the answers so far they return the next item or the final
+ * placement. The server calls them after every answer, so a learner can stop and resume at any point.
+ * Item content is in seed/v1/assessment_items.json (part_c); ladders and cut-offs are in engine_config.skill_check.
+ */
 import type { EngineConfig, SkillCheckItem } from './types';
 
 export interface SkillCheckState {

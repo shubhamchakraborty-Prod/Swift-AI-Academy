@@ -1,3 +1,7 @@
+/**
+ * What the learner sees (screens L11-L16) and course platform events (Step 14).
+ * learnerResults() deliberately leaves out habit scores, axis numbers and course scores (spec principle 12).
+ */
 import { z } from 'zod';
 import type { Ctx } from '../context';
 import { logEvent } from '../context';
@@ -56,6 +60,7 @@ export async function learnerResults(ctx: Ctx, learnerId: string) {
     },
     explore_option: run.explore_option ? { course_id: run.explore_option.course_id, title: run.explore_option.title, goal_name: run.explore_option.goal_name } : null,
     build_elsewhere: run.build_elsewhere,
+    level_scale: ref.skills.level_scale ?? [],
     templates: { build_elsewhere: ref.templates.templates.build_elsewhere, no_course: ref.templates.templates.no_course, shorter_pathway: ref.templates.templates.shorter_pathway },
   };
 }

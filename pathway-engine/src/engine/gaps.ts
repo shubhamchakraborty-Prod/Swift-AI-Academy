@@ -1,3 +1,8 @@
+/**
+ * Step 9 (PRD) / Section 13 Steps 2-3 (spec): skill demand, required level and gap.
+ * Only skills listed by the learner's 3 target goal areas are considered. Required level is the pi-weighted average
+ * of what each area asks for, rounded to the nearest 0.5 (config.level_step).
+ */
 import type { EngineConfig, ReferenceData } from './types';
 import type { SkillState } from './skillLevels';
 import { cmpDesc, roundToStep } from './util';

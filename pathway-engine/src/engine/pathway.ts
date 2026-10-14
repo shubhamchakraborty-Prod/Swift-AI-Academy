@@ -1,3 +1,9 @@
+/**
+ * Step 11 (PRD) / Section 14 (spec): builds the 6-month (1 course) or 12-month (2 courses) plan.
+ * Term 2 is chosen after simulating term 1 as passed (its skills are raised and it counts as done).
+ * Locked terms (already started) are kept exactly as they are; a failed locked term builds nothing, so the
+ * next term can offer a retake or the next best course.
+ */
 import type { CourseRecord, EngineConfig, LearnerProfile, Persona, PathwayLength, Preset, ReferenceData } from './types';
 import type { TargetGoal } from './goals';
 import { skillNeeds, type SkillNeed } from './gaps';

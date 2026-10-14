@@ -1,3 +1,8 @@
+/**
+ * Flattens the learner's answers into named "features" that persona parameters read
+ * (see seed/v1/persona_rules.json, each parameter names a feature). When Part B is flagged, every Part B
+ * feature becomes null, which tells persona.ts to leave that parameter out and rescale the weights.
+ */
 import type { EngineInput, ReferenceData } from './types';
 
 /** Flat lookup of every value a persona parameter can read. Part B values are null when flagged. */

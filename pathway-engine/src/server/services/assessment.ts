@@ -1,3 +1,8 @@
+/**
+ * Assessment Service (Steps 2-5): saves every answer as it is given (FR-2), scores Part B,
+ * serves and scores the adaptive skill check one item at a time (answer keys never leave the server), and stores Part D.
+ * Each part is an assessment_attempt row; each answer is a learner_response row with its time taken.
+ */
 import { z } from 'zod';
 import type { Ctx } from '../context';
 import type { Queryable } from '../db/db';

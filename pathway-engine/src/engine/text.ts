@@ -1,3 +1,8 @@
+/**
+ * Learner-facing wording (Step 12, Section 15). Every sentence comes from a fixed template in
+ * seed/v1/templates.json and is checked against the banned-word list before it is returned.
+ * To change wording: edit templates.json. To ban a new phrase: add a regex to templates.json "banned".
+ */
 import type { Templates } from './types';
 
 export class WordingError extends Error {}

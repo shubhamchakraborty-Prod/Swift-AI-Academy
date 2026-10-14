@@ -1,3 +1,7 @@
+/**
+ * Security helpers: random ids and tokens, AES-256-GCM for personal fields at rest
+ * (name, date of birth, notes), and signed stateless tokens for staff sessions.
+ */
 import { createCipheriv, createDecipheriv, createHash, createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 
 export const newId = (prefix: string, bytes = 6) => `${prefix}-${randomBytes(bytes).toString('hex').toUpperCase()}`;

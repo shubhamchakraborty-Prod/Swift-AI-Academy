@@ -1,3 +1,8 @@
+/**
+ * Step 6 (PRD): the learner's starting level for every skill (0..8), plus "raise" for
+ * simulated or real course completion. Which placement feeds which skill family is configured in
+ * engine_config.skill_levels.rules. Self-reported certificates never raise a level above config.skill_levels.self_report_cap.
+ */
 import type { CourseRecord, EngineConfig, LearnerProfile, ReferenceData } from './types';
 
 export type LevelSource = 'skill_check' | 'role_level' | 'default' | 'course_assessment' | 'self_report';

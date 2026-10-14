@@ -1,3 +1,8 @@
+/**
+ * Reference learners (Section 21): 20 hand-designed learners in seed/v1/reference_learners.json
+ * used by the simulation screen and by the automated tests. Their Part B is given as scale means; this file turns
+ * those means into the same PartBScores shape the real scoring produces.
+ */
 import type { EngineInput, PartBScores } from './types';
 
 type Means = Record<'people' | 'data' | 'ideas' | 'things' | 'self_discipline' | 'learning_independence' | 'learning_motivation' | 'goal_clarity' | 'conf_english' | 'conf_tech', number>;

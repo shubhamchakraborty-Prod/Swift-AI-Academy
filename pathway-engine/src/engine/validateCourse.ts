@@ -1,3 +1,7 @@
+/**
+ * Section 18: the 8 onboarding checks a new or edited course must pass before activation.
+ * Used by the admin console (POST /v1/admin/courses/:id/validate). Each check returns plain messages for the admin.
+ */
 import type { Course, ReferenceData } from './types';
 import { findBannedWords } from './text';
 

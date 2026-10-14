@@ -1,3 +1,8 @@
+/**
+ * Admin console (screens AD01-AD05): course onboarding (draft -> validate -> simulate ->
+ * activate as a new minor data version), config versions (simulate on 20 reference learners, save, activate, roll back)
+ * and read-only catalogue views. Existing learner plans never change when something is activated.
+ */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { z } from 'zod';

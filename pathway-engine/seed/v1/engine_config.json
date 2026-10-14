@@ -214,7 +214,8 @@
       "partial_value": 0.5,
       "offline_factor": 0.5
     },
-    "top_reason_skills": 3
+    "top_reason_skills": 3,
+    "drop_at_or_below_placement": true
   },
   "term": {
     "weeks": 26,

@@ -1,3 +1,14 @@
+/**
+ * Step 10 (PRD) / Section 13 Step 4 (spec): eligibility and the course score.
+ * Score = Psoft * (wA*A + wU*U + wB*B + wF*F)
+ *   A  alignment: weighted useful gain, divided by the best eligible course (best = 1.0)
+ *   U  unlock value: how strong the next course this one opens would be
+ *   B  breadth: share of the 3 target goal areas the course helps
+ *   F  format fit: weekly load (hours / 26) against the learner's available hours
+ * A course is recommended only if it is eligible, A > 0, score >= min_score, and (TC-5) the learner's placement
+ * does not already reach its output level. Ties: higher A, lower entry level, then course id.
+ * The engine never reads a course name: a new course in courses.json is scored with no code change.
+ */
 import type { Course, EligibilityRule, EngineConfig, LearnerProfile, Preset, ReferenceData } from './types';
 import type { SkillNeed } from './gaps';
 import { cmpDesc } from './util';
@@ -58,6 +69,8 @@ export interface CourseScore {
   p_soft: number;
   score: number;
   recommended: boolean;
+  /** The learner's placement on this course's ladder already reaches its output level. */
+  below_placement: boolean;
   gains: SkillGain[]; // skills with demand and gain > 0, by D x gain
   goal_ids: string[]; // target goal areas this course helps (breadth)
   unlocks: string | null;
@@ -128,11 +141,13 @@ export function scoreCourses(
     const softMissing = course.prerequisites.soft.filter((p) => !done.has(p));
     const p_soft = softMissing.length ? config.course.soft_prereq_penalty : 1;
     const score = eligible ? p_soft * (w.A * A + w.U * U + w.B * B + w.F * F) : 0;
+    const below_placement = Boolean(config.course.drop_at_or_below_placement) && placements[course.entry_ladder] >= course.level_out;
     const warnings: CourseScore['warnings'] = softMissing.map((c) => ({ code: 'soft_prereq' as const, course_id: c }));
     if (F < 1) warnings.push({ code: 'heavy_load', weekly_hours: Math.round(weekly * 10) / 10 });
     return {
       course_id: course.course_id, eligible, ineligible, a_raw, A, U, B, F, p_soft, score,
-      recommended: eligible && A > 0 && score >= config.course.min_score - 1e-9,
+      recommended: eligible && !below_placement && A > 0 && score >= config.course.min_score - 1e-9,
+      below_placement,
       gains, goal_ids: helped, unlocks: bestUnlock ?? unlocked[0]?.course_id ?? null, warnings,
     };
   });

@@ -1,3 +1,11 @@
+/**
+ * Bridges stored answers and the pure engine.
+ *   progress()      where the learner is in the journey, derived from data (so resume always works)
+ *   buildInput()    collects Parts A-D into one EngineInput; throws 422 naming the first missing part (FR-9)
+ *   computePersona / answerTiebreak   Step 7 and screen L10
+ *   planPathway()   runs the engine, logs the run, stores the pathway; keeps locked terms (Steps 11, 14)
+ *   acceptPathway / replayRun
+ */
 import type { Ctx } from '../context';
 import { logEvent } from '../context';
 import type { Queryable } from '../db/db';
@@ -43,6 +51,7 @@ export async function progress(ctx: Ctx, learnerId: string) {
   const bAnswers = bOpen ? await ctx.db.query<{ item_id: string; value: number }>('select item_id, value from learner_response where attempt_id = $1', [bOpen.attempt_id]) : [];
   return {
     learner_id: learnerId,
+    first_name: learner.name_enc ? ctx.cipher.decrypt(learner.name_enc).split(' ')[0] : '',
     step,
     guardian_status: learner.guardian_status,
     next_part_a_item: nextA?.item_id ?? null,

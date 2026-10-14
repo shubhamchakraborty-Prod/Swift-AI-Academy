@@ -1,3 +1,9 @@
+/**
+ * Shared server context: database, settings, encryption, staff tokens and versioned data.
+ * Reference data (catalogue + item bank) and engine config are stored as versioned snapshots. Exactly one of each
+ * is active; every run records which versions it used, so changes never alter past results.
+ * ensureSeed() is the v1.0.0 migration: it loads seed/v1 into an empty database.
+ */
 import type { Db } from './db/db';
 import type { EngineConfig, ReferenceData } from '../engine/types';
 import { FieldCipher, StaffTokens } from './crypto';

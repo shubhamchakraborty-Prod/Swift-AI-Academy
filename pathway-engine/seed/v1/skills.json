@@ -1,4 +1,42 @@
 {
+  "level_scale": [
+    {
+      "level": 0,
+      "descriptor": "No measurable skill yet"
+    },
+    {
+      "level": 1,
+      "descriptor": "Does simple, familiar tasks with close guidance"
+    },
+    {
+      "level": 2,
+      "descriptor": "Does routine tasks in familiar settings with some guidance"
+    },
+    {
+      "level": 3,
+      "descriptor": "Does routine tasks independently using standard procedures"
+    },
+    {
+      "level": 4,
+      "descriptor": "Handles varied tasks, checks own and others' work, may guide a small team"
+    },
+    {
+      "level": 5,
+      "descriptor": "Takes responsibility for a work unit, adapts methods, trains others"
+    },
+    {
+      "level": 6,
+      "descriptor": "Manages people and processes in complex, non-routine situations"
+    },
+    {
+      "level": 7,
+      "descriptor": "Leads strategy across functions under high stakes and uncertainty"
+    },
+    {
+      "level": 8,
+      "descriptor": "Creates new knowledge or governs institutions"
+    }
+  ],
   "families": [
     {
       "family_id": "COMM",

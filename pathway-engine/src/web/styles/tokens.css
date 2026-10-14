@@ -1,0 +1,66 @@
+/* Swift AI Academy design tokens (Brand guidelines v1.0). One source for every screen. */
+:root {
+  /* Brand */
+  --blue: #3d5afe;
+  --blue-600: #2a3fcc;
+  --blue-50: #eaeeff;
+  --blue-light: #6f87ff;
+  --navy: #0e1b5c;
+  --navy-700: #1a2b85;
+  --navy-50: #e5e9fa;
+  --gold: #fbb034;
+  --gold-50: #fff4dc;
+  --gold-700: #8a5a00; /* text on gold tint, 4.5:1 */
+
+  /* Semantic */
+  --success: #16a34a;
+  --success-50: #e8f6ed;
+  --success-700: #11702f;
+  --warning: #d97706;
+  --warning-50: #fdf3e2;
+  --warning-700: #8a4b02;
+  --danger: #dc2626;
+  --danger-50: #fdecec;
+  --danger-700: #a51d1d;
+
+  /* Neutrals */
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #f6f8ff;
+  --line: #e2e6f2;
+  --line-strong: #c9cfe3;
+  --muted: #8a93b8;
+  --text-2: #5a638c;
+  --text: #0e1b5c;
+
+  /* Type */
+  --font: 'Cabinet Grotesk', 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fs-lg: 18px;
+  --fs-xl: 22px;
+  --fs-2xl: 28px;
+  --fs-3xl: 34px;
+
+  /* Space (4px grid) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px; --s12: 48px;
+
+  /* Shape */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(14, 27, 92, 0.05), 0 1px 1px rgba(14, 27, 92, 0.03);
+  --shadow-2: 0 1px 2px rgba(14, 27, 92, 0.06), 0 4px 12px rgba(14, 27, 92, 0.06), 0 12px 32px rgba(14, 27, 92, 0.05);
+
+  /* Layout */
+  --app-w: 560px;      /* learner journey column, like a phone app */
+  --wide-w: 1080px;    /* staff consoles */
+  --bar-h: 56px;
+  --tap: 52px;         /* minimum comfortable tap target */
+  --focus: 0 0 0 3px rgba(61, 90, 254, 0.35);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}

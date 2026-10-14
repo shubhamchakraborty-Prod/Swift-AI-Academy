@@ -1,3 +1,8 @@
+/**
+ * Step 8 (PRD) / Section 13 Step 1 (spec): ranks all 12 career goal areas.
+ * T(g) = choice*Asp + fit*Fit + field*Field + market*Mkt, with weights from the persona's preset (Focus or Explore).
+ * The top 3 become the learner's targets, each with a weight pi used for skill demand in gaps.ts.
+ */
 import type { EngineConfig, PartBScores, Preset, ReferenceData } from './types';
 import { cmpDesc } from './util';
 

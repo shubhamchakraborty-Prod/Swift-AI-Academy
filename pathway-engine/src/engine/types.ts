@@ -1,3 +1,9 @@
+/**
+ * Engine data contracts.
+ * Every shape here mirrors a seed file in seed/v1 (skills.json, courses.json, ...) or an engine input/output.
+ * To add a field: add it to the seed JSON, add it here, then read it in the engine. Never hard-code catalogue
+ * values (course ids, skill ids, weights) in engine code; they always come from ReferenceData or EngineConfig.
+ */
 // Data contracts for the rule-based engine. Shapes mirror the seed JSON files in seed/v1.
 
 export type Orientation = string; // ids from career_goals.orientations
@@ -188,7 +194,7 @@ export interface Templates {
 /** Everything the engine reads that is not a learner answer or a weight. One version per snapshot. */
 export interface ReferenceData {
   version: string;
-  skills: { families: { family_id: string; name: string }[]; clusters: { cluster_id: string; family_id: string; name: string }[]; skills: Skill[] };
+  skills: { level_scale?: { level: number; descriptor: string }[]; families: { family_id: string; name: string }[]; clusters: { cluster_id: string; family_id: string; name: string }[]; skills: Skill[] };
   career_goals: { orientations: { id: string; name: string; description: string }[]; goal_areas: GoalArea[]; goal_skills: GoalSkill[] };
   fields: { fields: FieldOfStudy[] };
   courses: { series: { series_id: string; name: string; ladder: string }[]; courses: Course[] };
@@ -238,6 +244,8 @@ export interface EngineConfig {
     available_hours: Record<string, number>;
     format_fit: { partial_ratio: number; partial_value: number; offline_factor: number };
     top_reason_skills: number;
+    /** TC-5: never recommend a course the learner's placement already reaches. */
+    drop_at_or_below_placement?: boolean;
   };
   term: { weeks: number; months: number };
   results: { top_gaps: number };

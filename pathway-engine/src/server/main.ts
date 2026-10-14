@@ -1,3 +1,6 @@
+/**
+ * Entry point: load settings, open the database, seed it if empty, start the API.
+ */
 import { openDb } from './db/db';
 import { createCtx } from './context';
 import { createApp } from './app';

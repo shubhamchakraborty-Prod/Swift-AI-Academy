@@ -1,3 +1,10 @@
+/**
+ * Step 7 (PRD) / Section 12 (spec): four axis scores and the closest of 16 personas.
+ * Flow: convert each parameter to -1..+1 with its rule from persona_rules.json -> weighted mean per axis ->
+ * borderline axes (|score| < config.persona.borderline) get up to 2 tie-breaker questions, closest to zero first ->
+ * an axis still borderline takes the supportive pole -> nearest persona centre -> confidence and second choice.
+ * To change a weight or a lookup, edit persona_rules.json / engine_config.json, not this file.
+ */
 import type { Axis, AxisParameter, EngineConfig, Persona, ReferenceData } from './types';
 import type { Features } from './features';
 import { clamp } from './util';

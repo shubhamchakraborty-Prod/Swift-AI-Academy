@@ -1,3 +1,9 @@
+/**
+ * HTTP API (REST, JSON, under /v1). Routes are grouped by who calls them:
+ *   public (item lists, course detail), learner (bearer token, own records only), course platform (X-Platform-Key),
+ *   mentor and admin (staff token). Business logic lives in services/*; handlers only validate input and call them.
+ * Errors use the spec's codes: 400 bad field, 409 locked/duplicate, 422 assessment incomplete, 451 consent missing.
+ */
 import express, { type NextFunction, type Request, type Response } from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';

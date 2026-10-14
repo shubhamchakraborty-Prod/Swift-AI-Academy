@@ -1,3 +1,9 @@
+/**
+ * Step 3 (PRD) / Section 10 (spec): scores the 40-statement learning profile (Part B).
+ * Input: item bank + the learner's 1-5 answers + total seconds. Output: scale means, interest ranking, quality flags.
+ * A flagged attempt is stored but every later step ignores it (see features.ts and goals.ts).
+ * Thresholds (attention answers, straight-line count, minimum seconds) live in engine_config.assessment.quality.
+ */
 import type { EngineConfig, PartBItem, PartBScores } from './types';
 import { mean } from './util';
 

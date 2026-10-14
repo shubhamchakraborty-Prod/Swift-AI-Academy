@@ -1,3 +1,8 @@
+/**
+ * Learner Service (Step 1-2): creates the learner with consent per purpose, handles the
+ * guardian step for minors (age < config.consent.guardian_required_below_age), and validates Part A answers
+ * against the item bank. Personal fields are encrypted before they reach the database.
+ */
 import { z } from 'zod';
 import type { Ctx } from '../context';
 import { logEvent } from '../context';

@@ -1,3 +1,9 @@
+/**
+ * Database adapter. One tiny interface (query / tx) over two drivers:
+ *   - DATABASE_URL set   -> real Postgres through `pg` (production)
+ *   - otherwise          -> PGlite, an embedded Postgres stored in .data/pglite (local development, tests in memory)
+ * schema.sql runs on start and is idempotent (create ... if not exists). Add new tables there.
+ */
 import { readFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';

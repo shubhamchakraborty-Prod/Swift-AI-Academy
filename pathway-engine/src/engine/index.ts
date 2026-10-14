@@ -1,3 +1,6 @@
+/**
+ * Public surface of the engine. The server and tests import from here only.
+ */
 export * from './types';
 export * from './util';
 export * from './partB';

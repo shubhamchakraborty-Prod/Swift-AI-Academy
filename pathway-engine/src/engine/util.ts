@@ -1,3 +1,7 @@
+/**
+ * Small numeric helpers shared by the engine. Scoring must be deterministic, so comparisons
+ * use a tiny tolerance (EPS) to stop floating-point noise from flipping a ranking.
+ */
 const EPS = 1e-9;
 
 export const clamp = (x: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, x));

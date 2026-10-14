@@ -1,3 +1,7 @@
+/**
+ * Mentor view (screens M01, M02): every score behind a plan, for learners who consented
+ * to share with their mentor. Without that consent the API answers 451.
+ */
 import type { Ctx } from '../context';
 import { newId } from '../crypto';
 import { HttpError, notFound } from '../errors';

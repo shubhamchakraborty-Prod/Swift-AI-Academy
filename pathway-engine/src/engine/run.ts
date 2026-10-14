@@ -1,3 +1,9 @@
+/**
+ * Orchestrator: runs Steps 6 to 12 for one learner and returns everything the screens, the mentor
+ * view and the run log need. Pure and deterministic: same input + same config + same reference data = same output.
+ * The server stores this output in recommendation_run so any result can be replayed (FR-26).
+ * Learner-facing sentences are built only from templates.json (see text.ts), never free text.
+ */
 import type { EngineConfig, EngineInput, ReferenceData } from './types';
 import { extractFeatures } from './features';
 import { matchPersona, type PersonaResult } from './persona';

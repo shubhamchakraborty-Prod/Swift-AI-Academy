@@ -1,3 +1,8 @@
+/**
+ * Reads configuration from environment variables (see .env.example).
+ * In development, missing secrets are generated once into .data/dev-secrets.json so the app runs with no setup.
+ * In production (NODE_ENV=production) the server refuses to start without them.
+ */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { randomBytes } from 'node:crypto';
