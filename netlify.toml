@@ -1,0 +1,28 @@
+# Netlify deploy for the Pathway Engine (app lives in pathway-engine/).
+# Screens are a static build; the /v1 API runs as one Netlify Function backed by hosted Postgres.
+
+[build]
+  base = "pathway-engine"
+  command = "npm run build:netlify"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  # netlify/functions/api.mjs is produced by the build command (already bundled).
+  node_bundler = "esbuild"
+  external_node_modules = ["@electric-sql/pglite"]
+
+[[redirects]]
+  from = "/v1/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# Single-page app: every other path loads the screens.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

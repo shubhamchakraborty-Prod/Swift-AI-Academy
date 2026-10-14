@@ -16,5 +16,5 @@
     "allowImportingTsExtensions": false,
     "types": ["node", "vite/client"]
   },
-  "include": ["src", "tests", "e2e", "scripts", "vite.config.ts", "vitest.config.ts", "playwright.config.ts"]
+  "include": ["src", "netlify", "tests", "e2e", "scripts", "vite.config.ts", "vitest.config.ts", "playwright.config.ts"]
 }

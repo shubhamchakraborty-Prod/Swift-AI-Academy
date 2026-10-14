@@ -33,11 +33,11 @@ export async function ensureSeed(db: Db): Promise<void> {
   const { reference, config } = loadSeed();
   const refRows = await db.query('select 1 from reference_version limit 1');
   if (!refRows.length) {
-    await db.query(`insert into reference_version (version, data, active, note, created_by) values ($1, $2::jsonb, true, 'Seed v1', 'migration')`, [SEED_REFERENCE_VERSION, JSON.stringify(reference)]);
+    await db.query(`insert into reference_version (version, data, active, note, created_by) values ($1, $2::jsonb, true, 'Seed v1', 'migration') on conflict (version) do nothing`, [SEED_REFERENCE_VERSION, JSON.stringify(reference)]);
   }
   const cfgRows = await db.query('select 1 from engine_config limit 1');
   if (!cfgRows.length) {
-    await db.query(`insert into engine_config (version, data, active, note, created_by) values ($1, $2::jsonb, true, 'Seed v1', 'migration')`, [config.version, JSON.stringify(config)]);
+    await db.query(`insert into engine_config (version, data, active, note, created_by) values ($1, $2::jsonb, true, 'Seed v1', 'migration') on conflict (version) do nothing`, [config.version, JSON.stringify(config)]);
   }
 }
 

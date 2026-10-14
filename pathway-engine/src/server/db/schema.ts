@@ -1,3 +1,9 @@
+/**
+ * Postgres schema for the Pathway Engine. Runs on every start and is idempotent
+ * (create ... if not exists), so add new tables or columns here with the same pattern.
+ * Kept as a TypeScript string so serverless bundlers (Netlify) include it.
+ */
+export const SCHEMA = String.raw`
 -- Pathway Engine v1 schema. Reference ontologies are stored as versioned snapshots
 -- (reference_version) so any run can be replayed against the exact data it used.
 
@@ -191,3 +197,4 @@ create table if not exists item_draft (
   created_by text not null,
   created_at timestamptz not null default now()
 );
+`;

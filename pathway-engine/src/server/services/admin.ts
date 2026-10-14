@@ -3,14 +3,12 @@
  * activate as a new minor data version), config versions (simulate on 20 reference learners, save, activate, roll back)
  * and read-only catalogue views. Existing learner plans never change when something is activated.
  */
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { z } from 'zod';
 import type { Ctx } from '../context';
 import { logEvent } from '../context';
 import { newId } from '../crypto';
 import { badRequest, HttpError, notFound } from '../errors';
-import { SEED_DIR } from '../referenceData';
+import { seedReferenceLearners } from '../referenceData';
 import { referenceInput, runEngine, validateCourse, type Course, type EngineConfig, type ReferenceData, type ReferenceLearner } from '../../engine';
 
 const level = z.number().min(0).max(8).refine((x) => Number.isInteger(x * 2), 'Levels go in steps of 0.5');
@@ -60,7 +58,7 @@ async function latestVersion(ctx: Ctx, table: 'reference_version' | 'engine_conf
 // ---------- Reference learners and simulation (AD02, FR-25) ----------
 
 export function referenceLearners(): ReferenceLearner[] {
-  return JSON.parse(readFileSync(join(SEED_DIR, 'reference_learners.json'), 'utf8')).learners;
+  return seedReferenceLearners();
 }
 
 export function simulate(base: { ref: ReferenceData; config: EngineConfig }, candidate: { ref: ReferenceData; config: EngineConfig }) {

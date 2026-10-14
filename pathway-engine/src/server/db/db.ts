@@ -2,11 +2,10 @@
  * Database adapter. One tiny interface (query / tx) over two drivers:
  *   - DATABASE_URL set   -> real Postgres through `pg` (production)
  *   - otherwise          -> PGlite, an embedded Postgres stored in .data/pglite (local development, tests in memory)
- * schema.sql runs on start and is idempotent (create ... if not exists). Add new tables there.
+ * schema.ts runs on start and is idempotent (create ... if not exists). Add new tables there.
  */
-import { readFileSync, mkdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { mkdirSync } from 'node:fs';
+import { SCHEMA } from './schema';
 
 export interface Queryable {
   query<T = Record<string, unknown>>(sql: string, params?: unknown[]): Promise<T[]>;
@@ -17,8 +16,6 @@ export interface Db extends Queryable {
   close(): Promise<void>;
   kind: 'pglite' | 'postgres';
 }
-
-const SCHEMA = readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'schema.sql'), 'utf8');
 
 /**
  * Postgres when DATABASE_URL is set; otherwise embedded Postgres (PGlite) in a local data

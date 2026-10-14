@@ -48,7 +48,7 @@ export function loadSettings(env = process.env): Settings {
   return {
     port: Number(env.PORT ?? 8787),
     production,
-    databaseUrl: env.DATABASE_URL || undefined,
+    databaseUrl: env.DATABASE_URL || env.NETLIFY_DATABASE_URL || undefined, // Netlify DB sets NETLIFY_DATABASE_URL
     dataDir,
     encryptionKey: Buffer.from(get('DATA_ENCRYPTION_KEY'), 'base64'),
     sessionSecret: get('SESSION_SECRET'),

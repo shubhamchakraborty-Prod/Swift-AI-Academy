@@ -11,8 +11,23 @@ export const settings: Settings = {
   mentorCode: 'mentor-code', adminCode: 'admin-code', platformKey: 'platform-key',
 };
 
+/** Embedded Postgres in memory by default; set TEST_DATABASE_URL to run the same tests on real Postgres. */
+async function freshDb() {
+  const url = process.env.TEST_DATABASE_URL;
+  if (!url) return openDb({ dataDir: 'memory' });
+  const pg = (await import('pg')).default;
+  const name = `pathway_test_${randomBytes(4).toString('hex')}`;
+  const admin = new pg.Client({ connectionString: url });
+  await admin.connect();
+  await admin.query(`create database ${name}`);
+  await admin.end();
+  const u = new URL(url);
+  u.pathname = `/${name}`;
+  return openDb({ databaseUrl: u.toString() });
+}
+
 export async function startServer(now: () => Date = () => new Date('2026-10-13T09:00:00Z')) {
-  const db = await openDb({ dataDir: 'memory' });
+  const db = await freshDb();
   const ctx = await createCtx(db, settings, now);
   const server = createApp(ctx).listen(0);
   await new Promise((r) => server.once('listening', r));
