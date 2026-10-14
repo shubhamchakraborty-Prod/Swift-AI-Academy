@@ -1,0 +1,994 @@
+{
+  "note": "Reference learners for /v1/simulate and the automated test suite. Persona expectations are designed by construction; pathway baselines are produced by engine v1.0.0 and need product sign-off (open item 13).",
+  "learners": [
+    {
+      "id": "REF-01",
+      "label": "Designed for PER-CFNS",
+      "expected": {
+        "persona_code": "PER-CFNS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "finished",
+          "field_of_study": "bcom",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.5,
+          "data": 4.5,
+          "ideas": 3.0,
+          "things": 2.0,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 4.5,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [
+            "CG-02"
+          ],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-02",
+      "label": "Designed for PER-CFNM",
+      "expected": {
+        "persona_code": "PER-CFNM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "finished",
+          "field_of_study": "bca_bsc_cs",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 2.5,
+          "data": 4.0,
+          "ideas": 4.75,
+          "things": 3.5,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 4.5,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [
+            "CG-10"
+          ],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-03",
+      "label": "Designed for PER-CFLS",
+      "expected": {
+        "persona_code": "PER-CFLS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "two_plus",
+          "field_of_study": "ba",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.5,
+          "data": 2.5,
+          "ideas": 4.75,
+          "things": 2.0,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 4.5,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [
+            "CG-12"
+          ],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-04",
+      "label": "Designed for PER-CFLM",
+      "expected": {
+        "persona_code": "PER-CFLM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "two_plus",
+          "field_of_study": "iti_electrical_mechanical",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 2.5,
+          "data": 3.5,
+          "ideas": 2.0,
+          "things": 4.75,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 4.5,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [
+            "CG-07"
+          ],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-05",
+      "label": "Designed for PER-CRNS",
+      "expected": {
+        "persona_code": "PER-CRNS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "finished",
+          "field_of_study": "iti_copa",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 2.5,
+          "data": 3.75,
+          "ideas": 2.5,
+          "things": 4.75,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 4.5,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [
+            "CG-09"
+          ],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-06",
+      "label": "Designed for PER-CRNM",
+      "expected": {
+        "persona_code": "PER-CRNM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "finished",
+          "field_of_study": "hotel_management",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 4.75,
+          "data": 2.5,
+          "ideas": 3.0,
+          "things": 3.5,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 4.5,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [
+            "CG-04"
+          ],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-07",
+      "label": "Designed for PER-CRLS",
+      "expected": {
+        "persona_code": "PER-CRLS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "two_plus",
+          "field_of_study": "nursing_paramedical",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 4.75,
+          "data": 3.75,
+          "ideas": 2.5,
+          "things": 2.0,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 4.5,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [
+            "CG-06"
+          ],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-08",
+      "label": "Designed for PER-CRLM",
+      "expected": {
+        "persona_code": "PER-CRLM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "two_plus",
+          "field_of_study": "bed",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 4.75,
+          "data": 2.5,
+          "ideas": 3.75,
+          "things": 2.0,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 4.5,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [
+            "CG-05"
+          ],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-09",
+      "label": "Designed for PER-EFNS",
+      "expected": {
+        "persona_code": "PER-EFNS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "finished",
+          "field_of_study": "bcom",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 2.0,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-10",
+      "label": "Designed for PER-EFNM",
+      "expected": {
+        "persona_code": "PER-EFNM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "finished",
+          "field_of_study": "bca_bsc_cs",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 2.0,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-11",
+      "label": "Designed for PER-EFLS",
+      "expected": {
+        "persona_code": "PER-EFLS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "two_plus",
+          "field_of_study": "ba",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 2.0,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-12",
+      "label": "Designed for PER-EFLM",
+      "expected": {
+        "persona_code": "PER-EFLM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "two_plus",
+          "field_of_study": "iti_electrical_mechanical",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 2.0,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-13",
+      "label": "Designed for PER-ERNS",
+      "expected": {
+        "persona_code": "PER-ERNS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "finished",
+          "field_of_study": "iti_copa",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 2.0,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-14",
+      "label": "Designed for PER-ERNM",
+      "expected": {
+        "persona_code": "PER-ERNM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "finished",
+          "field_of_study": "hotel_management",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 2.0,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-15",
+      "label": "Designed for PER-ERLS",
+      "expected": {
+        "persona_code": "PER-ERLS",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "two_plus",
+          "field_of_study": "nursing_paramedical",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 2.0,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-16",
+      "label": "Designed for PER-ERLM",
+      "expected": {
+        "persona_code": "PER-ERLM",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "two_plus",
+          "field_of_study": "bed",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "under_3"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 2.0,
+          "learning_independence": 2.0,
+          "learning_motivation": 2.0,
+          "goal_clarity": 2.0,
+          "conf_english": 2.0,
+          "conf_tech": 2.0
+        },
+        "ai_placement": 3,
+        "comm_placement": 5,
+        "diligence": false,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-17",
+      "label": "Part B flagged (attention check failed)",
+      "expected": {
+        "part_b_used": false,
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "two_plus",
+          "field_of_study": "ba",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.5,
+          "data": 2.5,
+          "ideas": 4.75,
+          "things": 2.0,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 4.5,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [
+            "CG-12"
+          ],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": [],
+        "partB_flagged": true
+      }
+    },
+    {
+      "id": "REF-18",
+      "label": "Not sure yet on goals",
+      "expected": {
+        "direction": "E",
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 19,
+          "education_stage": "class_12",
+          "time_left": "two_plus",
+          "field_of_study": "ba",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.0,
+          "data": 3.1,
+          "ideas": 3.0,
+          "things": 3.05,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 2.0,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-19",
+      "label": "Learner aged 15 (guardian consent in the platform)",
+      "expected": {
+        "min_age_ok": true,
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 15,
+          "education_stage": "class_10_or_below",
+          "time_left": "finished",
+          "field_of_study": "bcom",
+          "certificates": [],
+          "work_experience": "none",
+          "role_level": "none",
+          "device": "shared_phone",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 3.5,
+          "data": 4.5,
+          "ideas": 3.0,
+          "things": 2.0,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 4.5,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 0,
+        "comm_placement": 2,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [
+            "CG-02"
+          ],
+          "main_goal": "job_6m",
+          "earning_need": "within_6m",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": []
+      }
+    },
+    {
+      "id": "REF-20",
+      "label": "No eligible course with any gain",
+      "expected": {
+        "terms": 0,
+        "source": "designed by construction"
+      },
+      "input": {
+        "profile": {
+          "age": 24,
+          "education_stage": "postgraduate",
+          "time_left": "two_plus",
+          "field_of_study": "nursing_paramedical",
+          "certificates": [],
+          "work_experience": "over_2",
+          "role_level": "supervisor",
+          "device": "phone_and_laptop",
+          "internet": "reliable",
+          "weekly_hours": "over_8"
+        },
+        "partB": null,
+        "partB_means": {
+          "people": 4.75,
+          "data": 3.75,
+          "ideas": 2.5,
+          "things": 2.0,
+          "self_discipline": 4.5,
+          "learning_independence": 4.5,
+          "learning_motivation": 4.5,
+          "goal_clarity": 4.5,
+          "conf_english": 4.5,
+          "conf_tech": 4.5
+        },
+        "ai_placement": 4,
+        "comm_placement": 8,
+        "diligence": true,
+        "goals": {
+          "goal_areas": [
+            "CG-06"
+          ],
+          "main_goal": "higher_studies",
+          "earning_need": "not_priority",
+          "mobility": "state"
+        },
+        "tiebreaks": {},
+        "courses": [
+          {
+            "course_id": "AAI-1",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "AAI-2",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "AAI-3",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "AAI-4",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "COM-1",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "COM-2",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "COM-3",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "COM-4",
+            "status": "passed",
+            "source": "course_assessment"
+          },
+          {
+            "course_id": "COM-5",
+            "status": "passed",
+            "source": "course_assessment"
+          }
+        ]
+      }
+    }
+  ]
+}

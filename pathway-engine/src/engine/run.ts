@@ -70,6 +70,8 @@ export interface EngineRun {
 }
 
 const fmtLevel = (x: number) => (Number.isInteger(x) ? String(x) : x.toFixed(1));
+/** Lower-case the first letter for use mid-sentence, but keep acronyms ("SOPs", "AI") intact. */
+const midSentence = (s: string) => (/^[A-Z][a-z]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
 
 export function runEngine(input: EngineInput, ref: ReferenceData, config: EngineConfig): EngineRun {
   const T = ref.templates;
@@ -161,7 +163,7 @@ export function runEngine(input: EngineInput, ref: ReferenceData, config: Engine
 
   // Pathway summary sentence: top 3 skills across the plan, toward the first goal area.
   const planGains = plan.terms.flatMap((t) => t.score.gains).sort((a, b) => b.weighted - a.weighted);
-  const summarySkills = [...new Set(planGains.map((g) => g.skill_id))].slice(0, 3).map((id) => skillById.get(id)!.name.toLowerCase());
+  const summarySkills = [...new Set(planGains.map((g) => g.skill_id))].slice(0, 3).map((id) => midSentence(skillById.get(id)!.name));
   const summary = terms.length && summarySkills.length
     ? render(T, 'pathway_summary', { months: plan.terms.length * config.term.months, skills: joinList(summarySkills), goal_area: goalById.get(targets[0].goal_id)!.name })
     : null;

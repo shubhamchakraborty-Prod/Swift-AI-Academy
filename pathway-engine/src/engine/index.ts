@@ -12,3 +12,4 @@ export * from './pathway';
 export * from './text';
 export * from './run';
 export * from './validateCourse';
+export * from './reference';

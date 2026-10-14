@@ -42,7 +42,7 @@ export function buildPathway(args: {
   targets: TargetGoal[];
   state: SkillState;
   lengthOverride?: PathwayLength | null;
-  lockedTerms?: { term_no: number; course_id: string }[];
+  lockedTerms?: { term_no: number; course_id: string; outcome?: 'failed' | null }[];
 }): PathwayPlan {
   const { ref, config, preset, profile, placements, targets } = args;
   const length_months = args.lengthOverride ?? defaultLength(args.persona);
@@ -64,6 +64,8 @@ export function buildPathway(args: {
       break;
     }
     terms.push({ term_no: t, course_id: pick.course_id, locked: Boolean(locked), score: pick, state_before: state, all_scores: scored, needs });
+    // A failed locked term stays in the plan but builds nothing, so the next term can offer a retake.
+    if (locked?.outcome === 'failed') continue;
     state = raiseLevels(state, ref, pick.course_id);
     done.add(pick.course_id);
   }

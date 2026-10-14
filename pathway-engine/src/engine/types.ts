@@ -292,5 +292,5 @@ export interface EngineInput {
   courses: CourseRecord[];
   length_override?: PathwayLength | null;
   /** Terms that have started; never changed by the engine. */
-  locked_terms?: { term_no: number; course_id: string }[];
+  locked_terms?: { term_no: number; course_id: string; outcome?: 'failed' | null }[];
 }
