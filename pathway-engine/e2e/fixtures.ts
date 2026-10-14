@@ -31,7 +31,7 @@ export const skillItems: Record<string, { correct: string; wrong: string; text: 
 );
 
 export async function choose(page: Page, label: string) {
-  await page.getByRole('radio', { name: label, exact: true }).click();
+  await page.locator('main').getByRole('radio', { name: label, exact: true }).click();
 }
 
 /** Answers the current skill-check task: correct unless `fail` says otherwise. */
@@ -43,8 +43,39 @@ export async function answerSkillTask(page: Page, fail: (text: string) => boolea
   const text = (await heading.textContent())!.trim();
   const item = skillItems[text];
   if (!item) throw new Error(`Unknown task: ${text}`);
-  await page.getByRole('radio', { name: fail(text) ? item.wrong : item.correct, exact: true }).click();
+  await page.locator('main').getByRole('radio', { name: fail(text) ? item.wrong : item.correct, exact: true }).click();
   await page.getByRole('button', { name: 'Next', exact: true }).click();
   lastTask = text;
   return text;
+}
+
+/** Pixels a screen overflows the window (0 = fits). Bottom sheets and dialogs are excluded on purpose. */
+export async function overflow(page: Page): Promise<number> {
+  await page.waitForTimeout(150);
+  return page.evaluate(() => Math.max(0, document.documentElement.scrollHeight - window.innerHeight));
+}
+
+/** Pixels the content is wider than the window (0 = no sideways scrolling or clipping). */
+export async function overflowX(page: Page): Promise<number> {
+  return page.evaluate(() => {
+    const vw = window.innerWidth;
+    let max = 0;
+    for (const el of document.querySelectorAll('main *')) max = Math.max(max, el.getBoundingClientRect().right - vw);
+    return Math.max(0, Math.round(max));
+  });
+}
+
+/** Records screens that need scrolling, so one test run reports all of them at once. */
+export function fitTracker(page: Page, enabled: boolean) {
+  const misses: string[] = [];
+  return {
+    async check(name: string) {
+      if (!enabled) return;
+      const px = await overflow(page);
+      if (px > 4) misses.push(`${name}: ${px}px too tall`);
+      const wx = await overflowX(page);
+      if (wx > 2) misses.push(`${name}: ${wx}px too wide`);
+    },
+    misses,
+  };
 }

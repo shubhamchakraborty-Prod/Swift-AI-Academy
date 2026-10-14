@@ -47,6 +47,8 @@ export interface TermOutput {
   goal_areas: string[];
   unlocks: { course_id: string; title: string } | null;
   warnings: string[];
+  /** Ids behind the sentence and warnings, so the server can render them in another language. */
+  text_vars: { goal_id: string; warnings: { code: 'soft_prereq' | 'heavy_load'; course_id?: string; weekly?: string }[] };
 }
 
 export interface EngineRun {
@@ -57,6 +59,7 @@ export interface EngineRun {
   part_b_used: boolean;
   goals: { ranked: GoalScore[]; targets: (TargetGoal & { name: string; definition: string; example_roles: string[] })[] };
   goal_note: string | null;
+  goal_note_vars: { chosen_goal: string; orientation: string; other_goal: string } | null;
   skill_levels: SkillState;
   needs: SkillNeed[];
   top_gaps: (SkillNeed & { name: string })[];
@@ -67,6 +70,7 @@ export interface EngineRun {
     terms: TermOutput[];
     shortened: boolean;
     summary: string | null;
+    summary_vars: { months: number; skill_ids: string[]; goal_id: string } | null;
     exploring_note: string | null;
     skills_gained: SkillGained[];
   };
@@ -164,12 +168,17 @@ export function runEngine(input: EngineInput, ref: ReferenceData, config: Engine
       goal_areas: s.goal_ids,
       unlocks: s.unlocks ? { course_id: s.unlocks, title: courseById.get(s.unlocks)!.title } : null,
       warnings,
+      text_vars: {
+        goal_id: goal.goal_id,
+        warnings: s.warnings.map((w) => (w.code === 'soft_prereq' ? { code: w.code, course_id: w.course_id } : { code: w.code, weekly: fmtLevel(w.weekly_hours!) })),
+      },
     };
   });
 
   // Pathway summary sentence: top 3 skills across the plan, toward the first goal area.
   const planGains = plan.terms.flatMap((t) => t.score.gains).sort((a, b) => b.weighted - a.weighted);
-  const summarySkills = [...new Set(planGains.map((g) => g.skill_id))].slice(0, 3).map((id) => midSentence(skillById.get(id)!.name));
+  const summaryIds = [...new Set(planGains.map((g) => g.skill_id))].slice(0, 3);
+  const summarySkills = summaryIds.map((id) => midSentence(skillById.get(id)!.name));
   const summary = terms.length && summarySkills.length
     ? render(T, 'pathway_summary', { months: plan.terms.length * config.term.months, skills: joinList(summarySkills), goal_area: goalById.get(targets[0].goal_id)!.name })
     : null;
@@ -178,12 +187,14 @@ export function runEngine(input: EngineInput, ref: ReferenceData, config: Engine
 
   // Goal and interest differ (principle 7: respect the learner's goal, show both).
   let goal_note: string | null = null;
+  let goal_note_vars: EngineRun['goal_note_vars'] = null;
   if (partBUsable && input.goals.goal_areas.length) {
     const chosen = goalById.get(input.goals.goal_areas[0])!;
     const top = input.partB!.top_orientation;
     const other = targets.find((t) => t.goal_id !== chosen.goal_id && goalById.get(t.goal_id)!.primary_orientation === top);
     if (chosen.primary_orientation !== top && other) {
       goal_note = render(T, 'goal_interest_differ', { chosen_goal: chosen.name, orientation: orientationName.get(top)!, other_goal: goalById.get(other.goal_id)!.name });
+      goal_note_vars = { chosen_goal: chosen.goal_id, orientation: top, other_goal: other.goal_id };
     }
   }
 
@@ -223,6 +234,7 @@ export function runEngine(input: EngineInput, ref: ReferenceData, config: Engine
       }),
     },
     goal_note,
+    goal_note_vars,
     skill_levels: state,
     needs,
     top_gaps: needs.filter((n) => n.gap > 0).slice(0, config.results.top_gaps).map((n) => ({ ...n, name: skillById.get(n.skill_id)!.name })),
@@ -233,6 +245,7 @@ export function runEngine(input: EngineInput, ref: ReferenceData, config: Engine
       terms,
       shortened: plan.shortened,
       summary,
+      summary_vars: summary ? { months: plan.terms.length * config.term.months, skill_ids: summaryIds, goal_id: targets[0].goal_id } : null,
       exploring_note,
       skills_gained: plan.terms.length ? gainedBetween(state, plan.final_state) : [],
     },

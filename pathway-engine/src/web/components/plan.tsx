@@ -1,143 +1,168 @@
 /**
- * Pathway pieces reused by the results screen (L14) and the dashboard: term cards,
- * "skills you will build" with how each skill helps, build-elsewhere list and the explore option.
+ * Pathway pieces shared by the results screen (L14) and the home tabs.
+ * The overview fits one phone screen: compact term cards, then rows that open bottom sheets for
+ * the full reasons, every skill gained and how it helps, and skills to build elsewhere.
  */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AlertTriangle, ArrowUpRight, BookOpen, ChevronDown, ChevronUp, Clock, KeyRound, Layers } from 'lucide-react';
+import { AlertTriangle, ArrowUpRight, BookOpen, ChevronRight, Clock, Compass, Info, KeyRound, Layers, Mountain } from 'lucide-react';
 import { fmtDate, fmtLevel } from '../journey';
+import { useI18n } from '../i18n';
+import type { StrKey } from '../strings';
 import type { Results, SkillGained, Term } from '../types';
-import { LevelMeter } from './ui';
+import { LevelMeter, Segmented, Sheet } from './ui';
 
-const STATUS: Record<Term['status'], { label: string; tone: string }> = {
-  planned: { label: 'Planned', tone: 'plain' },
-  active: { label: 'In progress', tone: '' },
-  passed: { label: 'Completed', tone: 'success' },
-  failed: { label: 'Not passed', tone: 'warning' },
+const STATUS: Record<Term['status'], { key: StrKey; tone: string }> = {
+  planned: { key: 'st_planned', tone: 'plain' },
+  active: { key: 'st_active', tone: '' },
+  passed: { key: 'st_passed', tone: 'success' },
+  failed: { key: 'st_failed', tone: 'warning' },
 };
 
-/** One skill, what it means, how far the plan takes it, and where it is used. */
-export function SkillRow({ s }: { s: SkillGained }) {
+/** One skill: plain meaning, how far the plan takes it, and where it is used. */
+export function SkillRow({ s, compact }: { s: SkillGained; compact?: boolean }) {
+  const { t, lang } = useI18n();
   const mine = s.helps.filter((h) => h.in_your_plan);
   const others = s.helps.filter((h) => !h.in_your_plan);
-  const fmtRoles = (r: string[]) => r.map((x) => x.toLowerCase()).join(' and ');
+  const joinGoals = (xs: string[]) => (xs.length <= 1 ? xs[0] ?? '' : `${xs.slice(0, -1).join(', ')} ${lang === 'hi' ? 'और' : 'and'} ${xs[xs.length - 1]}`);
+  const roles = (r: string[]) => r.map((x) => (lang === 'en' ? x.toLowerCase() : x)).join(lang === 'hi' ? ' और ' : ' and ');
   return (
-    <li className="stack" style={{ gap: 8 }}>
+    <li className="stack" style={{ gap: 6, alignItems: 'stretch' }}>
       <div className="row" style={{ alignItems: 'flex-start' }}>
-        <div className="spacer">
-          <strong>{s.name}</strong>
-          <p className="small muted">{s.definition}</p>
-        </div>
-        <span className="pill navy mono" aria-label={`From level ${fmtLevel(s.from)} to level ${fmtLevel(s.to)}`}>{fmtLevel(s.from)} → {fmtLevel(s.to)}</span>
+        <div className="grow"><span className="title">{s.name}</span>{compact ? null : <p className="sub">{s.definition}</p>}</div>
+        <span className="pill navy mono" aria-label={`${fmtLevel(s.from)} → ${fmtLevel(s.to)}`}>{fmtLevel(s.from)} → {fmtLevel(s.to)}</span>
       </div>
-      <LevelMeter have={s.from} gain={s.to} label={`Level ${fmtLevel(s.from)} now, level ${fmtLevel(s.to)} after the plan, out of 8`} />
-      {mine.length > 0 ? (
-        <p className="small"><span className="muted">How it helps: </span>used in {mine.map((h, i) => <span key={h.goal_id}>{i > 0 ? (i === mine.length - 1 ? ' and ' : ', ') : ''}<strong>{h.goal_name}</strong></span>)} roles such as {fmtRoles(mine[0].roles)}.</p>
-      ) : others.length > 0 ? (
-        <p className="small"><span className="muted">How it helps: </span>also used in {others.map((h) => h.goal_name).join(' and ')} roles such as {fmtRoles(others[0].roles)}.</p>
-      ) : null}
+      <LevelMeter have={s.from} gain={s.to} label={`${fmtLevel(s.from)} → ${fmtLevel(s.to)} / 8`} />
+      {mine.length ? <p className="sub"><strong style={{ color: 'var(--navy)' }}>{t('sk_used', { goals: joinGoals(mine.map((h) => h.goal_name)), roles: roles(mine[0].roles) })}</strong></p>
+        : others.length ? <p className="sub">{t('sk_also', { goals: joinGoals(others.map((h) => h.goal_name)), roles: roles(others[0].roles) })}</p> : null}
     </li>
   );
 }
 
-export function SkillsGained({ skills, initial = 5, title = 'Skills you will build' }: { skills: SkillGained[]; initial?: number; title?: string }) {
-  const [all, setAll] = useState(false);
-  if (!skills.length) return null;
-  // Skills used in the learner's own kinds of work come first.
-  const sorted = [...skills].sort((a, b) => Number(b.helps.some((h) => h.in_your_plan)) - Number(a.helps.some((h) => h.in_your_plan)));
-  const shown = all ? sorted : sorted.slice(0, initial);
+/** Skills used in the learner's own kinds of work come first. */
+const sortSkills = (xs: SkillGained[]) => [...xs].sort((a, b) => Number(b.helps.some((h) => h.in_your_plan)) - Number(a.helps.some((h) => h.in_your_plan)));
+
+export function SkillList({ skills }: { skills: SkillGained[] }) {
+  return <ul className="rows" style={{ gap: 4 }}>{sortSkills(skills).map((s) => <SkillRow key={s.skill_id} s={s} />)}</ul>;
+}
+
+/** Full details of one term, shown in a bottom sheet. */
+function TermDetails({ t: term, goals }: { t: Term; goals: Results['goals'] }) {
+  const { t, locale } = useI18n();
+  const helps = goals.filter((g) => term.goal_areas.includes(g.goal_id));
   return (
-    <section className="card stack" aria-label={title}>
-      <div className="row"><span className="tile"><Layers size={20} strokeWidth={1.75} /></span><div><h3>{title}</h3><p className="small muted">Levels run from 0 to 8. Each course is designed against NSQF level descriptors.</p></div></div>
-      <ul className="list">{shown.map((s) => <SkillRow key={s.skill_id} s={s} />)}</ul>
-      {sorted.length > initial ? (
-        <button className="btn btn-ghost" onClick={() => setAll(!all)} aria-expanded={all}>
-          {all ? <>Show fewer <ChevronUp size={18} /></> : <>Show all {sorted.length} skills <ChevronDown size={18} /></>}
-        </button>
-      ) : null}
-    </section>
+    <div className="stack" style={{ gap: 14 }}>
+      <p className="small muted">{term.nsqf_label}{term.hours_total ? ` · ${t('t_hours', { h: term.hours_total })}` : ''}</p>
+      {term.starts_on ? <p className="small"><Clock size={14} style={{ verticalAlign: '-2px' }} /> {fmtDate(term.starts_on, locale)} – {term.ends_on ? fmtDate(term.ends_on, locale) : ''}</p> : null}
+      <p>{term.sentence}</p>
+      {helps.length ? <div className="chips"><span className="small muted">{t('t_helps')}:</span>{helps.map((g) => <span key={g.goal_id} className="chip">{g.name}</span>)}</div> : null}
+      {term.unlocks ? <p className="small"><KeyRound size={14} style={{ verticalAlign: '-2px' }} /> {t('t_opens', { title: term.unlocks.title })}</p> : null}
+      {term.warnings.map((w) => <div key={w} className="banner warning small"><AlertTriangle size={18} />{w}</div>)}
+      <SkillList skills={term.skills_gained} />
+      <Link className="btn btn-secondary btn-block" to={`/course/${term.course_id}`}><BookOpen size={18} /> {t('t_details')}</Link>
+    </div>
   );
 }
 
-export function TermCard({ t, goals, compact }: { t: Term; goals: Results['goals']; compact?: boolean }) {
+/** Compact card for one term: months, status, title and the main skills. Tap for everything else. */
+export function TermMini({ term, goals }: { term: Term; goals: Results['goals'] }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
-  const [more, setMore] = useState(!compact);
-  const st = STATUS[t.status];
-  const helps = goals.filter((g) => t.goal_areas.includes(g.goal_id));
+  const [a, b] = term.months.split('-');
+  const st = STATUS[term.status];
   return (
-    <article className="term" aria-label={`Months ${t.months}: ${t.title}`}>
-      <span className={`term-dot ${t.status === 'passed' ? 'done' : t.status === 'planned' ? 'planned' : ''}`} aria-hidden="true">{t.term_no}</span>
-      <div className="card raised stack">
-        <div className="row wrap">
-          <span className="eyebrow">Months {t.months.replace('-', ' to ')}</span>
-          <span className="spacer" />
-          <span className={`pill ${st.tone}`}>{st.label}</span>
-        </div>
-        <div>
-          <h3>{t.title}</h3>
-          <p className="small muted">{t.nsqf_label}{t.hours_total ? ` · About ${t.hours_total} hours over 6 months` : ''}</p>
-        </div>
-        {more ? <p>{t.sentence}</p> : null}
-        {t.starts_on ? <p className="small"><Clock size={14} style={{ verticalAlign: '-2px' }} /> {fmtDate(t.starts_on)} to {t.ends_on ? fmtDate(t.ends_on) : ''}</p> : null}
-        <div className="stack" style={{ gap: 6 }}>
-          <p className="label">Main skills it builds for you</p>
-          <ul className="list">
-            {t.reason_skills.map((s) => (
-              <li key={s.skill_id} className="row"><span className="spacer">{s.name}</span><span className="pill navy mono">{fmtLevel(s.from)} → {fmtLevel(s.to)}</span></li>
-            ))}
-          </ul>
-        </div>
-        {more && helps.length ? <div className="row wrap"><span className="small muted">Helps in:</span>{helps.map((g) => <span key={g.goal_id} className="pill plain">{g.name}</span>)}</div> : null}
-        {more && t.unlocks ? <p className="small"><KeyRound size={14} style={{ verticalAlign: '-2px' }} /> Opens the way to <strong>{t.unlocks.title}</strong></p> : null}
-        {t.warnings.map((w) => <div key={w} className="banner warning small"><AlertTriangle size={18} />{w}</div>)}
-        {open ? (
-          <ul className="list enter">{t.skills_gained.map((s) => <SkillRow key={s.skill_id} s={s} />)}</ul>
-        ) : null}
-        <div className="row wrap">
-          {!more ? <button className="btn btn-ghost btn-sm" onClick={() => setMore(true)} aria-expanded={more}>Why this course</button> : null}
-          {more && t.skills_gained.length > t.reason_skills.length ? (
-            <button className="btn btn-ghost btn-sm" onClick={() => setOpen(!open)} aria-expanded={open}>{open ? 'Hide skills' : `All ${t.skills_gained.length} skills and how they help`}</button>
-          ) : null}
-          <span className="spacer" />
-          <Link className="btn btn-secondary btn-sm" to={`/course/${t.course_id}`}><BookOpen size={16} /> Course details</Link>
-        </div>
-      </div>
-    </article>
+    <>
+      <button type="button" className="term-mini" onClick={() => setOpen(true)} aria-label={`${t('t_months', { a, b })}: ${term.title}. ${t('t_tapMore')}`}>
+        <span className={`term-dot ${term.status === 'passed' ? 'done' : term.status === 'planned' ? 'planned' : ''}`} aria-hidden="true">{term.term_no}</span>
+        <span className="grow stack" style={{ gap: 4 }}>
+          <span className="row" style={{ gap: 8 }}>
+            <span className="eyebrow" style={{ fontSize: 10.5 }}>{t('t_months', { a, b })}</span>
+            <span className="spacer" />
+            <span className={`pill ${st.tone}`} style={{ fontSize: 11, padding: '2px 8px' }}>{t(st.key)}</span>
+          </span>
+          <span className="title" style={{ fontSize: 16 }}>{term.title}</span>
+          <span className="chips one-line">
+            {term.reason_skills.slice(0, 2).map((s) => <span key={s.skill_id} className="chip"><span className="clamp1">{s.name}</span> <span className="mono">{fmtLevel(s.from)}→{fmtLevel(s.to)}</span></span>)}
+          </span>
+        </span>
+        <ChevronRight size={20} style={{ alignSelf: 'center', color: 'var(--muted)' }} />
+      </button>
+      {open ? <Sheet title={term.title} onClose={() => setOpen(false)}><TermDetails t={term} goals={goals} /></Sheet> : null}
+    </>
   );
 }
 
-export function BuildElsewhere({ r }: { r: Results }) {
+/** A row that opens a bottom sheet. */
+function SheetRow({ icon, title, sub, tone, sheetTitle, children }: { icon: React.ReactNode; title: string; sub?: string; tone?: string; sheetTitle: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button type="button" className="row-btn card tight" onClick={() => setOpen(true)}>
+        <span className={`tile ${tone ?? ''}`}>{icon}</span>
+        <span className="grow"><span className="title">{title}</span>{sub ? <><br /><span className="sub">{sub}</span></> : null}</span>
+        <ChevronRight size={20} style={{ color: 'var(--muted)' }} />
+      </button>
+      {open ? <Sheet title={sheetTitle} onClose={() => setOpen(false)}>{children}</Sheet> : null}
+    </>
+  );
+}
+
+export function SkillsGainedRow({ r }: { r: Results }) {
+  const { t } = useI18n();
+  if (!r.pathway.skills_gained.length) return null;
+  const n = r.pathway.skills_gained.length;
+  return (
+    <SheetRow icon={<Layers size={20} strokeWidth={1.75} />} title={t('sk_after', { m: r.pathway.length_months })} sub={t('sk_seeAll', { n })} sheetTitle={t('sk_after', { m: r.pathway.length_months })}>
+      <p className="small muted" style={{ marginBottom: 8 }}>{t('sk_levels')}</p>
+      <SkillList skills={r.pathway.skills_gained} />
+    </SheetRow>
+  );
+}
+
+export function BuildElsewhereRow({ r }: { r: Results }) {
+  const { t } = useI18n();
   if (!r.build_elsewhere.length) return null;
   return (
-    <section className="card soft stack" aria-label="Build elsewhere">
-      <h3>Skills to build elsewhere</h3>
-      <p className="small muted">{r.templates.build_elsewhere}</p>
-      <ul className="list">
-        {r.build_elsewhere.map((b) => (
-          <li key={b.skill_id} className="row"><span className="spacer">{b.name}</span><span className="pill gold mono">to level {fmtLevel(b.needed)}</span></li>
-        ))}
-      </ul>
-    </section>
+    <SheetRow icon={<Mountain size={20} strokeWidth={1.75} />} tone="gold" title={t('be_row', { n: r.build_elsewhere.length })} sheetTitle={t('be_title')}>
+      <p className="small muted" style={{ marginBottom: 8 }}>{r.templates.build_elsewhere}</p>
+      <ul className="rows">{r.build_elsewhere.map((b) => <li key={b.skill_id}><span className="grow title">{b.name}</span><span className="pill gold mono">{t('be_to', { n: fmtLevel(b.needed) })}</span></li>)}</ul>
+    </SheetRow>
   );
 }
 
-export function ExploreOption({ r }: { r: Results }) {
+export function ExploreRow({ r }: { r: Results }) {
+  const { t } = useI18n();
   if (!r.explore_option) return null;
   return (
-    <Link to={`/course/${r.explore_option.course_id}`} className="card row" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to={`/course/${r.explore_option.course_id}`} className="row-btn card tight" style={{ textDecoration: 'none' }}>
       <span className="tile gold"><ArrowUpRight size={20} strokeWidth={1.75} /></span>
-      <span className="spacer"><span className="eyebrow muted">Another direction to explore</span><br /><strong>{r.explore_option.title}</strong><br /><span className="small muted">Could help if you lean towards {r.explore_option.goal_name}.</span></span>
+      <span className="grow"><span className="sub">{t('ex_title')}</span><br /><span className="title">{r.explore_option.title}</span></span>
+      <ChevronRight size={20} style={{ color: 'var(--muted)' }} />
     </Link>
   );
 }
 
-export function Timeline({ r, compact }: { r: Results; compact?: boolean }) {
-  if (!r.pathway.terms.length) {
-    return <div className="banner warning"><AlertTriangle size={20} /><span>{r.templates.no_course}</span></div>;
-  }
+export function TermList({ r }: { r: Results }) {
+  if (!r.pathway.terms.length) return <div className="banner warning"><AlertTriangle size={20} /><span>{r.templates.no_course}</span></div>;
+  return <div className="stack" style={{ gap: 8 }}>{r.pathway.terms.map((term) => <TermMini key={term.term_no} term={term} goals={r.goals} />)}</div>;
+}
+
+/** L14 body: length switch, one-line summary, the terms, then rows that open details. */
+export function PlanOverview({ r, onLength, busyLength }: { r: Results; onLength?: (m: 6 | 12) => void; busyLength?: boolean }) {
+  const { t } = useI18n();
   return (
-    <div className="timeline">
-      {r.pathway.terms.map((t) => <TermCard key={t.term_no} t={t} goals={r.goals} compact={compact} />)}
-    </div>
+    <section className="stack" style={{ gap: 8 }}>
+      {onLength && r.pathway.can_change_length ? (
+        <Segmented label={t('r_plan')} value={r.pathway.length_months} onChange={(m) => !busyLength && onLength(m)} options={[{ value: 6, label: t('r_len6') }, { value: 12, label: t('r_len12') }]} />
+      ) : null}
+      {r.pathway.summary ? <p className="small clamp2" style={{ color: 'var(--navy)', fontWeight: 600 }}>{r.pathway.summary}</p> : null}
+      {r.pathway.exploring_note ? <p className="sub"><Compass size={14} style={{ verticalAlign: '-2px' }} /> {r.pathway.exploring_note}</p> : null}
+      {r.pathway.shortened && r.pathway.terms.length === 1 && r.pathway.length_months === 12 ? <p className="sub"><Info size={14} style={{ verticalAlign: '-2px' }} /> {r.templates.shorter_pathway}</p> : null}
+      {r.pathway.default_length === '6_then_extend' && r.pathway.length_months === 6 && onLength ? <p className="sub">{t('r_extendNote')}</p> : null}
+      <TermList r={r} />
+      <SkillsGainedRow r={r} />
+      <BuildElsewhereRow r={r} />
+      <ExploreRow r={r} />
+    </section>
   );
 }

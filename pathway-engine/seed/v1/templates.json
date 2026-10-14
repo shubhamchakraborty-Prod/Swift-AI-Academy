@@ -52,6 +52,22 @@
     {
       "pattern": "₹|\\bLPA\\b|\\blakh\\b",
       "reason": "No salary figures in v1"
+    },
+    {
+      "pattern": "गारंटी",
+      "reason": "No promises of outcomes (Hindi)"
+    },
+    {
+      "pattern": "प्लेसमेंट",
+      "reason": "No placement promise (Hindi)"
+    },
+    {
+      "pattern": "प्रमाणित",
+      "reason": "No certification claims (Hindi)"
+    },
+    {
+      "pattern": "वेतन|सैलरी",
+      "reason": "No salary information (Hindi)"
     }
   ]
 }

@@ -9,6 +9,7 @@ import { logEvent } from '../context';
 import { hashToken, newId, newToken } from '../crypto';
 import { badRequest, HttpError, notFound } from '../errors';
 import type { ProfileItem, ReferenceData } from '../../engine/types';
+import type { Loc } from '../i18n';
 
 export interface LearnerRow {
   learner_id: string;
@@ -118,16 +119,25 @@ export async function learnerIdForToken(ctx: Ctx, token: string): Promise<string
   return row?.learner_id ?? null;
 }
 
-/** Part A item list with options filled from the catalogue (fields of study, courses). */
-export function resolvePartA(ref: ReferenceData): ProfileItem[] {
+/** Part A item list with options filled from the catalogue (fields of study, courses), in the learner's language. */
+export function resolvePartA(ref: ReferenceData, loc?: Loc): ProfileItem[] {
   return ref.items.part_a
     .filter((i) => i.status === 'active')
     .map((i) => {
-      if (i.options_source === 'fields') return { ...i, options: ref.fields.fields.map((f) => ({ value: f.field_id, label_en: f.name })) };
-      if (i.options_source === 'courses') {
-        return { ...i, options: ref.courses.courses.filter((c) => c.status === 'active').map((c) => ({ value: c.course_id, label_en: `${c.course_id} ${c.title}` })) };
-      }
-      return i;
+      const h = loc?.item(i.item_id);
+      let options = i.options ?? [];
+      if (i.options_source === 'fields') options = ref.fields.fields.map((f) => ({ value: f.field_id, label_en: loc ? loc.field(f.field_id, f.name) : f.name }));
+      else if (i.options_source === 'courses') {
+        options = ref.courses.courses.filter((c) => c.status === 'active').map((c) => ({ value: c.course_id, label_en: `${c.course_id} ${loc ? loc.course(c.course_id).title : c.title}` }));
+      } else options = options.map((o) => ({ ...o, label_en: h?.options?.[o.value] ?? o.label_en }));
+      return {
+        ...i,
+        text_en: h?.text ?? i.text_en,
+        help_en: h?.help ?? i.help_en,
+        options,
+        none_option: i.none_option ? { ...i.none_option, label_en: h?.none ?? i.none_option.label_en } : undefined,
+        sub_question: i.sub_question ? { ...i.sub_question, text_en: h?.sub_text ?? i.sub_question.text_en, options: i.sub_question.options.map((o) => ({ ...o, label_en: h?.sub_options?.[o.value] ?? o.label_en })) } : undefined,
+      };
     });
 }
 

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { MessageCircleQuestion } from 'lucide-react';
 import { api, ApiError } from '../api';
 import { AppBar, Choice, Loading } from '../components/ui';
 import { useLearner, useToast } from '../state';
+import { useI18n } from '../i18n';
 
 interface TB { axis: string; question: string; item_text?: string; options: { value: string; label: string; help: string | null }[] }
 
@@ -14,6 +14,7 @@ export default function Quick() {
   const [params] = useSearchParams();
   const replan = params.get('replan') === '1';
   const { progress, refresh } = useLearner();
+  const { t, lang } = useI18n();
   const [queue, setQueue] = useState<TB[] | null>(null);
   const [asked, setAsked] = useState(0);
   const [busy, setBusy] = useState(false);
@@ -24,9 +25,9 @@ export default function Quick() {
       if (!r.tiebreak_needed.length) done();
       else setQueue(r.tiebreak_needed);
     }).catch((e) => toast(e.message, 'error'));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!queue) return <><AppBar title="A quick question" back={false} /><Loading /></>;
+  if (!queue) return <><AppBar title={t('q_title')} back={false} /><Loading /></>;
   const q = queue[0];
   const answer = async (value: string) => {
     setBusy(true);
@@ -35,17 +36,16 @@ export default function Quick() {
       setAsked((n) => n + 1);
       if (!r.tiebreak_needed.length) { await refresh(); done(); } else setQueue(r.tiebreak_needed);
     } catch (e) {
-      toast(e instanceof ApiError ? e.message : 'Could not save. Try again.', 'error');
+      toast(e instanceof ApiError ? e.message : t('couldNotSave'), 'error');
     } finally {
       setBusy(false);
     }
   };
   return (
     <>
-      <AppBar title="A quick question" sub={`${asked + 1} of ${asked + queue.length}`} back={false} />
+      <AppBar title={t('q_title')} sub={t('q_of', { n: asked + 1, total: asked + queue.length })} back={false} />
       <main className="content enter" key={q.axis}>
-        <span className="tile lg"><MessageCircleQuestion size={26} strokeWidth={1.75} /></span>
-        <p className="small muted">One more answer helps us choose the right plan for you.</p>
+                <p className="small muted">{t('q_help')}</p>
         <h1 className="q-text" id="tb">{q.question}</h1>
         {q.item_text ? <p className="statement" style={{ fontSize: 'var(--fs-lg)' }}>{q.item_text}</p> : null}
         <div className="choices" role="radiogroup" aria-labelledby="tb">

@@ -10,6 +10,7 @@ import { newId } from '../crypto';
 import { badRequest, HttpError } from '../errors';
 import { aiSkillCheck, commSkillCheck, scoreLearningProfile, type PartBScores, type SkillCheckItem, type ReferenceData } from '../../engine';
 import { getLearner, resolvePartA, validatePartA } from './learners';
+import { makeLoc, type Lang, type Loc } from '../i18n';
 
 export type Part = 'A' | 'B' | 'C_AI' | 'C_COMM' | 'D' | 'TB';
 
@@ -156,13 +157,20 @@ export async function startPartBRetake(ctx: Ctx, learnerId: string) {
 
 // ---------- Part C: skill check ----------
 
-const publicItem = (i: SkillCheckItem) => ({
-  item_id: i.item_id,
-  text: i.text_en,
-  strand: i.strand,
-  transcript: i.transcript_en, // played as audio; also the accessible fallback when speech is unavailable
-  options: i.options.map((o) => ({ value: o.value, label: o.label_en })),
-});
+/** One skill-check task for the screen, without its answer key. Communication tasks stay in English on purpose:
+ *  they measure English communication. */
+const publicItem = (i: SkillCheckItem & { audio_url?: string | null }, loc: Loc) => {
+  const h = i.series === 'comm' ? undefined : loc.item(i.item_id);
+  return {
+    item_id: i.item_id,
+    text: h?.text ?? i.text_en,
+    strand: i.strand,
+    english_only: i.series === 'comm',
+    transcript: i.transcript_en, // spoken by the device voice when no recording exists; also the read-instead fallback
+    audio_url: i.audio_url ?? null, // recorded audio, when the content team adds it
+    options: i.options.map((o) => ({ value: o.value, label: h?.options?.[o.value] ?? o.label_en })),
+  };
+};
 
 async function skillState(ctx: Ctx, learnerId: string, series: 'ai' | 'comm') {
   const { ref, config } = await ctx.versions.active();
@@ -184,23 +192,23 @@ async function skillState(ctx: Ctx, learnerId: string, series: 'ai' | 'comm') {
   return { ref, attempt, state, answered: rows.length };
 }
 
-export async function nextSkillItem(ctx: Ctx, learnerId: string, series: 'ai' | 'comm') {
+export async function nextSkillItem(ctx: Ctx, learnerId: string, series: 'ai' | 'comm', lang: Lang = 'en') {
   const { ref, state, answered } = await skillState(ctx, learnerId, series);
   if (state.done) return { done: true, answered };
   const item = ref.items.part_c.find((i) => i.item_id === state.next_item_id)!;
-  return { done: false, answered, item: publicItem(item) };
+  return { done: false, answered, item: publicItem(item, makeLoc(ref, lang)) };
 }
 
 export const skillAnswerSchema = z.object({ series: z.enum(['ai', 'comm']), item_id: z.string(), answer: z.string(), ms_taken: z.number().int().nonnegative().default(0) });
 
-export async function answerSkillItem(ctx: Ctx, learnerId: string, body: z.infer<typeof skillAnswerSchema>) {
+export async function answerSkillItem(ctx: Ctx, learnerId: string, body: z.infer<typeof skillAnswerSchema>, lang: Lang = 'en') {
   const { ref, attempt, state } = await skillState(ctx, learnerId, body.series);
   if (state.done) throw new HttpError(409, 'done', 'This skill check is already finished');
   if (state.next_item_id !== body.item_id) throw new HttpError(409, 'out_of_order', 'Answer the current question first');
   const item = ref.items.part_c.find((i) => i.item_id === body.item_id)!;
   if (!item.options.some((o) => o.value === body.answer)) throw badRequest('Choose one of the options');
   await saveResponse(ctx, attempt.attempt_id, item.item_id, body.answer, body.ms_taken, body.answer === item.answer);
-  return nextSkillItem(ctx, learnerId, body.series);
+  return nextSkillItem(ctx, learnerId, body.series, lang);
 }
 
 export async function placement(q: Queryable, learnerId: string, part: 'C_AI' | 'C_COMM'): Promise<number | null> {
@@ -245,19 +253,27 @@ export async function submitPartD(ctx: Ctx, learnerId: string, body: z.infer<typ
 
 // ---------- Item lists for the screens (no answer keys) ----------
 
-export async function itemsForPart(ctx: Ctx, part: string) {
+export async function itemsForPart(ctx: Ctx, part: string, lang: Lang = 'en') {
   const { ref } = await ctx.versions.active();
-  if (part === 'A') return { items: resolvePartA(ref), states: ref.items.states };
+  const loc = makeLoc(ref, lang);
+  if (part === 'A') return { items: resolvePartA(ref, loc), states: ref.items.states.map((st) => ({ value: st, label: loc.state(st) })) };
   if (part === 'B') {
+    const sets = Object.fromEntries(Object.entries(ref.items.response_sets).map(([k, opts]) => [k, opts.map((o) => ({ ...o, label_en: loc.responseLabel(k, o.value, o.label_en) }))]));
     return {
-      response_sets: ref.items.response_sets,
-      items: ref.items.part_b.filter((i) => i.status === 'active').sort((a, b) => a.order_no - b.order_no).map((i) => ({ item_id: i.item_id, text: i.text_en, stem: i.stem_en ?? null, response_set: i.response_set })),
+      response_sets: sets,
+      items: ref.items.part_b.filter((i) => i.status === 'active').sort((a, b) => a.order_no - b.order_no).map((i) => {
+        const h = loc.item(i.item_id);
+        return { item_id: i.item_id, text: h?.text ?? i.text_en, stem: i.stem_en ? h?.stem ?? i.stem_en : null, response_set: i.response_set };
+      }),
     };
   }
   if (part === 'D') {
     return {
-      items: ref.items.part_d.filter((i) => i.status === 'active'),
-      goal_areas: ref.career_goals.goal_areas.filter((g) => g.status === 'active').map((g) => ({ goal_id: g.goal_id, name: g.name, definition: g.definition, example_roles: g.example_roles.slice(0, 3) })),
+      items: ref.items.part_d.filter((i) => i.status === 'active').map((i) => {
+        const h = loc.item(i.item_id);
+        return { ...i, text_en: h?.text ?? i.text_en, help_en: h?.help ?? i.help_en, options: i.options?.map((o) => ({ ...o, label_en: h?.options?.[o.value] ?? o.label_en })) };
+      }),
+      goal_areas: ref.career_goals.goal_areas.filter((g) => g.status === 'active').map((g) => { const l = loc.goal(g.goal_id); return { goal_id: g.goal_id, name: l.name, definition: l.definition, example_roles: l.roles.slice(0, 3) }; }),
     };
   }
   throw badRequest('Part must be A, B or D');

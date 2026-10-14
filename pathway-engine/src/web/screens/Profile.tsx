@@ -4,6 +4,7 @@ import { Sparkles } from 'lucide-react';
 import { api, ApiError, screenTimer } from '../api';
 import { ActionBar, AppBar, Choice, Loading, Stories } from '../components/ui';
 import { useLearner, useToast } from '../state';
+import { useI18n } from '../i18n';
 
 interface BItem { item_id: string; text: string; stem: string | null; response_set: 'interest' | 'agreement' }
 interface BData { items: BItem[]; response_sets: Record<string, { value: number; label_en: string }[]> }
@@ -20,35 +21,40 @@ export default function Profile() {
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState(false);
   const timer = useRef(screenTimer());
+  const { t, lang } = useI18n();
+  const positioned = useRef(false);
 
   useEffect(() => {
+    // Reloads statement text when the language changes; answers and position are set only once.
     api.get<BData>('/assessment/items?part=B').then((d) => {
       setData(d);
+      if (positioned.current) return;
+      positioned.current = true;
       const a = progress?.part_b.answers ?? {};
       setAnswers(a);
       const first = d.items.findIndex((i) => !(i.item_id in a));
       setIndex(first >= 0 ? first : d.items.length - 1);
       setIntro(Object.keys(a).length === 0);
     }).catch((e) => toast(e.message, 'error'));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { timer.current.reset(); }, [index, intro]);
 
-  if (!data || !progress) return <><AppBar title="Learning profile" back="/" /><Loading /></>;
+  if (!data || !progress) return <><AppBar title={t('part_profile')} back="/" /><Loading /></>;
   const retake = progress.part_b.retake;
 
   if (intro) {
     return (
       <>
-        <AppBar title="Learning profile" back={retake ? '/app/you' : '/'} />
+        <AppBar title={t('part_profile')} back={retake ? '/app/you' : '/'} />
         <Stories part={1} fraction={0} />
         <main className="content center enter">
           <span className="tile lg"><Sparkles size={26} strokeWidth={1.75} /></span>
-          <p className="eyebrow">Part 2 of 4</p>
-          <h1>There are no right or wrong answers</h1>
-          <p className="lede">You will see {data.items.length} short statements, one at a time. Pick the answer that is most true for you. Go with your first thought.</p>
-          <p className="small muted">About 8 to 10 minutes. Tap an answer to move on. You can go back to change it.</p>
+          <p className="eyebrow">{t('partOf', { n: 2 })}</p>
+          <h1>{t('p_introTitle')}</h1>
+          <p className="lede">{t('p_introBody', { n: data.items.length })}</p>
+          <p className="small muted">{t('p_introNote')}</p>
         </main>
-        <ActionBar><button className="btn btn-primary btn-block" onClick={() => setIntro(false)}>Begin</button></ActionBar>
+        <ActionBar><button className="btn btn-primary btn-block" onClick={() => setIntro(false)}>{t('begin')}</button></ActionBar>
       </>
     );
   }
@@ -74,7 +80,7 @@ export default function Profile() {
       }
       setTimeout(() => setIndex(nextOpen >= 0 ? nextOpen : anyOpen), 160);
     } catch (e) {
-      toast(e instanceof ApiError ? e.message : 'Could not save. Try again.', 'error');
+      toast(e instanceof ApiError ? e.message : t('couldNotSave'), 'error');
     } finally {
       setBusy(false);
     }
@@ -82,10 +88,10 @@ export default function Profile() {
 
   return (
     <>
-      <AppBar title="Learning profile" onBack={() => (index > 0 ? setIndex(index - 1) : setIntro(true))} />
+      <AppBar title={t('part_profile')} onBack={() => (index > 0 ? setIndex(index - 1) : setIntro(true))} />
       <Stories part={1} fraction={answeredCount / data.items.length} saved={saved} />
       <main className="content enter" key={item.item_id}>
-        <p className="eyebrow muted">Statement {index + 1} of {data.items.length}</p>
+        <p className="eyebrow muted">{t('statementOf', { n: index + 1, total: data.items.length })}</p>
         <div className="question">
           {item.stem ? <p className="q-stem">{item.stem}</p> : null}
           <p className="statement" id="statement">{item.text}</p>

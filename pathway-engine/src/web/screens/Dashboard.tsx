@@ -1,112 +1,127 @@
 /**
- * Home after the plan is accepted, with a bottom tab bar: Plan (status, terms, L16 update banner),
- * Skills (what the plan builds), You (learner type, update goals, retake, sign out, delete data).
+ * Home after the plan is accepted, with a bottom tab bar (like WhatsApp or Instagram):
+ *   Plan   status, compact terms (tap for details), L16 update banner, add or drop the second course
+ *   Skills what the plan builds and what the learner's directions need (top items, "see all" in a sheet)
+ *   You    learner type, results, update goals, retake, sign out, delete data
+ * Every tab fits one phone screen.
  */
 import { useState } from 'react';
 import { Link, NavLink, useNavigate, useParams } from 'react-router-dom';
-import { BellRing, CalendarClock, ChevronRight, Compass, LogOut, Map, PlusCircle, RefreshCw, Target, Trash2, UserRound, Layers, Undo2 } from 'lucide-react';
+import { BarChart3, BellRing, CalendarClock, ChevronRight, Compass, Layers, LogOut, Map, PlusCircle, RefreshCw, Target, Trash2, Undo2, UserRound } from 'lucide-react';
 import { api, ApiError } from '../api';
-import { AppBar, Brand, ErrorNote, Loading, Sheet } from '../components/ui';
-import { BuildElsewhere, SkillsGained, Timeline } from '../components/plan';
+import { AppBar, BrandBar, ErrorNote, Loading, Segmented, Sheet } from '../components/ui';
+import { BuildElsewhereRow, SkillList, SkillRow, TermList } from '../components/plan';
 import { fmtDate } from '../journey';
 import { useLearner, useToast } from '../state';
+import { useI18n } from '../i18n';
 import type { Results } from '../types';
-import { Gaps, InterestsAndGoals, PersonaCard, useResults } from './Results';
+import { Gaps, PersonaCard, useResults } from './Results';
 
 function TabBar() {
+  const { t } = useI18n();
   return (
     <nav className="tabbar" aria-label="Main">
-      <NavLink to="/app" end><Map size={22} strokeWidth={1.75} />Plan</NavLink>
-      <NavLink to="/app/skills"><Layers size={22} strokeWidth={1.75} />Skills</NavLink>
-      <NavLink to="/app/you"><UserRound size={22} strokeWidth={1.75} />You</NavLink>
+      <NavLink to="/app" end><Map size={22} strokeWidth={1.75} />{t('d_plan')}</NavLink>
+      <NavLink to="/app/skills"><Layers size={22} strokeWidth={1.75} />{t('d_skills')}</NavLink>
+      <NavLink to="/app/you"><UserRound size={22} strokeWidth={1.75} />{t('d_you')}</NavLink>
     </nav>
   );
 }
 
 function StatusCard({ r }: { r: Results }) {
-  const active = r.pathway.terms.find((t) => t.status === 'active');
-  const first = r.pathway.terms.find((t) => t.status === 'planned');
-  if (active) {
-    return (
-      <div className="card row" style={{ alignItems: 'flex-start' }}>
-        <span className="tile success"><CalendarClock size={20} strokeWidth={1.75} /></span>
-        <div><p className="label">Now studying</p><h3>{active.title}</h3>{active.ends_on ? <p className="small muted">Until {fmtDate(active.ends_on)}</p> : null}</div>
+  const { t, locale } = useI18n();
+  const active = r.pathway.terms.find((x) => x.status === 'active');
+  const first = r.pathway.terms.find((x) => x.status === 'planned');
+  const term = active ?? first;
+  if (!term) return null;
+  return (
+    <div className="card tight row" style={{ alignItems: 'flex-start' }}>
+      <span className={`tile ${active ? 'success' : 'gold'}`}><CalendarClock size={20} strokeWidth={1.75} /></span>
+      <div className="grow">
+        <p className="sub">{active ? t('d_now') : t('d_next')}</p>
+        <p className="title">{term.title}</p>
+        <p className="sub">{active && active.ends_on ? t('d_until', { date: fmtDate(active.ends_on, locale) }) : t('d_nextBody')}</p>
       </div>
-    );
-  }
-  if (first) {
-    return (
-      <div className="card row" style={{ alignItems: 'flex-start' }}>
-        <span className="tile gold"><CalendarClock size={20} strokeWidth={1.75} /></span>
-        <div><p className="label">Next step</p><h3>{first.title}</h3><p className="small muted">Your institution starts this course at the beginning of the term. It will show as in progress here once it begins.</p></div>
-      </div>
-    );
-  }
-  return null;
+    </div>
+  );
 }
 
 function PlanTab({ r, setR }: { r: Results; setR: (r: Results) => void }) {
   const { progress } = useLearner();
+  const { t } = useI18n();
   const toast = useToast();
-  const nav = useNavigate();
   const [busy, setBusy] = useState(false);
   const setLength = async (m: 6 | 12) => {
     setBusy(true);
-    try { setR(await api.post<Results>(`/learners/${progress!.learner_id}/pathway`, { length_months: m })); toast(m === 12 ? 'Second course added to your plan' : 'Plan changed to 6 months'); }
-    catch (e) { toast(e instanceof ApiError ? e.message : 'Could not change the plan.', 'error'); }
+    try { setR(await api.post<Results>(`/learners/${progress!.learner_id}/pathway`, { length_months: m })); toast(m === 12 ? t('d_added') : t('d_to6')); }
+    catch (e) { toast(e instanceof ApiError ? e.message : t('errorGeneric'), 'error'); }
     finally { setBusy(false); }
   };
   const dismiss = async () => {
     setR({ ...r, banner: null });
     await api.post(`/learners/${progress!.learner_id}/pathway/banner/dismiss`).catch(() => undefined);
   };
-  const locked = r.pathway.terms.some((t) => t.locked);
+  const locked = r.pathway.terms.some((x) => x.locked);
   return (
-    <main className="content enter">
-      <div className="stack" style={{ gap: 4 }}>
-        <p className="eyebrow">{progress?.first_name ? `Hi ${progress.first_name}` : 'Your plan'}</p>
-        <h1>Your {r.pathway.length_months}-month plan</h1>
+    <main className="content enter" style={{ gap: 12 }}>
+      <div className="stack" style={{ gap: 2 }}>
+        {progress?.first_name ? <p className="eyebrow">{t('d_hi', { name: progress.first_name })}</p> : null}
+        <h1 style={{ fontSize: 24 }}>{t('d_title', { m: r.pathway.length_months })}</h1>
       </div>
       {r.banner ? (
-        <div className="banner gold" role="status">
-          <BellRing size={20} />
-          <div className="spacer stack" style={{ gap: 6 }}>
+        <div className="banner gold small" role="status">
+          <BellRing size={18} />
+          <div className="grow stack" style={{ gap: 4 }}>
             <strong>{r.banner.message}</strong>
-            <ul style={{ margin: 0, paddingLeft: 18 }} className="small">{r.banner.changes.map((c) => <li key={c}>{c}</li>)}</ul>
-            <button className="link-btn small" style={{ alignSelf: 'flex-start' }} onClick={dismiss}>Got it</button>
+            <ul style={{ margin: 0, paddingLeft: 18 }}>{r.banner.changes.map((c) => <li key={c}>{c}</li>)}</ul>
+            <button className="link-btn small" style={{ alignSelf: 'flex-start' }} onClick={dismiss}>{t('d_gotIt')}</button>
           </div>
         </div>
       ) : null}
       {r.status === 'proposed' ? (
-        <Link to="/results/plan" className="banner" style={{ textDecoration: 'none', color: 'inherit' }}><Compass size={20} /><span className="spacer">Your next plan is ready to review.</span><ChevronRight size={20} /></Link>
+        <Link to="/results/plan" className="banner" style={{ textDecoration: 'none', color: 'inherit' }}><Compass size={20} /><span className="grow">{t('d_ready')}</span><ChevronRight size={20} /></Link>
       ) : <StatusCard r={r} />}
-      <div className="card soft"><p className="small"><strong>{r.persona.name}.</strong> {r.persona.meaning}</p></div>
-      <Timeline r={r} compact />
+      <TermList r={r} />
+      <p className="sub"><strong style={{ color: 'var(--navy)' }}>{r.persona.name}.</strong> {r.persona.meaning}</p>
       {r.pathway.can_change_length && r.status !== 'proposed' ? (
         r.pathway.length_months === 6 ? (
-          <button className="btn btn-secondary btn-block" disabled={busy} onClick={() => setLength(12)}><PlusCircle size={18} /> Add a second course (12 months)</button>
+          <button className="btn btn-secondary btn-block" disabled={busy} onClick={() => setLength(12)}><PlusCircle size={18} /> {t('d_add')}</button>
         ) : !locked ? (
-          <button className="btn btn-ghost btn-block" disabled={busy} onClick={() => setLength(6)}><Undo2 size={18} /> Keep only the first course (6 months)</button>
+          <button className="btn btn-ghost btn-block" disabled={busy} onClick={() => setLength(6)}><Undo2 size={18} /> {t('d_keep')}</button>
         ) : null
       ) : null}
-      <button className="btn btn-ghost" onClick={() => nav('/results/type')}>See my full results again</button>
     </main>
   );
 }
 
 function SkillsTab({ r }: { r: Results }) {
+  const { t } = useI18n();
+  const [view, setView] = useState<'build' | 'need'>('build');
+  const [all, setAll] = useState(false);
+  const skills = [...r.pathway.skills_gained].sort((a, b) => Number(b.helps.some((h) => h.in_your_plan)) - Number(a.helps.some((h) => h.in_your_plan)));
   return (
-    <main className="content enter">
-      <div className="stack" style={{ gap: 4 }}><p className="eyebrow">Skills</p><h1>What your plan builds</h1></div>
-      <SkillsGained skills={r.pathway.skills_gained} initial={8} title={`After ${r.pathway.length_months} months, you are likely to be able to`} />
-      <div className="stack"><h2>Skills your directions need most</h2><Gaps r={r} /></div>
-      <BuildElsewhere r={r} />
+    <main className="content enter" style={{ gap: 12 }}>
+      <h1 style={{ fontSize: 24 }}>{t('d_skillsTitle')}</h1>
+      <Segmented label={t('d_skillsTitle')} value={view} onChange={setView} options={[{ value: 'build', label: t('d_build') }, { value: 'need', label: t('d_need') }]} />
+      {view === 'build' ? (
+        <>
+          <ul className="rows card tight">{skills.slice(0, 3).map((s) => <SkillRow key={s.skill_id} s={s} compact />)}</ul>
+          {skills.length > 3 ? <button className="btn btn-ghost" onClick={() => setAll(true)}>{t('d_seeAll', { n: skills.length })}</button> : null}
+          {all ? <Sheet title={t('sk_after', { m: r.pathway.length_months })} onClose={() => setAll(false)}><SkillList skills={r.pathway.skills_gained} /></Sheet> : null}
+        </>
+      ) : (
+        <>
+          <Gaps r={r} />
+          <BuildElsewhereRow r={r} />
+        </>
+      )}
     </main>
   );
 }
 
 function YouTab({ r }: { r: Results }) {
   const { progress, signOut } = useLearner();
+  const { t, locale } = useI18n();
   const nav = useNavigate();
   const toast = useToast();
   const [sheet, setSheet] = useState<'delete' | 'signout' | null>(null);
@@ -114,49 +129,43 @@ function YouTab({ r }: { r: Results }) {
   const retake = r.part_b_retake;
   const startRetake = async () => {
     try { await api.post(`/learners/${progress!.learner_id}/assessment/B/retake`); nav('/journey/profile'); }
-    catch (e) { toast(e instanceof ApiError ? e.message : 'Could not start the retake.', 'error'); }
+    catch (e) { toast(e instanceof ApiError ? e.message : t('errorGeneric'), 'error'); }
   };
   const del = async () => {
     setBusy(true);
-    try { await api.del(`/learners/${progress!.learner_id}`); signOut(); nav('/', { replace: true }); toast('Your data has been deleted'); }
-    catch (e) { toast(e instanceof ApiError ? e.message : 'Could not delete. Try again.', 'error'); setBusy(false); }
+    try { await api.del(`/learners/${progress!.learner_id}`); signOut(); nav('/', { replace: true }); toast(t('d_deleted')); }
+    catch (e) { toast(e instanceof ApiError ? e.message : t('errorGeneric'), 'error'); setBusy(false); }
+  };
+  const Row = ({ icon, title, sub, onClick, to, danger }: { icon: React.ReactNode; title: string; sub?: string; onClick?: () => void; to?: string; danger?: boolean }) => {
+    const inner = (<><span className="tile" style={danger ? { background: 'var(--danger-50)', color: 'var(--danger-700)' } : undefined}>{icon}</span><span className="grow"><span className="title" style={danger ? { color: 'var(--danger-700)' } : undefined}>{title}</span>{sub ? <><br /><span className="sub">{sub}</span></> : null}</span><ChevronRight size={20} style={{ color: 'var(--muted)' }} /></>);
+    return <li>{to ? <Link to={to} className="row-btn" style={{ textDecoration: 'none' }}>{inner}</Link> : <button className="row-btn" onClick={onClick}>{inner}</button>}</li>;
   };
   return (
-    <main className="content enter">
-      <div className="stack" style={{ gap: 4 }}><p className="eyebrow">You</p><h1>{progress?.first_name || 'Your profile'}</h1></div>
-      <PersonaCard r={r} />
-      <InterestsAndGoals r={r} />
-      <section className="card" aria-label="Settings">
-        <ul className="list">
-          <li><Link to="/journey/goals?edit=1" className="row" style={{ color: 'inherit', textDecoration: 'none' }}><span className="tile"><Target size={20} strokeWidth={1.75} /></span><span className="spacer"><strong>Update my goals</strong><br /><span className="small muted">Your plan updates. Started courses stay as they are.</span></span><ChevronRight size={20} /></Link></li>
-          {retake.eligible || retake.available_at ? (
-            <li>
-              <button className="row" style={{ width: '100%', border: 0, background: 'none', padding: 0, textAlign: 'left', cursor: retake.eligible ? 'pointer' : 'default' }} disabled={!retake.eligible} onClick={startRetake}>
-                <span className="tile"><RefreshCw size={20} strokeWidth={1.75} /></span>
-                <span className="spacer"><strong>Retake the learning profile</strong><br /><span className="small muted">{retake.eligible ? 'One retake is available.' : `Available from ${fmtDate(retake.available_at!)}.`}</span></span>
-                {retake.eligible ? <ChevronRight size={20} /> : null}
-              </button>
-            </li>
-          ) : null}
-          <li><button className="row" style={{ width: '100%', border: 0, background: 'none', padding: 0, textAlign: 'left', cursor: 'pointer' }} onClick={() => setSheet('signout')}><span className="tile navy"><LogOut size={20} strokeWidth={1.75} /></span><span className="spacer"><strong>Sign out on this device</strong></span><ChevronRight size={20} /></button></li>
-          <li><button className="row" style={{ width: '100%', border: 0, background: 'none', padding: 0, textAlign: 'left', cursor: 'pointer', color: 'var(--danger-700)' }} onClick={() => setSheet('delete')}><span className="tile" style={{ background: 'var(--danger-50)', color: 'var(--danger-700)' }}><Trash2 size={20} strokeWidth={1.75} /></span><span className="spacer"><strong>Delete my data</strong></span><ChevronRight size={20} /></button></li>
-        </ul>
-      </section>
+    <main className="content enter" style={{ gap: 12 }}>
+      <PersonaCard r={r} compact />
+      <ul className="rows card tight">
+        <Row icon={<BarChart3 size={20} strokeWidth={1.75} />} title={t('d_youResults')} sub={t('d_youResultsHelp')} to="/results/type" />
+        <Row icon={<Target size={20} strokeWidth={1.75} />} title={t('d_goals')} sub={t('d_goalsHelp')} to="/journey/goals?edit=1" />
+        {retake.eligible ? <Row icon={<RefreshCw size={20} strokeWidth={1.75} />} title={t('d_retake')} sub={t('d_retakeOk')} onClick={startRetake} />
+          : retake.available_at ? <li><span className="row-btn" style={{ cursor: 'default' }}><span className="tile"><RefreshCw size={20} strokeWidth={1.75} /></span><span className="grow"><span className="title">{t('d_retake')}</span><br /><span className="sub">{t('d_retakeFrom', { date: fmtDate(retake.available_at, locale) })}</span></span></span></li> : null}
+        <Row icon={<LogOut size={20} strokeWidth={1.75} />} title={t('d_signOut')} onClick={() => setSheet('signout')} />
+        <Row icon={<Trash2 size={20} strokeWidth={1.75} />} title={t('d_delete')} onClick={() => setSheet('delete')} danger />
+      </ul>
       {sheet === 'delete' && (
-        <Sheet title="Delete your data?" onClose={() => setSheet(null)}>
-          <p className="lede">This removes your answers, results and plan. It cannot be undone. Anonymous records with no name are kept to check the system works fairly.</p>
+        <Sheet title={t('d_delTitle')} onClose={() => setSheet(null)}>
+          <p className="lede">{t('d_delBody')}</p>
           <div className="stack" style={{ marginTop: 20 }}>
-            <button className="btn btn-danger btn-block" disabled={busy} onClick={del}>Delete my data</button>
-            <button className="btn btn-secondary btn-block" onClick={() => setSheet(null)}>Cancel</button>
+            <button className="btn btn-danger btn-block" disabled={busy} onClick={del}>{t('d_delete')}</button>
+            <button className="btn btn-secondary btn-block" onClick={() => setSheet(null)}>{t('cancel')}</button>
           </div>
         </Sheet>
       )}
       {sheet === 'signout' && (
-        <Sheet title="Sign out on this device?" onClose={() => setSheet(null)}>
-          <p className="lede">Your plan stays saved, but this device will no longer open it. Use this only on a shared phone you are giving to someone else.</p>
+        <Sheet title={t('d_outTitle')} onClose={() => setSheet(null)}>
+          <p className="lede">{t('d_outBody')}</p>
           <div className="stack" style={{ marginTop: 20 }}>
-            <button className="btn btn-primary btn-block" onClick={() => { signOut(); nav('/', { replace: true }); }}>Sign out</button>
-            <button className="btn btn-secondary btn-block" onClick={() => setSheet(null)}>Cancel</button>
+            <button className="btn btn-primary btn-block" onClick={() => { signOut(); nav('/', { replace: true }); }}>{t('d_signOut')}</button>
+            <button className="btn btn-secondary btn-block" onClick={() => setSheet(null)}>{t('cancel')}</button>
           </div>
         </Sheet>
       )}
@@ -164,19 +173,19 @@ function YouTab({ r }: { r: Results }) {
   );
 }
 
-/** Home after the plan is accepted: three tabs, like any app the learner already uses. */
 export default function Dashboard() {
   const { tab = 'plan' } = useParams();
   const nav = useNavigate();
+  const { t } = useI18n();
   const { r, setR, error } = useResults();
   if (error) {
     if (error.status === 451) { nav('/guardian', { replace: true }); return null; }
-    return <><AppBar title="Your plan" back="/" /><div className="content"><ErrorNote>{error.message}</ErrorNote></div></>;
+    return <><AppBar title={t('d_plan')} back="/" /><div className="content"><ErrorNote>{error.message}</ErrorNote></div></>;
   }
   return (
     <>
-      <header className="appbar" style={{ gridTemplateColumns: '1fr auto' }}><div style={{ paddingLeft: 8 }}><Brand /></div><span /></header>
-      {!r ? <Loading label="Loading your plan" /> : tab === 'skills' ? <SkillsTab r={r} /> : tab === 'you' ? <YouTab r={r} /> : <PlanTab r={r} setR={setR} />}
+      <BrandBar />
+      {!r ? <Loading /> : tab === 'skills' ? <SkillsTab r={r} /> : tab === 'you' ? <YouTab r={r} /> : <PlanTab r={r} setR={setR} />}
       <TabBar />
     </>
   );

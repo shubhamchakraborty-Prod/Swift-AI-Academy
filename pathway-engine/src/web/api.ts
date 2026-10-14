@@ -5,6 +5,8 @@ export class ApiError extends Error {
   }
 }
 
+import { currentLang } from './i18n';
+
 const TOKEN_KEY = 'swift.pathway.session';
 const STAFF_KEY = 'swift.pathway.staff';
 
@@ -26,7 +28,8 @@ export const staffSession = {
 };
 
 export async function request<T = any>(method: string, path: string, body?: unknown, opts: { staff?: boolean; signal?: AbortSignal } = {}): Promise<T> {
-  const headers: Record<string, string> = { 'content-type': 'application/json' };
+  // The server returns questions, courses and results in this language.
+  const headers: Record<string, string> = { 'content-type': 'application/json', 'x-lang': opts.staff ? 'en' : currentLang() };
   const token = opts.staff ? staffSession.get()?.token : session.get()?.token;
   if (token) headers.authorization = `Bearer ${token}`;
   let res: Response;

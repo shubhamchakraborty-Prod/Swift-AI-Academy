@@ -25,6 +25,7 @@ import {
 } from './services/admin';
 import { deleteLearner } from './services/privacy';
 import type { EngineConfig } from '../engine';
+import { langOf, makeLoc } from './i18n';
 
 type Handler = (req: Request, res: Response) => Promise<unknown>;
 const h = (fn: Handler) => (req: Request, res: Response, next: NextFunction) => fn(req, res).then((out) => { if (!res.headersSent) res.json(out ?? { ok: true }); }, next);
@@ -67,20 +68,21 @@ export function createApp(ctx: Ctx) {
   const v1 = express.Router();
 
   // ----- public -----
-  v1.get('/meta', h(async () => {
+  v1.get('/meta', h(async (req) => {
     const { ref, config } = await ctx.versions.active();
+    const loc = makeLoc(ref, langOf(req));
+    const rel = (value: string, label: string) => ({ value, label: loc.relation(value, label) });
     return {
-      consent: config.consent,
+      consent: { ...config.consent, purposes: config.consent.purposes.map((p) => ({ ...p, label_en: loc.purpose(p.id, p.label_en) })) },
       reference_version: ref.version,
       config_version: config.version,
       guardian_relations: [
-        { value: 'mother', label: 'Mother' }, { value: 'father', label: 'Father' },
-        { value: 'legal_guardian', label: 'Legal guardian' }, { value: 'other_family', label: 'Other family member' },
+        rel('mother', 'Mother'), rel('father', 'Father'), rel('legal_guardian', 'Legal guardian'), rel('other_family', 'Other family member'),
       ],
     };
   }));
-  v1.get('/assessment/items', h(async (req) => itemsForPart(ctx, String(req.query.part ?? ''))));
-  v1.get('/courses/:courseId', h(async (req) => courseDetail(ctx, req.params.courseId)));
+  v1.get('/assessment/items', h(async (req) => itemsForPart(ctx, String(req.query.part ?? ''), langOf(req))));
+  v1.get('/courses/:courseId', h(async (req) => courseDetail(ctx, req.params.courseId, langOf(req))));
 
   // ----- learner -----
   v1.post('/learners', h(async (req, res) => {
@@ -98,22 +100,22 @@ export function createApp(ctx: Ctx) {
   v1.post('/learners/:id/assessment/B/responses', learnerAuth, h(async (req) => answerPartB(ctx, req.params.id, partBAnswerSchema.parse(req.body))));
   v1.post('/learners/:id/assessment/B', learnerAuth, h(async (req) => submitPartB(ctx, req.params.id)));
   v1.post('/learners/:id/assessment/B/retake', learnerAuth, h(async (req) => startPartBRetake(ctx, req.params.id)));
-  v1.get('/learners/:id/skill-check/next', learnerAuth, h(async (req) => nextSkillItem(ctx, req.params.id, z.enum(['ai', 'comm']).parse(req.query.series))));
-  v1.post('/learners/:id/skill-check/answers', learnerAuth, h(async (req) => answerSkillItem(ctx, req.params.id, skillAnswerSchema.parse(req.body))));
+  v1.get('/learners/:id/skill-check/next', learnerAuth, h(async (req) => nextSkillItem(ctx, req.params.id, z.enum(['ai', 'comm']).parse(req.query.series), langOf(req))));
+  v1.post('/learners/:id/skill-check/answers', learnerAuth, h(async (req) => answerSkillItem(ctx, req.params.id, skillAnswerSchema.parse(req.body), langOf(req))));
   v1.post('/learners/:id/assessment/D', learnerAuth, h(async (req) => {
     const id = req.params.id;
     const { changed } = await submitPartD(ctx, id, partDSchema.parse(req.body));
     const current = await currentPathway(ctx.db, id);
     // Goals changed after a plan exists: recompute persona and goal areas, keep started terms (Step 14).
     if (changed && current) {
-      const { tiebreak_needed } = await computePersona(ctx, id);
+      const { tiebreak_needed } = await computePersona(ctx, id, langOf(req));
       if (!tiebreak_needed.length) await planPathway(ctx, id, { trigger: 'goals_changed', actor: 'learner', status: current.status === 'proposed' ? 'proposed' : 'accepted' });
       return { replanned: !tiebreak_needed.length, tiebreak_needed };
     }
     return { replanned: false, tiebreak_needed: [] };
   }));
-  v1.post('/learners/:id/persona', learnerAuth, h(async (req) => computePersona(ctx, req.params.id)));
-  v1.post('/learners/:id/persona/tiebreak', learnerAuth, h(async (req) => answerTiebreak(ctx, req.params.id, z.object({ axis: z.string(), answer: z.string() }).parse(req.body))));
+  v1.post('/learners/:id/persona', learnerAuth, h(async (req) => computePersona(ctx, req.params.id, langOf(req))));
+  v1.post('/learners/:id/persona/tiebreak', learnerAuth, h(async (req) => answerTiebreak(ctx, req.params.id, z.object({ axis: z.string(), answer: z.string() }).parse(req.body), langOf(req))));
   v1.post('/learners/:id/persona/feedback', learnerAuth, h(async (req) => {
     const { answer } = z.object({ answer: z.enum(['yes', 'partly', 'no']) }).parse(req.body);
     await ctx.db.query('update learner set persona_feedback = $2 where learner_id = $1', [req.params.id, answer]);
@@ -124,17 +126,17 @@ export function createApp(ctx: Ctx) {
     const current = await currentPathway(ctx.db, req.params.id);
     const status = current && current.status !== 'proposed' && current.status !== 'completed' ? 'accepted' : 'proposed';
     await planPathway(ctx, req.params.id, { length: length_months ?? null, trigger: length_months ? 'length_changed' : 'assessment_complete', actor: 'learner', status });
-    return learnerResults(ctx, req.params.id);
+    return learnerResults(ctx, req.params.id, langOf(req));
   }));
-  v1.get('/learners/:id/results', learnerAuth, h(async (req) => learnerResults(ctx, req.params.id)));
-  v1.get('/learners/:id/pathway', learnerAuth, h(async (req) => (await learnerResults(ctx, req.params.id)).pathway));
+  v1.get('/learners/:id/results', learnerAuth, h(async (req) => learnerResults(ctx, req.params.id, langOf(req))));
+  v1.get('/learners/:id/pathway', learnerAuth, h(async (req) => (await learnerResults(ctx, req.params.id, langOf(req))).pathway));
   v1.post('/learners/:id/pathway/banner/dismiss', learnerAuth, h(async (req) => {
     await ctx.db.query(`update pathway set banner = null where learner_id = $1`, [req.params.id]);
     return { ok: true };
   }));
   v1.post('/pathways/:pathwayId/accept', learnerAuth, h(async (req) => {
     await acceptPathway(ctx, res_locals(req).learnerId, req.params.pathwayId);
-    return learnerResults(ctx, res_locals(req).learnerId);
+    return learnerResults(ctx, res_locals(req).learnerId, langOf(req));
   }));
   v1.delete('/learners/:id', learnerAuth, h(async (req) => deleteLearner(ctx, req.params.id)));
 

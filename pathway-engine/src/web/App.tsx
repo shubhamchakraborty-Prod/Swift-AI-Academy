@@ -6,6 +6,7 @@
 import { lazy, Suspense, type ReactNode } from 'react';
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { LearnerProvider, ToastProvider, useLearner } from './state';
+import { LangProvider } from './i18n';
 import { pathForStep } from './journey';
 import type { Progress, Step } from './types';
 import { Loading } from './components/ui';
@@ -45,6 +46,7 @@ function Shell({ children }: { children: ReactNode }) {
 export default function App() {
   return (
     <BrowserRouter>
+      <LangProvider>
       <ToastProvider>
         <Routes>
           <Route path="/staff/*" element={<Suspense fallback={<Loading />}><Staff /></Suspense>} />
@@ -74,6 +76,7 @@ export default function App() {
           } />
         </Routes>
       </ToastProvider>
+      </LangProvider>
     </BrowserRouter>
   );
 }

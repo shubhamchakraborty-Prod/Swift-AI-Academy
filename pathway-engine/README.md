@@ -26,6 +26,8 @@ npm run dev          # API on :8787 and screens on http://localhost:5173
 | `npm run typecheck` | TypeScript check |
 | `npm run build` then `npm start` | Production build; one server serves API and screens (set the variables in `.env.example`) |
 
+Optional hosting on Netlify: `netlify.toml` at the repository root builds the screens and runs the API as a function; it needs hosted Postgres (Netlify DB or `DATABASE_URL`) and the variables in `.env.example`.
+
 Staff consoles: open `/staff`. In development the access codes are in `.data/dev-secrets.json`.
 Production: set `DATABASE_URL` to real Postgres and all secrets in `.env.example`.
 
@@ -56,6 +58,15 @@ Welcome → sign-up (name, date of birth, parent or guardian check under 17, con
 home with Plan / Skills / You tabs. Every answer is saved as it is given; closing the app and coming back resumes
 at the next question.
 
+### Design rules for learner screens
+
+| Rule | How it is kept |
+|---|---|
+| Every screen fits one phone screen (about 412 x 840) | Details open in bottom sheets or tabs; long option lists use two columns. The browser test measures every screen and fails if any needs scrolling or is too wide |
+| English and Hindi on every learner screen | EN / हिं switch in the top bar. Screen text: `src/web/strings.ts`. Content (questions, kinds of work, skills, courses, learner types, result sentences): `seed/v1/i18n_hi.json`, applied by the server (`src/server/i18n.ts`). Missing Hindi falls back to English |
+| Communication tasks stay in English | They measure English communication; instructions around them follow the chosen language |
+| Listening tasks play reliably | `src/web/audio.ts`: recorded file if `audio_url` is set, otherwise the device voice (explicit English voice, stall workaround); if nothing plays in 2.5 s the learner is told and shown the text |
+
 ### Recommendation logic in one paragraph
 
 Part A gives background, Part B gives interest and habit scales, Part C places the learner on the AI ladder (0-4)
@@ -75,7 +86,9 @@ simulating term 1 as passed. Reasons come only from fixed templates and are chec
 | Activate BOT-1 | Admin console → Courses → BOT-1 → Edit, add hours and learning outcomes → Validate → Simulate → Activate | No |
 | Change a skill need of a goal area | `seed/v1/career_goals.json` → `goal_skills` (new data version) | No |
 | Map a new field of study or ITI trade | `seed/v1/fields.json` | No |
-| Reword a sentence learners see | `seed/v1/templates.json` → `templates` | No |
+| Reword a sentence learners see | `seed/v1/templates.json` → `templates` (Hindi: `seed/v1/i18n_hi.json` → `templates`) | No |
+| Fix or add a Hindi translation | Content: `seed/v1/i18n_hi.json` (keyed by item, goal, skill, course and persona ids). Screen text: `src/web/strings.ts` → `hi` | No for content |
+| Add recorded audio for a listening task | Put the file in `public/audio/`, set that item's `audio_url` (for example `/audio/SC-COM-1L.mp3`) in `seed/v1/assessment_items.json` | No |
 | Ban a phrase | `seed/v1/templates.json` → `banned` (a regex) | No |
 | Change an assessment item | `seed/v1/assessment_items.json` (keep the `item_id`; wording changes need content review) | No |
 | Change the minimum age or guardian age | `engine_config.json` → `consent.min_age`, `consent.guardian_required_below_age` | No |
@@ -99,7 +112,8 @@ skill or goal name in engine code; learners never see habit scores, axis numbers
 | Fields of study | The 8 FEEDS rows from the spec plus "Another field or trade" (field score 0) until the full table exists |
 | Eligibility of COM-5 to COM-8 | Spec wording mapped to Part A options (for example "senior managerial" = manager role and over 2 years); spec open item 11 |
 | Course delivery | Only AAI-1 has offline data. Others are treated as not offline-ready until confirmed |
-| Listening items | Played with the device's speech engine from a transcript until recorded audio exists; learners can read the message instead |
+| Listening items | Played with the device's speech voice from a transcript until recorded audio exists (`audio_url`); learners can read the message instead |
+| Hindi | Draft translation by the engineering team so the switch works end to end; needs back-translation before launch. Staff consoles stay in English |
 | Sign-in | One learner per device (token in the browser). Staff use access codes. Replace both with platform SSO |
 
 ## Outstanding before real learners use it
@@ -107,7 +121,7 @@ skill or goal name in engine code; learners never see habit scores, axis numbers
 | # | Item | Owner |
 |---|---|---|
 | 1 | Content review of draft items: 16 Communication items, 4 tie-breaker items, all distractors (marked `draft_pending_content_review`), plus skill definitions and Communication terminal outcomes | Content governance |
-| 2 | Hindi versions of every item and screen (data model has `text_hi`; no Hindi content yet, so no language switch is shown) | Content governance |
+| 2 | Back-translate and approve the draft Hindi (`seed/v1/i18n_hi.json` and `src/web/strings.ts`, marked `draft_pending_back_translation`) | Content governance |
 | 3 | Recorded listening audio | Content teams |
 | 4 | Confirm course skill tags, hours, delivery modes, BOT-1 scope | Content teams |
 | 5 | Product sign-off of the 20 reference learners' expected outputs (persona codes are designed; pathways are engine baselines) | Product + pathways research |

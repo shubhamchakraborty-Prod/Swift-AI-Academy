@@ -16,6 +16,7 @@ import {
   type CourseRecord, type EngineConfig, type EngineInput, type EngineRun, type LearnerGoals, type LearnerProfile, type PathwayLength, type ReferenceData,
 } from '../../engine';
 import { getLearner, resolvePartA, type LearnerRow } from './learners';
+import { makeLoc, type Lang } from '../i18n';
 import { latestAttempt, partBScores, placement } from './assessment';
 
 export type Step = 'about' | 'profile' | 'skill_ai' | 'skill_comm' | 'goals' | 'tiebreak' | 'plan' | 'results' | 'dashboard';
@@ -127,7 +128,7 @@ export async function buildInput(ctx: Ctx, learner: LearnerRow, ref: ReferenceDa
 
 // ---------- Persona and tie-breakers (Step 7, screen L10) ----------
 
-export async function computePersona(ctx: Ctx, learnerId: string) {
+export async function computePersona(ctx: Ctx, learnerId: string, lang: Lang = 'en') {
   const { ref, config } = await ctx.versions.active();
   const learner = await getLearner(ctx, learnerId);
   const input = await buildInput(ctx, learner, ref, config);
@@ -138,31 +139,33 @@ export async function computePersona(ctx: Ctx, learnerId: string) {
      values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb)`,
     [newId('PM'), learnerId, config.version, ref.version, ax.direction, ax.starting_point, ax.goal_horizon, ax.learning_drive, pr.persona_code, pr.secondary_code, pr.confidence, JSON.stringify(input.tiebreaks)],
   );
-  return { tiebreak_needed: pr.tiebreak_pending.map((axis) => tiebreakQuestion(ref, config, input, axis)) };
+  return { tiebreak_needed: pr.tiebreak_pending.map((axis) => tiebreakQuestion(ref, config, input, axis, lang)) };
 }
 
-function tiebreakQuestion(ref: ReferenceData, config: EngineConfig, input: EngineInput, axisId: string) {
+function tiebreakQuestion(ref: ReferenceData, config: EngineConfig, input: EngineInput, axisId: string, lang: Lang = 'en') {
   const axis = ref.persona_rules.axes.find((a) => a.axis === axisId)!;
   const tb = axis.tiebreak;
+  const loc = makeLoc(ref, lang);
+  const h = loc.tiebreak(axisId);
   if (tb.type === 'goal_pick') {
     // Show the current top 3 goal areas; the preset follows the provisional (supportive) Direction pole.
     const pr = matchPersona(extractFeatures(input, ref), ref, config, input.tiebreaks);
     const persona = ref.personas.personas.find((p) => p.persona_code === pr.persona_code)!;
     const top = rankGoalAreas(ref, config, persona.preset, input.goals.goal_areas, input.partB, input.profile.field_of_study).slice(0, config.goal.top_n);
-    const goals = new Map(ref.career_goals.goal_areas.map((g) => [g.goal_id, g]));
     return {
-      axis: axisId, type: tb.type, question: tb.question_en,
-      options: [...top.map((g) => ({ value: g.goal_id, label: goals.get(g.goal_id)!.name, help: goals.get(g.goal_id)!.example_roles.slice(0, 3).join(', ') })), { value: 'none', label: tb.none_label_en, help: null }],
+      axis: axisId, type: tb.type, question: h?.question ?? tb.question_en,
+      options: [...top.map((g) => { const l = loc.goal(g.goal_id); return { value: g.goal_id, label: l.name, help: l.roles.slice(0, 3).join(', ') }; }), { value: 'none', label: h?.none ?? tb.none_label_en, help: null }],
     };
   }
   if (tb.type === 'skill_item') {
     const item = tiebreakSkillItem(ref.items.part_c, input.ai_placement, config)!;
-    return { axis: axisId, type: tb.type, question: tb.question_en, item_text: item.text_en, item_id: item.item_id, options: item.options.map((o) => ({ value: o.value, label: o.label_en, help: null })) };
+    const hi = loc.item(item.item_id);
+    return { axis: axisId, type: tb.type, question: h?.question ?? tb.question_en, item_text: hi?.text ?? item.text_en, item_id: item.item_id, options: item.options.map((o) => ({ value: o.value, label: hi?.options?.[o.value] ?? o.label_en, help: null })) };
   }
-  return { axis: axisId, type: tb.type, question: tb.question_en, options: tb.options.map((o) => ({ value: o.value, label: o.label_en, help: null })) };
+  return { axis: axisId, type: tb.type, question: h?.question ?? tb.question_en, options: tb.options.map((o) => ({ value: o.value, label: h?.options?.[o.value] ?? o.label_en, help: null })) };
 }
 
-export async function answerTiebreak(ctx: Ctx, learnerId: string, body: { axis: string; answer: string; ms_taken?: number }) {
+export async function answerTiebreak(ctx: Ctx, learnerId: string, body: { axis: string; answer: string; ms_taken?: number }, lang: Lang = 'en') {
   const { ref, config } = await ctx.versions.active();
   const learner = await getLearner(ctx, learnerId);
   const input = await buildInput(ctx, learner, ref, config);
@@ -181,7 +184,7 @@ export async function answerTiebreak(ctx: Ctx, learnerId: string, body: { axis: 
     `insert into tiebreak_answer (learner_id, axis, answer, value) values ($1, $2, $3, $4) on conflict (learner_id, axis) do update set answer = excluded.answer, value = excluded.value, at = now()`,
     [learnerId, body.axis, body.answer, value],
   );
-  return computePersona(ctx, learnerId);
+  return computePersona(ctx, learnerId, lang);
 }
 
 // ---------- Pathways (Steps 8 to 11, 13, 14) ----------

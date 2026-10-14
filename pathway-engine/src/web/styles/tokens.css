@@ -34,7 +34,7 @@
   --text: #0e1b5c;
 
   /* Type */
-  --font: 'Cabinet Grotesk', 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font: 'Cabinet Grotesk', 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --fs-xs: 12px;
   --fs-sm: 14px;

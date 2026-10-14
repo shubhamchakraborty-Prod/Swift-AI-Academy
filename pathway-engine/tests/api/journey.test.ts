@@ -69,6 +69,18 @@ describe('learner journey through the API', () => {
     expect(text).not.toMatch(/self_discipline|learning_independence|axis_|a_raw/);
     for (const t of plan.body.pathway.terms) expect(t.score).toBeUndefined();
 
+    // Hindi: same plan, rendered in Hindi; the communication tasks stay in English
+    const hi = await s.call('GET', `/learners/${id}/results`, undefined, { ...H, 'x-lang': 'hi' });
+    expect(hi.body.persona.name).toBe('पर्वतारोही');
+    expect(hi.body.pathway.terms.map((t: { course_id: string }) => t.course_id)).toEqual(['COM-3', 'AAI-1']);
+    expect(hi.body.pathway.terms[0].title).toBe('सुपरवाइज़री संचार कौशल');
+    expect(hi.body.pathway.terms[0].sentence).toMatch(/^सुपरवाइज़री संचार कौशल के बाद, आप शायद/);
+    expect(hi.body.pathway.summary).toMatch(/^अगले 12 महीनों में/);
+    const itemsHi = await s.call('GET', '/assessment/items?part=B', undefined, { 'x-lang': 'hi' });
+    expect(itemsHi.body.items[0].text).toMatch(/[\u0900-\u097F]/);
+    const courseHi = await s.call('GET', '/courses/AAI-1', undefined, { 'x-lang': 'hi' });
+    expect(courseHi.body.title).toBe('AI के पहले कदम: इस्तेमाल करें और जाँचें');
+
     const six = await s.call('POST', `/learners/${id}/pathway`, { length_months: 6 }, H);
     expect(six.body.pathway.terms.map((t: { course_id: string }) => t.course_id)).toEqual(['COM-3']);
     const twelve = await s.call('POST', `/learners/${id}/pathway`, { length_months: 12 }, H);

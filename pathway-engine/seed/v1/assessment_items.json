@@ -1382,7 +1382,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-1R",
@@ -1493,7 +1494,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-2R",
@@ -1604,7 +1606,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-3R",
@@ -1715,7 +1718,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-4R",
@@ -1826,7 +1830,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-5R",
@@ -1937,7 +1942,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-6R",
@@ -2048,7 +2054,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-7R",
@@ -2159,7 +2166,8 @@
       "part": "C",
       "series": "comm",
       "status": "active",
-      "role": "placement"
+      "role": "placement",
+      "audio_url": null
     },
     {
       "item_id": "SC-COM-8R",
