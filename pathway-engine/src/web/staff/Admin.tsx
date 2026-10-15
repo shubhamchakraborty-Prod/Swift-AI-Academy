@@ -16,7 +16,7 @@ const blankCourse = () => ({
 });
 
 function Num({ label, value, onChange, step = 0.5 }: { label: string; value: number; onChange: (n: number) => void; step?: number }) {
-  return <div className="field"><label>{label}</label><input className="input" type="number" step={step} min={0} value={value} onChange={(e) => onChange(Number(e.target.value))} /></div>;
+  return <label className="field"><span className="label">{label}</span><input className="input" type="number" step={step} min={0} value={value} onChange={(e) => onChange(Number(e.target.value))} /></label>;
 }
 
 /** AD01 + AD02: the onboarding template as a form, then validate, simulate and activate. */
@@ -45,9 +45,9 @@ function CourseEditor({ initial, skills, courses, onDone }: { initial: any; skil
       <div className="row"><h2 className="spacer">{initial.course_id ? `Edit ${initial.course_id}` : 'New course'}</h2><button className="btn btn-ghost btn-sm" onClick={onDone}>Close</button></div>
       <div className="stack"><p className="eyebrow">A. Identity</p>
         <div className="form-grid">
-          <div className="field"><label>Course ID</label><input className="input" value={c.course_id} placeholder="AAI-5" onChange={(e) => set({ course_id: e.target.value.toUpperCase() })} disabled={Boolean(initial.course_id)} /></div>
-          <div className="field"><label>Series ID</label><input className="input" value={c.series_id} placeholder="AAI" onChange={(e) => set({ series_id: e.target.value.toUpperCase() })} /></div>
-          <div className="field" style={{ gridColumn: '1 / -1' }}><label>Learner-facing title</label><input className="input" value={c.title} onChange={(e) => set({ title: e.target.value })} /></div>
+          <label className="field"><span className="label">Course ID</span><input className="input" value={c.course_id} placeholder="AAI-5" onChange={(e) => set({ course_id: e.target.value.toUpperCase() })} disabled={Boolean(initial.course_id)} /></label>
+          <label className="field"><span className="label">Series ID</span><input className="input" value={c.series_id} placeholder="AAI" onChange={(e) => set({ series_id: e.target.value.toUpperCase() })} /></label>
+          <label className="field" style={{ gridColumn: '1 / -1' }}><span className="label">Learner-facing title</span><input className="input" value={c.title} onChange={(e) => set({ title: e.target.value })} /></label>
         </div></div>
       <div className="stack"><p className="eyebrow">B. Level and hours</p>
         <div className="form-grid">
@@ -61,16 +61,16 @@ function CourseEditor({ initial, skills, courses, onDone }: { initial: any; skil
       <div className="stack"><p className="eyebrow">C. Entry</p>
         <div className="form-grid">
           <Num label="Entry level" value={c.entry_level} onChange={(n) => set({ entry_level: n })} />
-          <div className="field"><label>Placement ladder used for entry</label><select className="select" value={c.entry_ladder} onChange={(e) => set({ entry_ladder: e.target.value })}><option value="ai">AI skill check</option><option value="comm">Communication skill check</option></select></div>
-          <div className="field"><label>Hard prerequisites</label><select className="select" multiple style={{ minHeight: 96 }} value={c.prerequisites.hard} onChange={(e) => set({ prerequisites: { ...c.prerequisites, hard: [...e.target.selectedOptions].map((o) => o.value) } })}>{courses.map((x) => <option key={x}>{x}</option>)}</select></div>
-          <div className="field"><label>Soft prerequisites</label><select className="select" multiple style={{ minHeight: 96 }} value={c.prerequisites.soft} onChange={(e) => set({ prerequisites: { ...c.prerequisites, soft: [...e.target.selectedOptions].map((o) => o.value) } })}>{courses.map((x) => <option key={x}>{x}</option>)}</select></div>
+          <label className="field"><span className="label">Placement ladder used for entry</span><select className="select" value={c.entry_ladder} onChange={(e) => set({ entry_ladder: e.target.value })}><option value="ai">AI skill check</option><option value="comm">Communication skill check</option></select></label>
+          <label className="field"><span className="label">Hard prerequisites</span><select className="select" multiple style={{ minHeight: 96 }} value={c.prerequisites.hard} onChange={(e) => set({ prerequisites: { ...c.prerequisites, hard: [...e.target.selectedOptions].map((o) => o.value) } })}>{courses.map((x) => <option key={x}>{x}</option>)}</select></label>
+          <label className="field"><span className="label">Soft prerequisites</span><select className="select" multiple style={{ minHeight: 96 }} value={c.prerequisites.soft} onChange={(e) => set({ prerequisites: { ...c.prerequisites, soft: [...e.target.selectedOptions].map((o) => o.value) } })}>{courses.map((x) => <option key={x}>{x}</option>)}</select></label>
         </div></div>
       <div className="stack"><p className="eyebrow">D. Delivery</p>
         <label className="check" style={{ padding: 12 }}><input type="checkbox" checked={Boolean(c.delivery.offline_ok)} onChange={(e) => set({ delivery: { ...c.delivery, offline_ok: e.target.checked } })} /><span>Works offline</span></label></div>
       <div className="stack"><p className="eyebrow">E. Skills built (at least 3, one primary)</p>
         {c.skills.map((s: any, i: number) => (
           <div key={i} className="row wrap" style={{ alignItems: 'flex-end' }}>
-            <div className="field" style={{ flex: '2 1 240px' }}><label>Skill</label><select className="select" value={s.skill_id} onChange={(e) => set({ skills: c.skills.map((x: any, n: number) => (n === i ? { ...x, skill_id: e.target.value } : x)) })}><option value="">Choose a skill</option>{skills.map((k) => <option key={k.skill_id} value={k.skill_id}>{k.skill_id} {k.name}</option>)}</select></div>
+            <label className="field" style={{ flex: '2 1 240px' }}><span className="label">Skill</span><select className="select" value={s.skill_id} onChange={(e) => set({ skills: c.skills.map((x: any, n: number) => (n === i ? { ...x, skill_id: e.target.value } : x)) })}><option value="">Choose a skill</option>{skills.map((k) => <option key={k.skill_id} value={k.skill_id}>{k.skill_id} {k.name}</option>)}</select></label>
             <div style={{ flex: '0 1 120px' }}><Num label="Output level" value={s.level_out} onChange={(n) => set({ skills: c.skills.map((x: any, j: number) => (j === i ? { ...x, level_out: n } : x)) })} /></div>
             <label className="row small" style={{ minHeight: 52 }}><input type="checkbox" checked={s.primary} onChange={(e) => set({ skills: c.skills.map((x: any, j: number) => (j === i ? { ...x, primary: e.target.checked } : x)) })} /> Primary</label>
             <button className="icon-btn" aria-label="Remove skill" onClick={() => set({ skills: c.skills.filter((_: any, j: number) => j !== i) })}><Trash2 size={18} /></button>
@@ -80,11 +80,11 @@ function CourseEditor({ initial, skills, courses, onDone }: { initial: any; skil
       <div className="stack"><p className="eyebrow">F. Modules and learning outcomes</p>
         {c.modules.map((m: any, i: number) => (
           <div key={i} className="card soft stack">
-            <div className="field"><label>Module {i + 1} title</label><input className="input" value={m.title} onChange={(e) => mod(i, { title: e.target.value })} /></div>
+            <label className="field"><span className="label">Module {i + 1} title</span><input className="input" value={m.title} onChange={(e) => mod(i, { title: e.target.value })} /></label>
             {(m.outcomes ?? []).map((lo: any, j: number) => (
               <div key={j} className="form-grid">
-                <div className="field"><label>Learning outcome {lo.lo_id}</label><input className="input" value={lo.text} onChange={(e) => mod(i, { outcomes: m.outcomes.map((x: any, k: number) => (k === j ? { ...x, text: e.target.value } : x)) })} /></div>
-                <div className="field"><label>Skills (up to 3)</label><select className="select" multiple style={{ minHeight: 96 }} value={lo.skill_ids} onChange={(e) => mod(i, { outcomes: m.outcomes.map((x: any, k: number) => (k === j ? { ...x, skill_ids: [...e.target.selectedOptions].map((o) => o.value) } : x)) })}>{c.skills.filter((s: any) => s.skill_id).map((s: any) => <option key={s.skill_id}>{s.skill_id}</option>)}</select></div>
+                <label className="field"><span className="label">Learning outcome {lo.lo_id}</span><input className="input" value={lo.text} onChange={(e) => mod(i, { outcomes: m.outcomes.map((x: any, k: number) => (k === j ? { ...x, text: e.target.value } : x)) })} /></label>
+                <label className="field"><span className="label">Skills (up to 3)</span><select className="select" multiple style={{ minHeight: 96 }} value={lo.skill_ids} onChange={(e) => mod(i, { outcomes: m.outcomes.map((x: any, k: number) => (k === j ? { ...x, skill_ids: [...e.target.selectedOptions].map((o) => o.value) } : x)) })}>{c.skills.filter((s: any) => s.skill_id).map((s: any) => <option key={s.skill_id}>{s.skill_id}</option>)}</select></label>
               </div>
             ))}
             <button className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }} onClick={() => mod(i, { outcomes: [...(m.outcomes ?? []), { lo_id: `LO-${i + 1}.${(m.outcomes?.length ?? 0) + 1}`, text: '', type: 'practical', skill_ids: [] }] })}><Plus size={16} /> Add outcome</button>
@@ -92,8 +92,8 @@ function CourseEditor({ initial, skills, courses, onDone }: { initial: any; skil
         ))}
         <button className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }} onClick={() => set({ modules: [...c.modules, { title: '', outcomes: [] }] })}><Plus size={16} /> Add module</button></div>
       <div className="stack"><p className="eyebrow">G. Outcome for learners</p>
-        <div className="field"><label>Terminal outcome (starts with a verb, completes "you are likely to be able to ...")</label><input className="input" value={c.terminal_outcome} onChange={(e) => set({ terminal_outcome: e.target.value })} /></div>
-        <div className="field"><label>Assessment summary</label><input className="input" value={c.assessment_gate ?? ''} onChange={(e) => set({ assessment_gate: e.target.value })} /></div></div>
+        <label className="field"><span className="label">Terminal outcome (starts with a verb, completes "you are likely to be able to ...")</span><input className="input" value={c.terminal_outcome} onChange={(e) => set({ terminal_outcome: e.target.value })} /></label>
+        <label className="field"><span className="label">Assessment summary</span><input className="input" value={c.assessment_gate ?? ''} onChange={(e) => set({ assessment_gate: e.target.value })} /></label></div>
       {error ? <ErrorNote>{error}</ErrorNote> : null}
       <div className="row wrap">
         <button className="btn btn-secondary" onClick={save}>1. Save draft</button>

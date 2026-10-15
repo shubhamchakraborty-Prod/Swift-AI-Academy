@@ -283,6 +283,7 @@ test('staff consoles', async ({ browser }, info) => {
   await expect(page.getByRole('heading', { name: 'Validation' })).toBeVisible();
   await snap('11 Admin', 'AD02 Validation results', { fullPage: true });
   await page.getByRole('button', { name: 'Close' }).click();
+  await expect(page.locator('.toast')).toHaveCount(0, { timeout: 10_000 }); // keep the 'Draft saved' toast out of later shots
   await page.getByRole('tab', { name: 'Config versions' }).click();
   await snap('11 Admin', 'AD05 Config versions', { fullPage: true });
   await page.getByRole('tab', { name: 'Catalogue' }).click();
