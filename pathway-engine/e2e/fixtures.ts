@@ -12,7 +12,7 @@ export async function shot(page: Page, name: string) {
 }
 
 /** Learner A's item answers (worked example), keyed by statement text. */
-const B_VALUES: Record<string, number> = {
+export const B_VALUES: Record<string, number> = {
   'LP-P1': 4, 'LP-P2': 3, 'LP-P3': 4, 'LP-P4': 3, 'LP-D1': 5, 'LP-D2': 4, 'LP-D3': 4, 'LP-D4': 4, 'LP-I1': 3, 'LP-I2': 3, 'LP-I3': 3, 'LP-I4': 3,
   'LP-T1': 2, 'LP-T2': 2, 'LP-T3': 3, 'LP-T4': 2, 'LP-SD1': 4, 'LP-SD2': 4, 'LP-SD3': 4, 'LP-SD4': 3, 'LP-SD5': 4, 'LP-LI1': 4, 'LP-LI2': 4, 'LP-LI3': 2, 'LP-LI4': 4,
   'LP-LM1': 4, 'LP-LM2': 4, 'LP-LM3': 3, 'LP-LM4': 4, 'LP-GC1': 3, 'LP-GC2': 3, 'LP-GC3': 3, 'LP-CE1': 3, 'LP-CE2': 3, 'LP-CE3': 3, 'LP-CT1': 3, 'LP-CT2': 2, 'LP-CT3': 3,
